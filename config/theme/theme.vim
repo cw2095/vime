@@ -87,7 +87,7 @@ silent! colorscheme forest-night
 " let g:pencil_spell_undercurl = 1
 " let g:pencil_higher_contrast_ui = 0
 " silent! colorscheme pencil
-"
+
 " let g:oceanic_next_terminal_bold = 1
 " let g:oceanic_next_terminal_italic = 1
 " silent! colorscheme OceanicNext
