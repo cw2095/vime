@@ -174,10 +174,11 @@ function! s:lc_coc_highlight() abort
 endfunction
 
 function! s:lc_coc_lists() abort
-    " session 保存目录
+    " session
     call coc#config('session.directory', g:session_dir)
-    if !common#functions#HasPlug('dashboard-nvim')
-        " 退出时自动保存session
+    if common#functions#HasPlug('dashboard-nvim', 'vim-startify')
+        call coc#config('session.saveOnVimLeave', v:false)
+    else
         call coc#config('session.saveOnVimLeave', v:true)
     endif
 
@@ -294,11 +295,13 @@ function! s:lc_coc_git() abort
     call coc#config('git.addGBlameToBufferVar', v:true)
     call coc#config('git.addGBlameToVirtualText', v:true)
     call coc#config('git.virtualTextPrefix', '  ➤  ')
-    call coc#config('git.addedSign.hlGroup', 'GitGutterAdd')
-    call coc#config('git.changedSign.hlGroup', 'GitGutterChange')
-    call coc#config('git.removedSign.hlGroup', 'GitGutterDelete')
-    call coc#config('git.topRemovedSign.hlGroup', 'GitGutterDelete')
-    call coc#config('git.changeRemovedSign.hlGroup', 'GitGutterChangeDelete')
+    if common#functions#HasPlug("vim-gitgutter")
+        call coc#config('git.addedSign.hlGroup', 'GitGutterAdd')
+        call coc#config('git.changedSign.hlGroup', 'GitGutterChange')
+        call coc#config('git.removedSign.hlGroup', 'GitGutterDelete')
+        call coc#config('git.topRemovedSign.hlGroup', 'GitGutterDelete')
+        call coc#config('git.changeRemovedSign.hlGroup', 'GitGutterChangeDelete')
+    endif
     call coc#config('git.addedSign.text', '▎')
     call coc#config('git.changedSign.text', '▎')
     call coc#config('git.removedSign.text', '▎')
