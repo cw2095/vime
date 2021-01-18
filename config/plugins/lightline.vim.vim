@@ -23,7 +23,7 @@ function! LightlineLineinfo() abort
     \      &filetype ==? 'vista'            ? ' ' :
     \      &filetype =~? '\v^mundo(diff)?$' ? ' ' :
     \      s:lightline_is_lean() || s:lightline_is_plain() ? ' '  :
-    \      printf(' %3ld%% ☰ %3ld:%4ld', 100*line('.')/line('$'),  line('.'), col('.'))
+    \      printf(' %ld/%ld: %ld ☰ %ld%% ', line('.'), line('$'),col('.'), 100*line('.')/line('$'))
 endfunction
 
 function! LightLineGitInfo()abort
@@ -45,7 +45,7 @@ function! LightLineGitInfo()abort
 endfunction
 
 let g:lightline = {
-    \ 'colorscheme': 'solarized',
+    \ 'colorscheme': 'jellybeans',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'readonly', 'filename', 'modified'],
@@ -53,13 +53,12 @@ let g:lightline = {
     \           ],
     \   'right': [
     \       ['cocerror'], ['cocwarn'], ['cocfix'],
-    \       [ 'filetype', 'fileencoding', 'fileformat', 'hex', 'asc', 'lineinfo'],
+    \       [ 'filetype', 'fileencoding', 'fileformat', 'charvaluehex', 'lineinfo'],
     \       [ 'percent' ]
     \   ]
     \ },
     \ 'component': {
-    \   'asc': '%03.3b',
-    \   'hex': '0x%hhhB',
+    \   'charvaluehex': '0x%B',
     \ },
     \ 'component_function': {
     \   'cocstatus': 'coc#status',
@@ -73,6 +72,4 @@ let g:lightline = {
     \ },
     \ 'component_expand': {
     \ },
-    \ 'separator': { 'left': "\ue0b8", 'right': "\ue0ba"},
-    \ 'subseparator': { 'left': "\ue0b9", 'right': "\ue0bb"}
 \ }
