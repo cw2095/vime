@@ -105,8 +105,12 @@ nnoremap <silent> tl :+tabnext<cr>¬
 nnoremap <silent> tmh :-tabmove<cr>
 nnoremap <silent> tml :+tabmove<cr>¬
 
+" find and replace
+noremap \s :%s//g<left><left>
+
 " Opening a terminal window
 noremap <LEADER>/ :set splitbelow<cr>:res +10<cr>:term<cr>
 
 " Call figlet
-noremap tx :r !figlet
+noremap tx :r !figlet<space><space><space><space>
+

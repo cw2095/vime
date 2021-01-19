@@ -27,6 +27,12 @@ Plug 'ghifarit53/tokyonight-vim'
 Plug 'sainnhe/edge'
 Plug 'reedes/vim-colors-pencil'
 
+" General Highlighter
+" 显示颜色 例如: #654456
+Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
+" automatically highlighting other uses of the current word under the cursor
+Plug 'RRethy/vim-illuminate'
+
 " 顶栏和底栏
 " Plug 'rbong/vim-crystalline'
 Plug 'itchyny/lightline.vim'
