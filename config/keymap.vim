@@ -40,7 +40,6 @@ vnoremap <LEADER>ft :s/\t/    /g
 " Folding
 noremap <silent> <LEADER>o za
 
-" nnoremap <c-n> :tabe<cr>:-tabmove<cr>:term lazygit<cr>
 
 nnoremap j gj
 nnoremap k gk
@@ -111,6 +110,8 @@ noremap \s :%s//g<left><left>
 
 " Opening a terminal window
 noremap <LEADER>/ :set splitbelow<cr>:res +10<cr>:term<cr>
+
+nnoremap <c-g> :tabe<cr>:-tabmove<cr>:term lazygit<cr>
 
 " Call figlet
 noremap tx :r !figlet<space><space><space><space>

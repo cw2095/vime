@@ -12,6 +12,8 @@ let g:gitgutter_map_keys = 0
 let g:gitgutter_max_signs = 500
 let g:gitgutter_preview_win_floating = 1
 
+let g:gitgutter_override_sign_column_highlight = 0
+
 " 关闭column的提示符号
 if common#functions#HasCocPlug('coc-git')
     let g:gitgutter_signs = 0
@@ -34,9 +36,10 @@ if !common#functions#HasCocPlug('coc-git')
     " 导航到修改块
     nnoremap <leader>gj :GitGutterNextHunk<cr>
     nnoremap <leader>gk :GitGutterPrevHunk<cr>
+    nnoremap <LEADER>gf :GitGutterFold<CR>
     " 显示光标处的修改信息
     nnoremap <leader>gp :GitGutterPreviewHunk<cr>
     " 撤销当前块的修改
-    nnoremap <leader>gu :GitGutterUndoHunk<cr>
-    nnoremap <leader>gh :GitGutterStageHunk<cr>
+    " nnoremap <leader>gu :GitGutterUndoHunk<cr>
+    " nnoremap <leader>gh :GitGutterStageHunk<cr>
 endif

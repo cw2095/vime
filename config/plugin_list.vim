@@ -65,6 +65,8 @@ Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 
 " Git
 " Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
+Plug 'airblade/vim-gitgutter'
+Plug 'cohama/agit.vim'
 " Plug 'kdheepak/lazygit.nvim'
 
 " IDE madness
