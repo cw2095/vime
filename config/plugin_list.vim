@@ -36,6 +36,7 @@ Plug 'reedes/vim-colors-pencil'
 " 顶栏和底栏
 " Plug 'rbong/vim-crystalline'
 Plug 'itchyny/lightline.vim'
+Plug 'mg979/vim-xtabline'
 " Plug 'liuchengxu/eleline.vim'
 
 " General Highlighter
@@ -44,9 +45,12 @@ Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " automatically highlighting other uses of the current word under the cursor
 Plug 'RRethy/vim-illuminate'
 
-" 彩虹括号
+" visual enhancement
 Plug 'luochen1990/rainbow'
-
+Plug 'ryanoasis/vim-devicons'
+Plug 'wincent/terminus'
+" 对齐线
+Plug 'Yggdroot/indentLine', {'on': 'IndentLinesEnable'}
 " 显示清除尾部空格
 Plug 'ntpeters/vim-better-whitespace'
 
@@ -58,9 +62,12 @@ Plug 'junegunn/fzf.vim'
 " Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 " Plug 'kevinhwang91/rnvimr'
-" Plug 'airblade/vim-rooter'
-" Plug 'pechorin/any-jump.vim'
 
 " Git
 " Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
 " Plug 'kdheepak/lazygit.nvim'
+
+" IDE madness
+Plug 'airblade/vim-rooter'
+Plug 'pechorin/any-jump.vim'
+

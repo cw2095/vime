@@ -115,3 +115,5 @@ noremap <LEADER>/ :set splitbelow<cr>:res +10<cr>:term<cr>
 " Call figlet
 noremap tx :r !figlet<space><space><space><space>
 
+noremap \p :echo expand('%:p')<CR>
+

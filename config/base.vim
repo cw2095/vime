@@ -108,7 +108,8 @@ set notimeout
 set ttimeout
 " set timeoutlen=500
 set ttimeoutlen=0
-set autochdir
+
+" set autochdir
 
 " 搜索高亮
 set incsearch
