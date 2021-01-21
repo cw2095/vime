@@ -40,21 +40,21 @@ function! LeaderfRgWithWiki(query) abort
     endif
 endfunction
 
-" nnoremap <M-f> :call LeaderfFileWithWiki("")<CR>
-" nnoremap <M-F> :call LeaderfFileWithWiki($HOME)<CR>
-" nnoremap <M-s> :call LeaderfRgWithWiki("")<cr>
-" nnoremap <M-b> :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-" nnoremap <M-c> :LeaderfCommand<cr>
-" nnoremap <M-t> :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
-" nnoremap <M-T> :LeaderfBufTagAll<cr>
-" nnoremap ?     :LeaderfLineAll<CR>
-" nnoremap <M-r> :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-" nnoremap <M-w> :<C-U><C-R>=printf("Leaderf! window %s", "")<CR><CR>
+nnoremap <M-f> :call LeaderfFileWithWiki("")<CR>
+nnoremap <M-F> :call LeaderfFileWithWiki($HOME)<CR>
+nnoremap <M-s> :call LeaderfRgWithWiki("")<cr>
+nnoremap <M-b> :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+nnoremap <M-c> :LeaderfCommand<cr>
+nnoremap <M-t> :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+nnoremap <M-T> :LeaderfBufTagAll<cr>
+nnoremap ?     :LeaderfLineAll<CR>
+nnoremap <M-r> :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+nnoremap <M-w> :<C-U><C-R>=printf("Leaderf! window %s", "")<CR><CR>
+nnoremap <M-h> :History<CR>
+nnoremap <M-d> :BD<CR>
+nnoremap <M-;> :History:<CR>
 
-nnoremap <c-p> :Leaderf file<CR>
-noremap <silent> <C-f> :Rg<CR>
-noremap <silent> <C-h> :History<CR>
-noremap <silent> <C-w> :Buffers<CR>
-noremap <leader>; :History:<CR>
-noremap <c-d> :BD<CR>
+" nnoremap <c-p> :Leaderf file<CR>
+" noremap <silent> <C-f> :Rg<CR>
+" noremap <silent> <C-w> :Buffers<CR>
 

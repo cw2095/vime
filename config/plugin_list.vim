@@ -53,8 +53,8 @@ Plug 'ntpeters/vim-better-whitespace'
 " File navigation
 "Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'junegunn/fzf', {'do': {-> fzf#install()}}
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', {'do': {-> fzf#install()}}
+Plug 'junegunn/fzf.vim'
 " Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 " Plug 'kevinhwang91/rnvimr'
