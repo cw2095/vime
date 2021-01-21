@@ -95,7 +95,7 @@ noremap s<left> :vertical resize-5<cr>
 noremap s<right> :vertical resize+5<cr>
 
 " Press <SPACE> + q to close the window below the current window
-noremap <LEADER>q <C-w>j:q<cr>
+nnoremap <LEADER>q <C-w>j:q<cr>
 
 " Tab management
 nnoremap <silent> tn :tabnew<cr>
@@ -106,15 +106,15 @@ nnoremap <silent> tmh :-tabmove<cr>
 nnoremap <silent> tml :+tabmove<cr>¬
 
 " find and replace
-noremap \s :%s//g<left><left>
+nnoremap \s :%s//g<left><left>
 
 " Opening a terminal window
-noremap <LEADER>/ :set splitbelow<cr>:res +10<cr>:term<cr>
+noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
 
 nnoremap <c-g> :tabe<cr>:-tabmove<cr>:term lazygit<cr>
 
 " Call figlet
-noremap tx :r !figlet<space><space><space><space>
+nnoremap tx :r !figlet<space><space><space><space>
 
-noremap \p :echo expand('%:p')<CR>
+nnoremap \p :echo expand('%:p')<CR>
 
