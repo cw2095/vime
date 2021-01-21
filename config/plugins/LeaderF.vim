@@ -4,11 +4,18 @@ highlight Lf_hl_match gui=bold guifg=Red cterm=bold ctermfg=21
 highlight Lf_hl_matchRefine  gui=bold guifg=Magenta cterm=bold ctermfg=201
 
 let g:Lf_HideHelp = 1
+let g:Lf_ShowHidden = 1
+let g:Lf_ShowDevIcons = 1
+let g:Lf_PreviewCode = 1
 " 使用leaderf file path的时候不更改目录到path
 let g:Lf_NoChdir = 1
 let g:Lf_UseCache = 0
 let g:Lf_UseVersionControlTool = 0
 let g:Lf_IgnoreCurrentBufferName = 1
+let g:Lf_WildIgnore = {
+        \ 'dir': ['.git', 'vendor', 'node_modules'],
+        \ 'file': ['__vim_project_root']
+        \}
 " popup mode
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
@@ -33,13 +40,21 @@ function! LeaderfRgWithWiki(query) abort
     endif
 endfunction
 
-nnoremap <M-f> :call LeaderfFileWithWiki("")<CR>
-nnoremap <M-F> :call LeaderfFileWithWiki($HOME)<CR>
-nnoremap <M-s> :call LeaderfRgWithWiki("")<cr>
-nnoremap <M-b> :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-nnoremap <M-c> :LeaderfCommand<cr>
-nnoremap <M-t> :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
-nnoremap <M-T> :LeaderfBufTagAll<cr>
-nnoremap ?     :LeaderfLineAll<CR>
-nnoremap <M-r> :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-nnoremap <M-w> :<C-U><C-R>=printf("Leaderf! window %s", "")<CR><CR>
+" nnoremap <M-f> :call LeaderfFileWithWiki("")<CR>
+" nnoremap <M-F> :call LeaderfFileWithWiki($HOME)<CR>
+" nnoremap <M-s> :call LeaderfRgWithWiki("")<cr>
+" nnoremap <M-b> :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+" nnoremap <M-c> :LeaderfCommand<cr>
+" nnoremap <M-t> :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+" nnoremap <M-T> :LeaderfBufTagAll<cr>
+" nnoremap ?     :LeaderfLineAll<CR>
+" nnoremap <M-r> :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+" nnoremap <M-w> :<C-U><C-R>=printf("Leaderf! window %s", "")<CR><CR>
+
+nnoremap <c-p> :Leaderf file<CR>
+noremap <silent> <C-f> :Rg<CR>
+noremap <silent> <C-h> :History<CR>
+noremap <silent> <C-w> :Buffers<CR>
+noremap <leader>; :History:<CR>
+noremap <c-d> :BD<CR>
+

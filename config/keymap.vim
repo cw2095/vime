@@ -3,7 +3,6 @@ let mapleader=" "
 nmap Q <nop>
 
 noremap ; :
-nnoremap 9 $
 nnoremap ! :!
 
 noremap - N
@@ -35,6 +34,8 @@ noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
 " Space to Tab
 nnoremap <LEADER>ff :%s/    /\t/g
 vnoremap <LEADER>ff :s/    /\t/g
+nnoremap <LEADER>ft :%s/\t/    /g
+vnoremap <LEADER>ft :s/\t/    /g
 
 " Folding
 noremap <silent> <LEADER>o za
