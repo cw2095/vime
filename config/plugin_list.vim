@@ -50,10 +50,6 @@ Plug 'RRethy/vim-illuminate'
 Plug 'luochen1990/rainbow'
 Plug 'ryanoasis/vim-devicons'
 Plug 'wincent/terminus'
-" 对齐线
-Plug 'Yggdroot/indentLine', {'on': 'IndentLinesEnable'}
-" 显示清除尾部空格
-Plug 'ntpeters/vim-better-whitespace'
 
 " File navigation
 "Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -73,6 +69,10 @@ Plug 'cohama/agit.vim'
 " IDE madness
 Plug 'airblade/vim-rooter'
 Plug 'pechorin/any-jump.vim'
+" 对齐线
+Plug 'Yggdroot/indentLine', {'on': 'IndentLinesEnable'}
+" 显示清除尾部空格
+Plug 'ntpeters/vim-better-whitespace'
 " 自动补全括号
 Plug 'jiangmiao/auto-pairs'
 " 快速包围
@@ -94,6 +94,10 @@ Plug 'easymotion/vim-easymotion', {'on':
    \ ]}
 " 替换
 Plug 'svermeulen/vim-subversive'
+" switching between a single-line statement and a multi-line one.
+" gS to split a one-liner into multiple lines
+" gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
+Plug 'AndrewRadev/splitjoin.vim'
 " Taglist
 Plug 'liuchengxu/vista.vim'
 
