@@ -65,10 +65,18 @@ Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 " Plug 'kevinhwang91/rnvimr'
 
 " 忘记sudo?使用: sudowrite或: sw
-Plug 'lambdalisue/suda.vim'
+" Plug 'lambdalisue/suda.vim'
+
+" 悬浮终端
+" Plug 'voldikss/vim-floaterm', {'on': ['FloatermNew', 'FloatermToggle']}
 
 " Undo Tree
-Plug 'simnalamburt/vim-mundo'
+" Plug 'simnalamburt/vim-mundo'
+
+" 笔记插件，支持markdown
+" Plug 'vimwiki/vimwiki'
+
+" markdown
 
 " Git
 " Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
@@ -78,7 +86,7 @@ Plug 'cohama/agit.vim'
 
 " IDE madness
 Plug 'airblade/vim-rooter'
-Plug 'pechorin/any-jump.vim'
+" Plug 'pechorin/any-jump.vim'
 " 对齐线
 Plug 'Yggdroot/indentLine', {'on': 'IndentLinesEnable'}
 " 显示清除尾部空格
@@ -89,11 +97,15 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 " 注释插件
 Plug 'scrooloose/nerdcommenter'
+" 生成注释文档
+" Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
 " 多光标
 Plug 'mg979/vim-visual-multi'
 " 对齐
 " Plug 'junegunn/vim-easy-align', {'on': ['EasyAlign', '<Plug>(EasyAlign)']}
 Plug 'godlygeek/tabular'
+" 功能很强的折叠插件, zc zo
+Plug 'pseewald/vim-anyfold'
 " 快速移动
 Plug 'easymotion/vim-easymotion', {'on':
    \ [
@@ -112,5 +124,20 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'brooth/far.vim'
 Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 " Taglist
-Plug 'liuchengxu/vista.vim'
+" Plug 'liuchengxu/vista.vim'
 
+" Autoformat
+" Plug 'google/vim-maktaba'
+" Plug 'google/vim-codefmt'
+" Plug 'google/vim-glaive'
+
+" A multi-language debugging plugin for Vim
+" c debug
+" Plug 'puremourning/vimspector'
+
+" 代码段
+" Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+
+" 代码补全插件
+" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
