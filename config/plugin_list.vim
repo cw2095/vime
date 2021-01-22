@@ -98,6 +98,9 @@ Plug 'svermeulen/vim-subversive'
 " gS to split a one-liner into multiple lines
 " gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
 Plug 'AndrewRadev/splitjoin.vim'
+" 全局替换插件
+" Plug 'brooth/far.vim'
+Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 " Taglist
 Plug 'liuchengxu/vista.vim'
 

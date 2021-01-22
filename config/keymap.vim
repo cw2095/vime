@@ -9,7 +9,7 @@ noremap - N
 noremap = n
 
 " Save & quit
-nnoremap S <esc>:w<cr>
+nnoremap  <LEADER>s <esc>:w<cr>
 nnoremap Q <esc>:close<cr>
 vnoremap Q <esc>:close<cr>
 
