@@ -48,17 +48,27 @@ Plug 'RRethy/vim-illuminate'
 
 " visual enhancement
 Plug 'luochen1990/rainbow'
-Plug 'ryanoasis/vim-devicons'
 Plug 'wincent/terminus'
+if has('nvim')
+    Plug 'kyazdani42/nvim-web-devicons'
+else
+    Plug 'ryanoasis/vim-devicons'
+endif
 
 " File navigation
-"Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-"Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', {'do': {-> fzf#install()}}
 Plug 'junegunn/fzf.vim'
 " Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 " Plug 'kevinhwang91/rnvimr'
+
+" 忘记sudo?使用: sudowrite或: sw
+Plug 'lambdalisue/suda.vim'
+
+" Undo Tree
+Plug 'simnalamburt/vim-mundo'
 
 " Git
 " Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
