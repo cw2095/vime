@@ -92,6 +92,8 @@ Plug 'easymotion/vim-easymotion', {'on':
    \ '<Plug>(easymotion-overwin-line)', '<Plug>(easymotion-bd-w)',
    \ '<Plug>(easymotion-overwin-w)', '<Plug>(easymotion-s)',
    \ ]}
+" 替换
+Plug 'svermeulen/vim-subversive'
 " Taglist
 Plug 'liuchengxu/vista.vim'
 
