@@ -75,6 +75,8 @@ Plug 'airblade/vim-rooter'
 Plug 'pechorin/any-jump.vim'
 " 自动补全括号
 Plug 'jiangmiao/auto-pairs'
+" 快速包围
+Plug 'tpope/vim-surround'
 " Taglist
 Plug 'liuchengxu/vista.vim'
 
