@@ -194,10 +194,14 @@ Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 " Plug 'SirVer/ultisnips'
 
 " 代码补全插件
-" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " coc插件列表，可根据需要进行删减
-" let g:coc_global_extensions = [
+let g:coc_global_extensions = [
+    \ 'coc-explorer',
+    \ 'coc-json',
+    \ ]
+
     " \ 'coc-vimlsp',
     " \ 'coc-xml',
     " \ 'coc-yank',
@@ -206,14 +210,10 @@ Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
     " \ 'coc-cmake',
     " \ 'coc-snippets',
     " \ 'coc-clangd',
-    " \ 'coc-json',
     " \ 'coc-lists',
     " \ 'coc-word',
     " \ 'coc-python',
-    " \ 'coc-explorer',
     " \ 'coc-ci',
-    " \ ]
-
     " \ 'coc-git',
     " \ 'coc-marketplace',
     " \ 'coc-tsserver',
