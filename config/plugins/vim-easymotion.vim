@@ -1,3 +1,7 @@
+let g:EasyMotion_do_mapping = 0
+" let g:EasyMotion_do_shade = 0
+let g:EasyMotion_smartcase = 1
+
 " 一个字符
 map f <Plug>(easymotion-bd-f)
 nmap f <Plug>(easymotion-overwin-f)
