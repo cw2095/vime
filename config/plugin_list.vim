@@ -73,6 +73,8 @@ Plug 'cohama/agit.vim'
 " IDE madness
 Plug 'airblade/vim-rooter'
 Plug 'pechorin/any-jump.vim'
+" 自动补全括号
+Plug 'jiangmiao/auto-pairs'
 " Taglist
 Plug 'liuchengxu/vista.vim'
 
