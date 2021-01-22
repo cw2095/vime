@@ -79,6 +79,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 " 注释插件
 Plug 'scrooloose/nerdcommenter'
+" 多光标
+Plug 'mg979/vim-visual-multi'
 " Taglist
 Plug 'liuchengxu/vista.vim'
 
