@@ -77,6 +77,8 @@ Plug 'pechorin/any-jump.vim'
 Plug 'jiangmiao/auto-pairs'
 " 快速包围
 Plug 'tpope/vim-surround'
+" 注释插件
+Plug 'scrooloose/nerdcommenter'
 " Taglist
 Plug 'liuchengxu/vista.vim'
 
