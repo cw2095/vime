@@ -1,0 +1,1 @@
+vmap ga :Tabularize /

@@ -81,6 +81,9 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 " 多光标
 Plug 'mg979/vim-visual-multi'
+" 对齐
+" Plug 'junegunn/vim-easy-align', {'on': ['EasyAlign', '<Plug>(EasyAlign)']}
+Plug 'godlygeek/tabular'
 " Taglist
 Plug 'liuchengxu/vista.vim'
 
