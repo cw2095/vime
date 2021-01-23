@@ -51,11 +51,8 @@ endif
 " visual enhancement
 Plug 'luochen1990/rainbow'
 Plug 'wincent/terminus'
-if has('nvim')
-    Plug 'kyazdani42/nvim-web-devicons'
-else
-    Plug 'ryanoasis/vim-devicons'
-endif
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'ryanoasis/vim-devicons'
 
 " File navigation
 " Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
