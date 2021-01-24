@@ -41,6 +41,7 @@ if has('termguicolors')
     " enable true color
     set termguicolors
 endif
+set guifont
 
 set cursorline
 set colorcolumn=80
