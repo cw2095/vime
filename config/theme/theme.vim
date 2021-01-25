@@ -8,9 +8,9 @@
 " silent! colorscheme forest-night
 
 " silent! colorscheme nvcode
-" silent! colorscheme deus
+silent! colorscheme deus
 " silent! colorscheme xcodedark
-silent! colorscheme gruvbox-material
+" silent! colorscheme gruvbox-material
 " silent! colorscheme onedark
 
 " let g:one_allow_italics = 1
