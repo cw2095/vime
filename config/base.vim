@@ -41,7 +41,6 @@ if has('termguicolors')
     " enable true color
     set termguicolors
 endif
-set guifont
 
 set cursorline
 set colorcolumn=80
@@ -176,8 +175,8 @@ if has("autocmd")
     autocmd BufEnter * silent! lcd %:p:h
 endif
 
-let g:neoterm_autoscroll = 1
-autocmd TermOpen term://* startinsert
+" let g:neoterm_autoscroll = 1
+" autocmd TermOpen term://* startinsert
 
 " 以下内容来自韦大的配置
 " 文件搜索和补全时忽略下面的扩展名

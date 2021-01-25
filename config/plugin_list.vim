@@ -37,6 +37,8 @@ Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
 " 顶栏和底栏
 " Plug 'rbong/vim-crystalline'
 Plug 'itchyny/lightline.vim'
+" Plug 'bagrat/vim-buffet'
+" Plug 'romgrk/barbar.nvim'
 Plug 'mg979/vim-xtabline'
 " Plug 'liuchengxu/eleline.vim'
 
@@ -64,12 +66,12 @@ Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 " Plug 'kevinhwang91/rnvimr'
 
 " 忘记sudo?使用: sudowrite或: sw
-" Plug 'lambdalisue/suda.vim'
+Plug 'lambdalisue/suda.vim'
 
 " Plug 'tyru/open-browser.vim'
 
 " 悬浮终端
-" Plug 'voldikss/vim-floaterm', {'on': ['FloatermNew', 'FloatermToggle']}
+Plug 'voldikss/vim-floaterm', {'on': ['FloatermNew', 'FloatermToggle']}
 
 " 关闭buffer而不关闭窗口
 " Plug 'rbgrouleff/bclose.vim', {'on': 'Bclose'}
