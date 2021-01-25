@@ -5,11 +5,13 @@ let g:coc_config_home = g:other_config_root_path
 
 " 卸载不在列表中的插件
 function! s:uninstall_unused_coc_extensions() abort
-    for e in keys(json_decode(join(readfile(expand(g:coc_data_home . '/extensions/package.json')), "\n"))['dependencies'])
-        if index(g:coc_global_extensions, e) < 0
-            execute 'CocUninstall ' . e
-        endif
-    endfor
+    if has_key(g:, 'coc_global_extensions')
+        for e in keys(json_decode(join(readfile(expand(g:coc_data_home . '/extensions/package.json')), "\n"))['dependencies'])
+            if index(g:coc_global_extensions, e) < 0
+                execute 'CocUninstall ' . e
+            endif
+        endfor
+    endif
 endfunction
 autocmd User CocNvimInit call s:uninstall_unused_coc_extensions()
 
@@ -394,6 +396,13 @@ function! s:lc_coc_explorer() abort
         \   '.vim': {
         \      'root-uri': g:vim_root_path,
         \   },
+        \   'cocConfig': {
+        \      'root-uri': '~/.config/coc',
+        \   },
+        \   'tab': {
+        \     'position': 'tab',
+        \     'quit-on-open': v:true,
+        \   },
         \   'floating': {
         \      'position': 'floating',
         \      'floating-position': 'center',
@@ -409,13 +418,13 @@ function! s:lc_coc_explorer() abort
         \     'floating-position': 'center-top',
         \     'open-action-strategy': 'sourceWindow',
         \   },
-        \   'floatingLeftside': {
+        \   'floatingLeftSide': {
         \      'position': 'floating',
         \      'floating-position': 'left-center',
         \      'floating-width': 100,
         \      'open-action-strategy': 'sourceWindow',
         \   },
-        \   'floatingRightside': {
+        \   'floatingRightSide': {
         \      'position': 'floating',
         \      'floating-position': 'right-center',
         \      'floating-width': 100,
@@ -423,7 +432,10 @@ function! s:lc_coc_explorer() abort
         \   },
         \   'simplify': {
         \     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-        \   }
+        \   },
+        \   'buffer': {
+        \     'sources': [{'name': 'buffer', 'expand': v:true}]
+        \   },
     \ }
 
     " Use preset argument to open it
@@ -441,6 +453,7 @@ function! s:lc_coc_explorer() abort
 
     " config
     call coc#config("explorer.icon.enableNerdfont", v:true)
+    call coc#config("explorer.contentWidthType", "win-width")
     call coc#config("explorer.bookmark.child.template", "[selection | 1] [filename] [position] - [annotation]")
     call coc#config("explorer.file.column.icon.modified", "•")
     call coc#config("explorer.file.column.icon.deleted", "✖")
@@ -449,23 +462,37 @@ function! s:lc_coc_explorer() abort
     call coc#config("explorer.file.column.icon.unmerged", "≠")
     call coc#config("explorer.file.column.icon.ignored", "ⁱ")
     call coc#config("explorer.keyMappings.global", {
+                \ 's': v:false,
+                \ 't': v:false,
+                \ 'E': v:false,
+                \ 'e': v:false,
+                \ 'zh': v:false,
+                \ 'g.': v:false,
+    \ })
+    call coc#config("explorer.keyMappings.global", {
       \ 'k': 'nodePrev',
       \ 'j': 'nodeNext',
-      \ 'h': 'collapse',
-      \ 'l': ['expandable?', 'expand', 'open'],
-      \ 'L': 'expand:recursive',
-      \ 'H': 'collapse:recursive',
-      \ 'K': 'expandablePrev',
-      \ 'J': 'expandableNext',
-      \ '<cr>': ['expandable?', 'cd', 'open'],
-      \ '<bs>': 'gotoParent',
+      \ 'h': ["wait", 'collapse'],
+      \ 'l': ["wait", 'expandable?', 'expand', 'open'],
+      \ 'L': ["wait", 'expand:recursive'],
+      \ 'H': ["wait", 'collapse:recursive'],
+      \ 'K': ["wait", 'expandablePrev'],
+      \ 'J': ["wait", 'expandableNext'],
+      \ 'o': ["wait", 'expanded?', 'collapse', 'expand'],
+      \ '<cr>': ["wait", 'expandable?', 'cd', 'open'],
+      \ '<bs>': ["wait", 'gotoParent'],
       \ 'r': 'refresh',
-      \ 'v': ['toggleSelection', 'normal:j'],
-      \ 'V': ['toggleSelection', 'normal:k'],
-      \ '*': 'toggleSelection',
+      \
+      \ 's': ["wait", 'toggleSelection', 'normal:j'],
+      \ 'S': ["wait", 'toggleSelection', 'normal:k'],
+      \ '*': ["wait", 'toggleSelection'],
+      \ 'gs': ["wait", "reveal:select"],
+      \ '<dot>': 'toggleHidden',
+      \
       \ '<c-s>': 'open:split',
       \ '<c-v>': 'open:vsplit',
-      \ 't': 'open:tab',
+      \ '<c-t>': 'open:tab',
+      \
       \ 'dd': 'cutFile',
       \ 'Y': 'copyFile',
       \ 'D': 'delete',
@@ -474,25 +501,42 @@ function! s:lc_coc_explorer() abort
       \ 'N': 'addFile',
       \ 'yp': 'copyFilepath',
       \ 'yn': 'copyFilename',
-      \ 'gp': 'preview:labeling',
+      \
+      \ 'pl': 'previewOnHover:toggle:labeling',
+      \ 'pc': 'previewOnHover:toggle:content',
+      \
       \ '<M-x>': 'systemExecute',
       \ 'f': 'search',
       \ 'F': 'searchRecursive',
+      \
       \ '<tab>': 'actionMenu',
       \ '?': 'help',
       \ 'q': 'quit',
       \ '<esc>': 'esc',
+      \
       \ 'gf': 'gotoSource:file',
       \ 'gb': 'gotoSource:buffer',
-      \ '[[': 'sourcePrev',
-      \ ']]': 'sourceNext',
-      \ '[d': 'diagnosticPrev',
-      \ ']d': 'diagnosticNext',
-      \ '[c': 'gitPrev',
-      \ ']c': 'gitNext',
-      \ '<<': 'gitStage',
-      \ '>>': 'gitUnstage'
+      \ '[[': ["wait", 'indentPrev'],
+      \ ']]': ["wait", 'indentNext'],
+      \
+      \ '<M-k>': ["wait", 'markPrev:diagnosticError'],
+      \ '<M-j>': ["wait", 'markNext:diagnosticError'],
+      \
+      \ '<leader>gk': ["wait", 'markPrev:git'],
+      \ '<leader>gj': ["wait", 'markNext:git'],
+      \ '<leader>gh': 'gitStage',
+      \ '<leader>gu': 'gitUnstage'
     \ })
+
+    " function! s:ShowFilename()
+        " let s:node_info = CocAction('runCommand', 'explorer.getNodeInfo', 0)
+        " redraw | echohl Debug | echom exists('s:node_info.fullpath') ?
+        " \ 'FullPath: ' . s:node_info.fullpath .
+        " \ ' Size: ' . s:node_info.lstat.size . 'B' .
+        " \ ' ReadOnly: ' . s:node_info.readonly : '' |  echohl None
+    " endfunction
+    " autocmd CursorMoved \[coc-explorer\]* :call <SID>ShowFilename()
+
 endfunction
 
 function! s:tmp() abort
@@ -522,6 +566,8 @@ let s:coc_config_functions = {
 
 " TODO 更改调用方式
 " 调用插件的配置函数
-for extension in g:coc_global_extensions
-    call get(s:coc_config_functions, extension, function('<SID>tmp'))()
-endfor
+if has_key(g:, 'coc_global_extensions')
+    for extension in g:coc_global_extensions
+        call get(s:coc_config_functions, extension, function('<SID>tmp'))()
+    endfor
+endif
