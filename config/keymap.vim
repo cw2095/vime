@@ -108,6 +108,8 @@ nnoremap <silent> tml :+tabmove<cr>¬
 
 " find and replace
 nnoremap \s :%s//g<left><left>
+nnoremap \s :<C-u>%s///g<Left><Left><Left>
+vnoremap \s :s///g<Left><Left><Left>
 
 " Opening a terminal window
 noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
