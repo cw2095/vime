@@ -9,7 +9,7 @@ let g:gitgutter_map_keys = 0
 " 折叠相关
 " set foldtext=gitgutter#fold#foldtext()
 " 文件更改数量超过500将会压缩显示
-let g:gitgutter_max_signs = 500
+let g:gitgutter_max_signs = 1000
 let g:gitgutter_preview_win_floating = 1
 
 let g:gitgutter_override_sign_column_highlight = 0

@@ -115,7 +115,7 @@ Plug 'airblade/vim-rooter'
 Plug 'RRethy/vim-illuminate'
 
 " 对齐线
-Plug 'Yggdroot/indentLine', {'on': 'IndentLinesEnable'}
+Plug 'Yggdroot/indentLine'
 
 " 显示清除尾部空格
 Plug 'ntpeters/vim-better-whitespace'
