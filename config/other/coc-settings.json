@@ -31,11 +31,27 @@
         "value": "",
         "variable": ""
     },
+
     "diagnostic.errorSign": "■",
     "diagnostic.warningSign": "▲",
     "diagnostic.infoSign": "●",
     "diagnostic.hintSign": "●",
     "diagnostic.displayByAle": false,
     "diagnostic.maxWindowHeight": 10,
-    "languageserver": {}
+
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+            "rootPatterns": [".ccls-root", "compile_commands.json", "__vim_project_root", ".git"],
+            "initializationOptions": {
+                "cache": {
+                    "directory": ".ccls-cache"
+                },
+                "client": {
+                    "snippetSupport": true
+                }
+            }
+        }
+    }
 }

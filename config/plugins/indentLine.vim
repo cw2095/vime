@@ -20,7 +20,6 @@ let g:indentLine_fileTypeExclude = [
             \ 'startify',
             \ 'terminal',
             \ 'coc-explorer',
-            \ 'json',
             \ 'jsonc',
             \ 'vista',
             \ 'help',
