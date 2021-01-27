@@ -51,7 +51,6 @@ else
 endif
 
 " visual enhancement
-Plug 'luochen1990/rainbow'
 Plug 'wincent/terminus'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ryanoasis/vim-devicons'
@@ -114,14 +113,15 @@ Plug 'airblade/vim-rooter'
 " automatically highlighting other uses of the current word under the cursor
 Plug 'RRethy/vim-illuminate'
 
-" 对齐线
 Plug 'Yggdroot/indentLine'
-
-" 显示清除尾部空格
-Plug 'ntpeters/vim-better-whitespace'
+Plug 'Yggdroot/hiPairs'
+Plug 'luochen1990/rainbow'
 
 " 自动补全括号
 Plug 'jiangmiao/auto-pairs'
+
+" 显示清除尾部空格
+Plug 'ntpeters/vim-better-whitespace'
 
 " 快速包围
 Plug 'tpope/vim-surround'
