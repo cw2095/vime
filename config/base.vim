@@ -91,6 +91,25 @@ set updatetime=100
 " 光标
 set guicursor=n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20
 set noswapfile
+" 在下方分割
+set splitbelow
+" tab扩展为空格
+set expandtab
+set tabstop=4
+" 连续数量的空格看作一个制表符
+set softtabstop=4
+set shiftwidth=4
+set smarttab
+set shiftround
+if has('folding')
+    set foldenable
+    " 基于缩进的折叠
+    " set foldmethod=indent
+    set foldmethod=syntax
+    " 默认打开所有缩进
+    set foldlevel=99
+endif
+
 set nobackup
 set nowritebackup
 " 文件在外部被修改过，重新读入
