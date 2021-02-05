@@ -19,15 +19,6 @@ if has('multi_byte')
     set fileencoding=utf-8
     set fileencodings=ucs-bom,utf-8,gb18030,cp936,latin1
 endif
-" 文件换行符，默认使用unix换行符
-set fileformats=unix,dos,mac
-
-set formatoptions-=tc
-set formatoptions+=mB
-
-set viewoptions=cursor,folds,slash,unix
-
-set sessionoptions+=globals
 
 " TODO 需要整理，同时要区分一下gui与非gui
 if &term =~ '256color' && $TMUX != ''
@@ -58,6 +49,22 @@ if has('folding')
     set foldlevel=99
 endif
 
+" 设置弹出框大小, 0 则有多少显示多少
+set pumheight=20
+if has('nvim')
+    set pumblend=20 " 提示框透明
+endif
+
+" 文件换行符，默认使用unix换行符
+set fileformats=unix,dos,mac
+
+set formatoptions-=tc
+set formatoptions+=mB
+
+set viewoptions=cursor,folds,slash,unix
+
+set sessionoptions+=globals
+
 set shortmess+=c
 
 " 文件在外部被修改过，重新读入
@@ -71,47 +78,14 @@ set history=1000
 
 set winaltkeys=no
 
+set exrc
+set secure
+
 set ttyfast
 set lazyredraw
 
 " 更新时间100ms 默认4000ms 写入swap的时间
 set updatetime=100
-
-" 光标
-set guicursor=n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20
-
-set cursorline
-set colorcolumn=80
-if has('nvim') == 0 && has('patch-8.1.2020')
-    set cursorlineopt=number
-endif
-set signcolumn=yes
-
-" 搜索高亮
-set incsearch
-" 高亮匹配内容
-set hlsearch
-" 搜索高亮颜色
-hi Search ctermfg=17 ctermbg=190 guifg=#000000 guibg=#ffff00
-set ignorecase
-set smartcase
-" Adjust case in insert completion mode
-set infercase
-
-set list
-" 只有set list下面的才会起作用
-if &list
-    set listchars=tab:\|\→·,nbsp:⣿,extends:»,precedes:«
-    set listchars+=eol:¬
-    set listchars+=trail:·
-    " set listchars+=space:␣
-endif
-
-" 设置弹出框大小, 0 则有多少显示多少
-set pumheight=20
-if has('nvim')
-    set pumblend=20 " 提示框透明
-endif
 
 " select & complete
 set selection=inclusive
@@ -141,6 +115,42 @@ set noswapfile
 set nobackup
 set nowritebackup
 
+set novisualbell
+set noerrorbells
+set t_vb=
+set tm=500
+
+" Always report changed lines.
+set report=0
+
+" 终端隐藏后不结束
+set hidden
+
+set virtualedit=block
+
+set list
+" 只有set list下面的才会起作用
+if &list
+    set listchars=tab:\|\→·,nbsp:⣿,extends:»,precedes:«
+    set listchars+=eol:¬
+    set listchars+=trail:·
+    " set listchars+=space:␣
+endif
+
+" 搜索高亮
+set incsearch
+" 高亮匹配内容
+set hlsearch
+" 搜索高亮颜色
+hi Search ctermfg=17 ctermbg=190 guifg=#000000 guibg=#ffff00
+set ignorecase
+set smartcase
+" Adjust case in insert completion mode
+set infercase
+
+" 光标
+set guicursor=n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20
+
 set splitright
 set splitbelow
 
@@ -157,8 +167,9 @@ set smartindent
 set autoindent
 set indentexpr=
 
-set exrc
-set secure
+set cursorline
+set colorcolumn=80
+set signcolumn=yes
 
 set number
 set relativenumber
@@ -177,21 +188,6 @@ set wrap
 " 软折行
 set linebreak
 set textwidth=0
-
-" Always report changed lines.
-set report=0
-
-" 终端隐藏后不结束
-set hidden
-
-set virtualedit=block
-
-set novisualbell
-set noerrorbells
-set t_vb=
-set tm=500
-
-" set autochdir
 
 " set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
 " set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%{&ff}][%p%%]
@@ -227,4 +223,3 @@ set wildignore+=*.ppt,*.pptx,*.docx,*.xlt,*.xls,*.xlsx,*.odt,*.wps
 set wildignore+=*.msi,*.crx,*.deb,*.vfd,*.apk,*.ipa,*.bin,*.msu
 set wildignore+=*.gba,*.sfc,*.078,*.nds,*.smd,*.smc
 set wildignore+=*.linux2,*.win32,*.darwin,*.freebsd,*.linux,*.android
-
