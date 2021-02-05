@@ -108,8 +108,8 @@ set clipboard=unnamedplus
 
 set notimeout
 set ttimeout
-" set timeoutlen=500
-set ttimeoutlen=0
+set timeoutlen=500
+set ttimeoutlen=10
 
 set noswapfile
 set nobackup
