@@ -7,31 +7,31 @@ Plug 'mhinz/vim-startify'
 Plug 'dstein64/vim-startuptime', {'on':'StartupTime'}
 
 " 主题theme类插件
-Plug 'ajmwagar/vim-deus'
-Plug 'rakr/vim-one'
-Plug 'arcticicestudio/nord-vim'
-Plug 'morhetz/gruvbox'
-Plug 'sainnhe/gruvbox-material'
-Plug 'sainnhe/forest-night'
-Plug 'srcery-colors/srcery-vim'
-Plug 'hardcoreplayers/oceanic-material'
-Plug 'chuling/ci_dark'
-Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'mhartington/oceanic-next'
-Plug '986299679/space-vim-theme'
-Plug 'ayu-theme/ayu-vim'
-Plug 'w0ng/vim-hybrid'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'flrnd/candid.vim'
-Plug 'jaredgorski/spacecamp'
-Plug 'bluz71/vim-moonfly-colors'
-Plug 'cormacrelf/vim-colors-github'
-Plug 'arzg/vim-colors-xcode'
-Plug 'sainnhe/sonokai'
-Plug 'sonph/onehalf'
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'sainnhe/edge'
-Plug 'reedes/vim-colors-pencil'
+" Plug 'ajmwagar/vim-deus'
+" Plug 'rakr/vim-one'
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'morhetz/gruvbox'
+" Plug 'sainnhe/gruvbox-material'
+" Plug 'sainnhe/forest-night'
+" Plug 'srcery-colors/srcery-vim'
+" Plug 'hardcoreplayers/oceanic-material'
+" Plug 'chuling/ci_dark'
+" Plug 'kristijanhusak/vim-hybrid-material'
+" Plug 'mhartington/oceanic-next'
+" Plug '986299679/space-vim-theme'
+" Plug 'ayu-theme/ayu-vim'
+" Plug 'w0ng/vim-hybrid'
+" Plug 'NLKNguyen/papercolor-theme'
+" Plug 'flrnd/candid.vim'
+" Plug 'jaredgorski/spacecamp'
+" Plug 'bluz71/vim-moonfly-colors'
+" Plug 'cormacrelf/vim-colors-github'
+" Plug 'arzg/vim-colors-xcode'
+" Plug 'sainnhe/sonokai'
+" Plug 'sonph/onehalf'
+" Plug 'ghifarit53/tokyonight-vim'
+" Plug 'sainnhe/edge'
+" Plug 'reedes/vim-colors-pencil'
 Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
 
 " 顶栏和底栏
@@ -50,40 +50,42 @@ else
     Plug 'RRethy/vim-hexokinase',  { 'do': 'make hexokinase' }
 endif
 
-" visual enhancement
-Plug 'wincent/terminus'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'ryanoasis/vim-devicons'
+" automatically highlighting other uses of the current word under the cursor
+Plug 'RRethy/vim-illuminate'
 
-" File navigation
-" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'junegunn/fzf', {'do': {-> fzf#install()}}
-Plug 'junegunn/fzf.vim'
-" Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-" Plug 'kevinhwang91/rnvimr'
+" Enhanced terminal integration for Vim
+Plug 'wincent/terminus'
+
+" 平滑滚动
+Plug 'psliwka/vim-smoothie'
+" displays interactive scrollbars
+if has('nvim')
+    Plug 'dstein64/nvim-scrollview'
+endif
+
+" visual enhancement
+if has('nvim')
+    Plug 'kyazdani42/nvim-web-devicons'
+else
+    Plug 'ryanoasis/vim-devicons'
+endif
 
 " 忘记sudo?使用: sudowrite或: sw
 Plug 'lambdalisue/suda.vim'
 
-" Plug 'tyru/open-browser.vim'
-
 " 悬浮终端
 Plug 'voldikss/vim-floaterm', {'on': ['FloatermNew', 'FloatermToggle']}
 
-" 关闭buffer而不关闭窗口
-" Plug 'rbgrouleff/bclose.vim', {'on': 'Bclose'}
-
-" 平滑滚动
-Plug 'psliwka/vim-smoothie'
+" Open URI with your favorite browser from your most favorite editor
+" Plug 'tyru/open-browser.vim'
+" Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
+" Plug 'tyru/open-browser-github.vim'
 
 " 最大化窗口，ctrl w o
 Plug 'troydm/zoomwintab.vim', {'on': 'ZoomWinTabToggle'}
 
-if has('nvim')
-    Plug 'dstein64/nvim-scrollview'
-endif
+" Changes Vim working directory to project root.
+Plug 'airblade/vim-rooter'
 
 " Undo Tree
 " Plug 'simnalamburt/vim-mundo'
@@ -94,24 +96,38 @@ endif
 " 专注阅读
 " Plug 'junegunn/goyo.vim', { 'on': 'Goyo', 'for': 'markdown' }
 
-" markdown
+" 替换
+Plug 'svermeulen/vim-subversive'
 
-" 语法检查
-" Plug 'rhysd/vim-grammarous', {'for': ['markdown', 'vimwiki', 'md', 'tex']}
+" 生成注释文档
+" Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
 
-" Git
-" Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
-Plug 'airblade/vim-gitgutter'
-Plug 'cohama/agit.vim'
-" Plug 'kdheepak/lazygit.nvim'
+" 多光标
+" Plug 'mg979/vim-visual-multi'
 
-" Changes Vim working directory to project root.
-Plug 'airblade/vim-rooter'
+" 对齐
+" Plug 'junegunn/vim-easy-align', {'on': ['EasyAlign', '<Plug>(EasyAlign)']}
+Plug 'godlygeek/tabular'
 
-" Plug 'pechorin/any-jump.vim'
+" 快速移动
+Plug 'easymotion/vim-easymotion', {'on':
+   \ [
+   \ '<Plug>(easymotion-bd-f)', '<Plug>(easymotion-overwin-f)',
+   \ '<Plug>(easymotion-overwin-f2)', '<Plug>(easymotion-bd-jk)',
+   \ '<Plug>(easymotion-overwin-line)', '<Plug>(easymotion-bd-w)',
+   \ '<Plug>(easymotion-overwin-w)', '<Plug>(easymotion-s)',
+   \ ]}
 
-" automatically highlighting other uses of the current word under the cursor
-Plug 'RRethy/vim-illuminate'
+" 功能很强的折叠插件, zc zo
+Plug 'pseewald/vim-anyfold'
+
+" 加强版的 go to file
+" Plug 'tpope/vim-apathy'
+
+" switching between a single-line statement and a multi-line one.
+" gS to split a one-liner into multiple lines
+" gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
+Plug 'AndrewRadev/splitjoin.vim'
 
 Plug 'Yggdroot/indentLine'
 Plug 'Yggdroot/hiPairs'
@@ -129,42 +145,33 @@ Plug 'tpope/vim-surround'
 " 注释插件
 Plug 'scrooloose/nerdcommenter'
 
-" 生成注释文档
-" Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
+" File navigation
 
-" 多光标
-Plug 'mg979/vim-visual-multi'
+" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" 对齐
-" Plug 'junegunn/vim-easy-align', {'on': ['EasyAlign', '<Plug>(EasyAlign)']}
-Plug 'godlygeek/tabular'
+" Plug 'junegunn/fzf', { 'dir': '~/bin/fzf', 'do': './install --all'  }
+" Plug 'junegunn/fzf.vim'
+" Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
 
-" 功能很强的折叠插件, zc zo
-Plug 'pseewald/vim-anyfold'
+" Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 
-" 加强版的 go to file
-" Plug 'tpope/vim-apathy'
+" Plug 'kevinhwang91/rnvimr'
 
-" 快速移动
-Plug 'easymotion/vim-easymotion', {'on':
-   \ [
-   \ '<Plug>(easymotion-bd-f)', '<Plug>(easymotion-overwin-f)',
-   \ '<Plug>(easymotion-overwin-f2)', '<Plug>(easymotion-bd-jk)',
-   \ '<Plug>(easymotion-overwin-line)', '<Plug>(easymotion-bd-w)',
-   \ '<Plug>(easymotion-overwin-w)', '<Plug>(easymotion-s)',
-   \ ]}
+" Git
+" Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
+Plug 'airblade/vim-gitgutter'
+" Plug 'cohama/agit.vim'
+" Plug 'kdheepak/lazygit.nvim'
 
-" 替换
-Plug 'svermeulen/vim-subversive'
+" 语法检查
+" Plug 'rhysd/vim-grammarous', {'for': ['markdown', 'vimwiki', 'md', 'tex']}
 
-" switching between a single-line statement and a multi-line one.
-" gS to split a one-liner into multiple lines
-" gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
-Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'pechorin/any-jump.vim'
 
 " 全局替换插件
 " Plug 'brooth/far.vim'
-Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
+" Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 
 " Taglist
 " Plug 'liuchengxu/vista.vim'
