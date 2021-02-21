@@ -9,13 +9,14 @@ noremap - N
 noremap = n
 
 " Save & quit
-nnoremap  <LEADER>s <esc>:w<cr>
-nnoremap Q <esc>:close<cr>
-vnoremap Q <esc>:close<cr>
+nnoremap <LEADER><LEADER> <esc>:write<cr>
+xnoremap <LEADER><LEADER> <esc>:write<cr>
+nnoremap <LEADER>q <esc>:close<cr>
+vnoremap <LEADER>q <esc>:close<cr>
 
 " make Y to copy till the end of the line
 nnoremap Y y$
-nnoremap vv ^vg_
+nnoremap \vv ^vg_
 nnoremap \v v$h
 
 " Copy to system clipboard
