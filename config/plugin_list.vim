@@ -88,7 +88,7 @@ Plug 'troydm/zoomwintab.vim', {'on': 'ZoomWinTabToggle'}
 Plug 'airblade/vim-rooter'
 
 " Undo Tree
-" Plug 'simnalamburt/vim-mundo'
+Plug 'simnalamburt/vim-mundo'
 
 " 笔记插件，支持markdown
 " Plug 'vimwiki/vimwiki'
@@ -97,13 +97,10 @@ Plug 'airblade/vim-rooter'
 " Plug 'junegunn/goyo.vim', { 'on': 'Goyo', 'for': 'markdown' }
 
 " 替换
-Plug 'svermeulen/vim-subversive'
-
-" 生成注释文档
-" Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
+" Plug 'svermeulen/vim-subversive'
 
 " 多光标
-" Plug 'mg979/vim-visual-multi'
+Plug 'mg979/vim-visual-multi'
 
 " 对齐
 " Plug 'junegunn/vim-easy-align', {'on': ['EasyAlign', '<Plug>(EasyAlign)']}
@@ -118,16 +115,17 @@ Plug 'easymotion/vim-easymotion', {'on':
    \ '<Plug>(easymotion-overwin-w)', '<Plug>(easymotion-s)',
    \ ]}
 
-" 功能很强的折叠插件, zc zo
-Plug 'pseewald/vim-anyfold'
-
 " 加强版的 go to file
 " Plug 'tpope/vim-apathy'
 
 " switching between a single-line statement and a multi-line one.
-" gS to split a one-liner into multiple lines
-" gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
 Plug 'AndrewRadev/splitjoin.vim'
+
+" Land on window you chose like tmux's 'display-pane'
+Plug 't9md/vim-choosewin'
+
+" 功能很强的折叠插件, zc zo
+Plug 'pseewald/vim-anyfold'
 
 Plug 'Yggdroot/indentLine'
 Plug 'Yggdroot/hiPairs'
@@ -142,21 +140,22 @@ Plug 'ntpeters/vim-better-whitespace'
 " 快速包围
 Plug 'tpope/vim-surround'
 
+" 重复上次的动作
+Plug 'tpope/vim-repeat'
+
+" 生成函数注释
+Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
 " 注释插件
-Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdcommenter'
+Plug 'tyru/caw.vim'
 
 " File navigation
-
-" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-
-" Plug 'junegunn/fzf', { 'dir': '~/bin/fzf', 'do': './install --all'  }
-" Plug 'junegunn/fzf.vim'
-" Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
-
-" Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-
 " Plug 'kevinhwang91/rnvimr'
+
+Plug 'junegunn/fzf', { 'dir': '~/GitHub/fzf', 'do': './install --all'  }
+Plug 'junegunn/fzf.vim'
+Plug 'antoinemadec/coc-fzf'
+" Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
 
 " Git
 " Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }

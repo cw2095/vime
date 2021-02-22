@@ -64,6 +64,9 @@ nnoremap ]e  :<C-u>execute 'move +'. v:count1<cr>
 nnoremap [<space>  :<C-u>put! =repeat(nr2char(10), v:count1)<cr>'[
 nnoremap ]<space>  :<C-u>put =repeat(nr2char(10), v:count1)<cr>
 
+" 使用回车打开关闭折叠
+nnoremap <CR> za
+
 augroup vime_keymap_group
     autocmd!
     " 使用esc退出终端
