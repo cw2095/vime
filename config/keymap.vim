@@ -10,8 +10,8 @@ noremap - N
 noremap = n
 
 " Save & quit
-nnoremap <LEADER><LEADER> <esc>:write<cr>
-xnoremap <LEADER><LEADER> <esc>:write<cr>
+nnoremap <LEADER>w <esc>:write<cr>
+xnoremap <LEADER>w <esc>:write<cr>
 nnoremap <LEADER>q <esc>:close<cr>
 vnoremap <LEADER>q <esc>:close<cr>
 
@@ -65,7 +65,7 @@ nnoremap [<space>  :<C-u>put! =repeat(nr2char(10), v:count1)<cr>'[
 nnoremap ]<space>  :<C-u>put =repeat(nr2char(10), v:count1)<cr>
 
 " 使用回车打开关闭折叠
-nnoremap <CR> za
+" nnoremap <CR> za
 
 augroup vime_keymap_group
     autocmd!

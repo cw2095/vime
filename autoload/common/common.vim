@@ -39,6 +39,7 @@ function! common#common#init() abort
     " 实际使用 pygments 时，gtags 会启动 python 运行名为 pygments_parser.py 的脚本，
     " 通过管道和它通信，完成源代码分析，故需保证 gtags 能在 $PATH 里调用 python，且这个 python 安装了 pygments 模块。
     let $GTAGSLABEL = 'native-pygments'
-    let $GTAGSCONF = $HOME . '.globalrc'
+    " let $GTAGSLABEL = 'native'
+    let $GTAGSCONF = '/home/cw/.globalrc'
 endfunction
 

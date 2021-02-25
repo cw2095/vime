@@ -212,6 +212,11 @@ Plug 'airblade/vim-gitgutter'
 " Taglist
 Plug 'liuchengxu/vista.vim', {'on': ['Vista!!', 'Vista']}
 
+" gtags
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
+Plug 'skywind3000/vim-preview'
+
 " 代码补全插件
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
