@@ -1,5 +1,17 @@
 " 首先需要在config/plugin_list.vim中增加插件
 
+" 从Github源码安装软件
+Plug 'junegunn/fzf', { 'dir': '~/GitHub/fzf', 'do': './install --all'  }
+
+" $ cd ctags
+" $ ./autogen.sh
+" $ ./configure --prefix=/where/you/want # defaults to /usr/local
+" $ make
+" $ make install # may require extra privileges depending on where to install
+" emerge dev-libs/jansson
+" ctags --list-features
+Plug 'universal-ctags/ctags', {'dir':'~/GitHub/ctags'}
+
 " 起始界面
 Plug 'mhinz/vim-startify'
 
@@ -127,6 +139,9 @@ Plug 't9md/vim-choosewin'
 " 功能很强的折叠插件, zc zo
 Plug 'pseewald/vim-anyfold'
 
+" 书签
+Plug 'MattesGroeger/vim-bookmarks'
+
 Plug 'Yggdroot/indentLine'
 Plug 'Yggdroot/hiPairs'
 Plug 'luochen1990/rainbow'
@@ -152,7 +167,6 @@ Plug 'tyru/caw.vim'
 " File navigation
 " Plug 'kevinhwang91/rnvimr'
 
-Plug 'junegunn/fzf', { 'dir': '~/GitHub/fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
 Plug 'antoinemadec/coc-fzf'
 " Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
@@ -171,9 +185,6 @@ Plug 'airblade/vim-gitgutter'
 " 全局替换插件
 " Plug 'brooth/far.vim'
 " Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
-
-" Taglist
-" Plug 'liuchengxu/vista.vim'
 
 " if has('nvim')
     " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -198,6 +209,9 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'honza/vim-snippets'
 " Plug 'SirVer/ultisnips'
 
+" Taglist
+Plug 'liuchengxu/vista.vim', {'on': ['Vista!!', 'Vista']}
+
 " 代码补全插件
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
@@ -205,11 +219,11 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 let g:coc_global_extensions = [
     \ 'coc-explorer',
     \ 'coc-json',
+    \ 'coc-yank',
     \ ]
 
     " \ 'coc-vimlsp',
     " \ 'coc-xml',
-    " \ 'coc-yank',
     " \ 'coc-sh',
     " \ 'coc-yaml',
     " \ 'coc-cmake',

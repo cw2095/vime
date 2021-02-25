@@ -400,36 +400,40 @@ command! BD call fzf#run(fzf#wrap({
 "-----------------------------------------------------------------------------
 " 自定义快捷键
 "-----------------------------------------------------------------------------
-" nnoremap <M-f> :FWW<CR>
-" nnoremap <M-F> :FWW $HOME<CR>
-" nnoremap <M-b> :Buffers<CR>
-if common#functions#HasPlug('vista.vim')
-    let g:vista_fzf_preview = ['up:50%:wrap']
-    " noremap <M-t> :Vista finder<CR>
-else
-    " nnoremap <M-t> :BTags<CR>
-endif
-" nnoremap <M-T> :Tags<CR>
-" nnoremap <M-s> :GrepWithWiki<CR>
-" vnoremap <M-s> :GrepWithWikiVisual<CR>
+nnoremap <M-f> :FWW<CR>
+nnoremap <M-F> :FWW $HOME<CR>
+nnoremap <M-s> :GrepWithWiki<CR>
+vnoremap <M-s> :GrepWithWikiVisual<CR>
 " 模糊搜索当前buffer
-" nnoremap ? :FzfBLines<CR>
-" vnoremap ? :FzfBLinesVisual<CR>
-" nnoremap <M-r> :History<CR>
-" TODO 增加changes 需要自定义
-" nnoremap <M-c> :Commands<CR>
+nnoremap ? :FzfBLines<CR>
+vnoremap ? :FzfBLinesVisual<CR>
 " 如果coc-fzf支持marks的话就用coc-fzf+coc-bookmarks
-" nnoremap <M-m> :FzfMarks<CR>
+nnoremap <M-m> :FzfMarks<CR>
 " nnoremap <M-m> :Marks<CR>
-" nnoremap <M-M> :Maps<CR>
-" nnoremap <M-w> :Windows<CR>
 if common#functions#HasPlug('coc-fzf')
-    " nnoremap <M-y> :<c-u>CocFzfList yank<CR>
+    nnoremap <M-y> :<c-u>CocFzfList yank<CR>
 endif
 " TODO 编写高亮
-" nnoremap <M-J> :FzfJumps<CR>
-
+nnoremap <M-J> :FzfJumps<CR>
 " TODO 编写高亮
 " quickfix与locationlist
-" nnoremap <F8> :FzfQuickfix<CR>
-" nnoremap <F9> :FzfLocationList<CR>
+nnoremap <F8> :FzfQuickfix<CR>
+nnoremap <F9> :FzfLocationList<CR>
+
+if common#functions#HasPlug('vista.vim')
+    let g:vista_fzf_preview = ['up:50%:wrap']
+    noremap <M-t> :Vista finder<CR>
+else
+    nnoremap <M-t> :BTags<CR>
+endif
+nnoremap <M-T> :Tags<CR>
+
+nnoremap <M-b> :Buffers<CR>
+nnoremap <M-r> :History<CR>
+nnoremap <M-h> :History:<CR>
+nnoremap <M-/> :History/<CR>
+" TODO 增加changes 需要自定义
+nnoremap <M-c> :Commands<CR>
+nnoremap <M-M> :Maps<CR>
+nnoremap <M-w> :Windows<CR>
+

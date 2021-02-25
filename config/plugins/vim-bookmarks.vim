@@ -5,9 +5,15 @@ let g:bookmark_sign = '♥'
 let g:bookmark_highlight_lines = 1
 let g:bookmark_auto_save_file = g:bookmark_file
 
+let g:bookmark_no_default_key_mappings = 1
+
+noremap mm :BookmarkToggle<cr>
 noremap ma :BookmarkAnnotate<cr>
 noremap ml :BookmarkShowAll<cr>
-noremap mm :BookmarkToggle<cr>
+noremap mc :BookmarkClear<cr>
+noremap mj :BookmarkNext<cr>
+noremap mk :BookmarkPrev<cr>
+noremap mx :BookmarkClearAll<cr>
 
 " |-----------------------------------------------|--------------|-------------------------------|
 " | Action                                        | Shortcut     | Command                       |
