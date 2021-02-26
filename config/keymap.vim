@@ -98,6 +98,7 @@ inoremap <C-h> <left>
 inoremap <C-j> <down>
 inoremap <C-k> <up>
 inoremap <C-l> <right>
+inoremap <esc> <nop>
 inoremap jk <esc>
 
 " Command Mode Cursor Movement

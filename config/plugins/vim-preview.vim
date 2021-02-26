@@ -1,12 +1,12 @@
 " Preview the function signature circularly in the command line
-noremap <F4> :PreviewSignature!<cr>
-inoremap <F4> <c-\><c-o>:PreviewSignature!<cr>
+noremap <F6> :PreviewSignature!<cr>
+inoremap <F6> <c-\><c-o>:PreviewSignature!<cr>
 
 noremap <F5> :PreviewTag<cr>
-" noremap <m-up> :PreviewScroll -1<cr>
-" noremap <m-down> :PreviewScroll +1<cr>
-" inoremap <m-up> <c-\><c-o>:PreviewScroll -1<cr>
-" inoremap <m-down> <c-\><c-o>:PreviewScroll +1<cr>
+noremap <m-up> :PreviewScroll -1<cr>
+noremap <m-down> :PreviewScroll +1<cr>
+inoremap <m-up> <c-\><c-o>:PreviewScroll -1<cr>
+inoremap <m-down> <c-\><c-o>:PreviewScroll +1<cr>
 " With the keymaps above, you can use <m-u> and <m-d> directly to scroll
 " preview window without switching window or leaving insert mode.
 

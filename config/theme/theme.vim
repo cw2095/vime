@@ -7,8 +7,8 @@
 " let g:forest_night_transparent_background = 1
 " silent! colorscheme forest-night
 
-silent! colorscheme nvcode
-" silent! colorscheme deus
+" silent! colorscheme nvcode
+silent! colorscheme deus
 " silent! colorscheme xcodedark
 " silent! colorscheme gruvbox-material
 " silent! colorscheme onedark

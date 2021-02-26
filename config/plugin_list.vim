@@ -12,6 +12,13 @@ Plug 'junegunn/fzf', { 'dir': '~/GitHub/fzf', 'do': './install --all'  }
 " ctags --list-features
 Plug 'universal-ctags/ctags', {'dir':'~/GitHub/ctags'}
 
+" $ cmake -H. -Bbuild
+" $ cmake -DENABLE_UNIT_TESTS=OFF -DENABLE_FUNC_TESTS=OFF $BEAR_SOURCE_DIR
+" $ cd build
+" $ make
+" $ make install
+Plug 'rizsotto/Bear', {'dir':'~/GitHub/bear'}
+
 " 起始界面
 Plug 'mhinz/vim-startify'
 
@@ -19,7 +26,7 @@ Plug 'mhinz/vim-startify'
 Plug 'dstein64/vim-startuptime', {'on':'StartupTime'}
 
 " 主题theme类插件
-" Plug 'ajmwagar/vim-deus'
+Plug 'ajmwagar/vim-deus'
 " Plug 'rakr/vim-one'
 " Plug 'arcticicestudio/nord-vim'
 " Plug 'morhetz/gruvbox'
@@ -44,7 +51,7 @@ Plug 'dstein64/vim-startuptime', {'on':'StartupTime'}
 " Plug 'ghifarit53/tokyonight-vim'
 " Plug 'sainnhe/edge'
 " Plug 'reedes/vim-colors-pencil'
-Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
+" Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
 
 " 顶栏和底栏
 " Plug 'rbong/vim-crystalline'
@@ -61,6 +68,9 @@ if has('nvim')
 else
     Plug 'RRethy/vim-hexokinase',  { 'do': 'make hexokinase' }
 endif
+
+" vim中文文档
+Plug 'yianwillis/vimcdoc'
 
 " automatically highlighting other uses of the current word under the cursor
 Plug 'RRethy/vim-illuminate'
@@ -85,11 +95,14 @@ endif
 " 忘记sudo?使用: sudowrite或: sw
 Plug 'lambdalisue/suda.vim'
 
+" 在命令行使用linux命令新建文件文件夹重命名当前buffer等
+Plug 'tpope/vim-eunuch'
+
 " 悬浮终端
 Plug 'voldikss/vim-floaterm', {'on': ['FloatermNew', 'FloatermToggle']}
 
 " Open URI with your favorite browser from your most favorite editor
-" Plug 'tyru/open-browser.vim'
+Plug 'tyru/open-browser.vim'
 " Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
 " Plug 'tyru/open-browser-github.vim'
 
@@ -118,6 +131,9 @@ Plug 'mg979/vim-visual-multi'
 " Plug 'junegunn/vim-easy-align', {'on': ['EasyAlign', '<Plug>(EasyAlign)']}
 Plug 'godlygeek/tabular'
 
+" Range, pattern and substitute preview for Vim
+Plug 'markonm/traces.vim'
+
 " 快速移动
 Plug 'easymotion/vim-easymotion', {'on':
    \ [
@@ -127,8 +143,19 @@ Plug 'easymotion/vim-easymotion', {'on':
    \ '<Plug>(easymotion-overwin-w)', '<Plug>(easymotion-s)',
    \ ]}
 
+" move lines and selections up and down
+Plug 'matze/vim-move', {'on': [
+    \ '<Plug>MoveBlockDown',
+    \ '<Plug>MoveBlockUp',
+    \ '<Plug>MoveBlockRight',
+    \ '<Plug>MoveBlockLeft'
+    \ ]}
+
 " 加强版的 go to file
 " Plug 'tpope/vim-apathy'
+
+" 语法检查
+Plug 'rhysd/vim-grammarous', {'for': ['markdown', 'vimwiki', 'md', 'tex']}
 
 " switching between a single-line statement and a multi-line one.
 Plug 'AndrewRadev/splitjoin.vim'
@@ -140,7 +167,7 @@ Plug 't9md/vim-choosewin'
 Plug 'tpope/vim-unimpaired'
 
 " 功能很强的折叠插件, zc zo
-Plug 'pseewald/vim-anyfold'
+" Plug 'pseewald/vim-anyfold'
 
 " 书签
 Plug 'MattesGroeger/vim-bookmarks'
@@ -175,13 +202,14 @@ Plug 'antoinemadec/coc-fzf'
 " Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
 
 " Git
-" Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
 Plug 'airblade/vim-gitgutter'
+" Plug 'tpope/vim-fugitive', {'on': ['Gwrite', 'Gcommit', 'Gread', 'Gdiff', 'Gblame']}
+" Plug 'rbong/vim-flog'
 " Plug 'cohama/agit.vim'
 " Plug 'kdheepak/lazygit.nvim'
-
-" 语法检查
-" Plug 'rhysd/vim-grammarous', {'for': ['markdown', 'vimwiki', 'md', 'tex']}
+" if has('nvim')
+"     Plug 'f-person/git-blame.nvim'
+" endif
 
 " Plug 'pechorin/any-jump.vim'
 
@@ -190,13 +218,15 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 
 " if has('nvim')
-    " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    " Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-    " Plug 'nvim-treesitter/nvim-treesitter-refactor'
-    " Plug 'romgrk/nvim-treesitter-context'
+"     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+"     Plug 'nvim-treesitter/nvim-treesitter-refactor'
+"     Plug 'romgrk/nvim-treesitter-context'
 " else
-    " Plug 'sheerun/vim-polyglot'
+"     Plug 'sheerun/vim-polyglot'
     " Plug 'octol/vim-cpp-enhanced-highlight'
+    " Vim plugin for C/C++/ObjC semantic highlighting using cquery, ccls, or clangd
+    Plug 'jackguo380/vim-lsp-cxx-highlight'
 " endif
 
 " Autoformat
@@ -204,26 +234,24 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'google/vim-codefmt'
 " Plug 'google/vim-glaive'
 
-" A multi-language debugging plugin for Vim
-" c debug
-" Plug 'puremourning/vimspector'
-
 " 代码段
-" Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 " Plug 'SirVer/ultisnips'
 
 " Taglist
 Plug 'liuchengxu/vista.vim', {'on': ['Vista!!', 'Vista']}
 
 " gtags
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'skywind3000/gutentags_plus'
-Plug 'skywind3000/vim-preview'
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'skywind3000/gutentags_plus'
+" Plug 'skywind3000/vim-preview'
+
+" A multi-language debugging plugin for Vim
+" c debug
+" Plug 'puremourning/vimspector'
 
 " 代码补全插件
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-" Vim plugin for C/C++/ObjC semantic highlighting using cquery, ccls, or clangd
-Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 " coc插件列表，可根据需要进行删减
 let g:coc_global_extensions = [
@@ -237,11 +265,11 @@ let g:coc_global_extensions = [
     \ 'coc-zi',
     \ 'coc-just-complete',
     \ 'coc-explorer',
+    \ 'coc-lists',
     \ 'coc-yank',
+    \ 'coc-snippets',
     \ ]
 
-    " \ 'coc-snippets',
-    " \ 'coc-lists',
     " \ 'coc-word',
     " \ 'coc-python',
     " \ 'coc-git',

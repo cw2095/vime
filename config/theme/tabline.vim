@@ -7,11 +7,12 @@
 " set showtabline=2
 " endif
 
-let g:xtabline_settings = {}
-let g:xtabline_settings.enable_mappings = 0
-let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
-let g:xtabline_settings.enable_persistance = 0
-let g:xtabline_settings.last_open_first = 1
+if common#functions#HasPlug('vim-xtabline')
+    let g:xtabline_settings = {}
+    let g:xtabline_settings.enable_mappings = 0
+    let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
+    let g:xtabline_settings.enable_persistance = 0
+    let g:xtabline_settings.last_open_first = 1
 
     let g:xtabline_settings.indicators = {
         \ 'modified': '[+]',
@@ -36,4 +37,6 @@ let g:xtabline_settings.last_open_first = 1
         \'lens': '🔍',
         \'flag': '🏳️.',
         \}
-" noremap to :XTabCycleMode<CR>
+    silent! nmap <BS> <Plug>(XT-Select-Buffer)
+    " noremap to :XTabCycleMode<CR>
+endif

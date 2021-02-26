@@ -441,9 +441,9 @@ function! s:lc_coc_explorer() abort
     " Use preset argument to open it
     " nmap <space>rd :CocCommand explorer --preset .vim<CR>
     nmap <F2> :CocCommand explorer<CR>
-    if !common#functions#HasPlug('ranger.vim')
-        nmap <leader>f :CocCommand explorer --preset floating<CR>
-    endif
+    " if !common#functions#HasPlug('ranger.vim')
+    "     nmap <leader>f :CocCommand explorer --preset floating<CR>
+    " endif
 
     augroup vime_coc_explorer_group
         autocmd!
