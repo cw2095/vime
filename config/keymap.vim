@@ -58,11 +58,11 @@ nnoremap <LEADER>fx :r !figlet<space><space><space><space>
 
 nnoremap <LEADER>p :echo expand('%:p')<CR>
 
-nnoremap [e  :<C-u>execute 'move -1-'. v:count1<cr>
-nnoremap ]e  :<C-u>execute 'move +'. v:count1<cr>
+" nnoremap [e  :<C-u>execute 'move -1-'. v:count1<cr>
+" nnoremap ]e  :<C-u>execute 'move +'. v:count1<cr>
 
-nnoremap [<space>  :<C-u>put! =repeat(nr2char(10), v:count1)<cr>'[
-nnoremap ]<space>  :<C-u>put =repeat(nr2char(10), v:count1)<cr>
+" nnoremap [<space>  :<C-u>put! =repeat(nr2char(10), v:count1)<cr>'[
+" nnoremap ]<space>  :<C-u>put =repeat(nr2char(10), v:count1)<cr>
 
 " 使用回车打开关闭折叠
 " nnoremap <CR> za

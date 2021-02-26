@@ -40,18 +40,6 @@
     "diagnostic.maxWindowHeight" : 10,
 
     "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-            "rootPatterns": [".ccls-root", "compile_commands.json", "__vim_project_root", ".git"],
-            "initializationOptions": {
-                "cache": {
-                    "directory": ".ccls-cache"
-                },
-                "client": {
-                    "snippetSupport": true
-                }
-            }
-        }
-    }
+    },
+    "clangd.path": "/home/cw/.cache/vim/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
 }
