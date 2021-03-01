@@ -72,6 +72,13 @@ endif
 " vim中文文档
 Plug 'yianwillis/vimcdoc'
 
+" vim 中文输入法
+Plug 'ZSaberLv0/ZFVimIM'
+Plug 'ZSaberLv0/ZFVimJob' " 可选, 用于提升词库加载性能
+Plug 'ZSaberLv0/ZFVimGitUtil' " 可选, 如果你希望定期自动清理词库 push 历史
+Plug 'cw2095/ZFVimIM_pinyin_base' " 你的词库
+Plug 'ZSaberLv0/ZFVimIM_openapi' " 可选, 百度云输入法
+
 " automatically highlighting other uses of the current word under the cursor
 Plug 'RRethy/vim-illuminate'
 
