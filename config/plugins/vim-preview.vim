@@ -1,8 +1,8 @@
 " Preview the function signature circularly in the command line
-noremap <F6> :PreviewSignature!<cr>
-inoremap <F6> <c-\><c-o>:PreviewSignature!<cr>
+" noremap <F6> :PreviewSignature!<cr>
+" inoremap <F6> <c-\><c-o>:PreviewSignature!<cr>
 
-noremap <F5> :PreviewTag<cr>
+noremap <F9> :PreviewTag<cr>
 noremap <m-up> :PreviewScroll -1<cr>
 noremap <m-down> :PreviewScroll +1<cr>
 inoremap <m-up> <c-\><c-o>:PreviewScroll -1<cr>

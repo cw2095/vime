@@ -73,11 +73,11 @@ endif
 Plug 'yianwillis/vimcdoc'
 
 " vim 中文输入法
-Plug 'ZSaberLv0/ZFVimIM'
-Plug 'ZSaberLv0/ZFVimJob' " 可选, 用于提升词库加载性能
-Plug 'ZSaberLv0/ZFVimGitUtil' " 可选, 如果你希望定期自动清理词库 push 历史
-Plug 'cw2095/ZFVimIM_pinyin_base' " 你的词库
-Plug 'ZSaberLv0/ZFVimIM_openapi' " 可选, 百度云输入法
+" Plug 'ZSaberLv0/ZFVimIM'
+" Plug 'ZSaberLv0/ZFVimJob' " 可选, 用于提升词库加载性能
+" Plug 'ZSaberLv0/ZFVimGitUtil' " 可选, 如果你希望定期自动清理词库 push 历史
+" Plug 'cw2095/ZFVimIM_pinyin_base' " 你的词库
+" Plug 'ZSaberLv0/ZFVimIM_openapi' " 可选, 百度云输入法
 
 " automatically highlighting other uses of the current word under the cursor
 Plug 'RRethy/vim-illuminate'
@@ -260,6 +260,14 @@ Plug 'liuchengxu/vista.vim', {'on': ['Vista!!', 'Vista']}
 " 代码补全插件
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
+" code build and run
+" 使用 Vim 8 / NeoVim 的异步机制，让你在后台运行 shell 命令，并将结果实时显示到 Vim 的 Quickfix 窗口中
+" :AsyncRun - 运行 shell 命令
+" :AsyncStop - 停止正在运行的任务
+Plug 'skywind3000/asyncrun.vim'
+" asynctasks.vim 是一个使用 asyncrun 提供任务管理的插件，帮助你管理一系列 building, testing 和 deploying 的任务，并且方便的调度他们。
+Plug 'skywind3000/asynctasks.vim'
+
 " coc插件列表，可根据需要进行删减
 let g:coc_global_extensions = [
     \ 'coc-vimlsp',
@@ -275,6 +283,7 @@ let g:coc_global_extensions = [
     \ 'coc-lists',
     \ 'coc-yank',
     \ 'coc-snippets',
+    \ 'coc-translator',
     \ ]
 
     " \ 'coc-word',

@@ -417,8 +417,8 @@ endif
 nnoremap <M-J> :FzfJumps<CR>
 " TODO 编写高亮
 " quickfix与locationlist
-nnoremap <F8> :FzfQuickfix<CR>
-nnoremap <F9> :FzfLocationList<CR>
+" nnoremap <F8> :FzfQuickfix<CR>
+" nnoremap <F9> :FzfLocationList<CR>
 
 if common#functions#HasPlug('vista.vim')
     let g:vista_fzf_preview = ['up:50%:wrap']
