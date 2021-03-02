@@ -17,7 +17,15 @@ let g:asyncrun_open = 8
 " left     内置终端  在左边打开可复用内置终端。
 " right    内置终端  在右边打开可复用内置终端。
 " external 外部终端  启动一个新的操作系统的外置终端窗口，运行程序。
-let g:asynctasks_term_pos = 'tap'
+" gnome              run command in a new gnome-terminal window
+" gnome-tab          run command in a new gnome-terminal tab
+" xterm              run command in a new xterm window
+" external           run command in cmd.exe / gnome-terminal / xterm if possible
+" floaterm           run command in a floaterm window
+" floaterm-reuse     run command in a reusable floaterm window
+" tmux               run command in another tmux pane
+" termhelp           run command in the terminal_help window
+let g:asynctasks_term_pos = 'floaterm-reuse'
 " 使设置为 top/bottom/left/right 时，可以用下面两个配置确定终端窗口大小
 let g:asynctasks_term_rows = 10    " 设置纵向切割时，高度为 10
 let g:asynctasks_term_cols = 80    " 设置横向切割时，宽度为 80

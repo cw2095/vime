@@ -61,6 +61,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'mg979/vim-xtabline'
 " Plug 'liuchengxu/eleline.vim'
 
+" UI extensions for Vim
+Plug 'skywind3000/vim-quickui'
+
 " General Highlighter
 " 显示颜色 例如: #654456
 if has('nvim')
@@ -265,6 +268,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " :AsyncRun - 运行 shell 命令
 " :AsyncStop - 停止正在运行的任务
 Plug 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/asyncrun.extra'
 " asynctasks.vim 是一个使用 asyncrun 提供任务管理的插件，帮助你管理一系列 building, testing 和 deploying 的任务，并且方便的调度他们。
 Plug 'skywind3000/asynctasks.vim'
 

@@ -98,7 +98,7 @@ inoremap <C-h> <left>
 inoremap <C-j> <down>
 inoremap <C-k> <up>
 inoremap <C-l> <right>
-inoremap <esc> <nop>
+
 inoremap jk <esc>
 
 " Command Mode Cursor Movement
@@ -141,3 +141,5 @@ nnoremap <silent> <LEADER>tc :tabclose<cr>
 " nnoremap <silent> tmh :-tabmove<cr>
 " nnoremap <silent> tml :+tabmove<cr>¬
 
+" 使用系统应用打开当前buffer文件
+noremap <silent> <M-x> :call common#functions#OpenFileUsingSystemApp(expand('%:p'))<cr>
