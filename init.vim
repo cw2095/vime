@@ -2,7 +2,10 @@
 call common#common#init()
 
 " 定义载入配置命令
-command! -nargs=1 LoadScript exec 'source ' . g:config_root_path . '<args>'
+command! -nargs=1 LoadScript exec 'source ' . fnameescape(g:config_root_path . '<args>')
+
+" let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+" command! -nargs=1 IncScript exec 'so '. fnameescape(s:home."/<args>")
 
 " 载入基础配置
 LoadScript base.vim

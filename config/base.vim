@@ -61,6 +61,10 @@ set fileformats=unix,dos,mac
 set formatoptions-=tc
 set formatoptions+=mB
 
+" if !isdirectory(g:view_dir)
+"     call mkdir(g:view_dir)
+" endif
+" set viewdir='g:view_dir'
 set viewoptions=cursor,folds,slash,unix
 
 set sessionoptions+=globals

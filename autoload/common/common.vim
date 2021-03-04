@@ -16,9 +16,13 @@ function! common#common#init() abort
     " vim 插件安装目录
     let g:plugins_install_path = g:cache_root_path . 'plugins/'
     " session 保存目录
+    " 能够恢复当前的编辑会话。
     let g:session_dir = g:cache_root_path . 'sessions/'
     " 撤销记录目录
     let g:undo_dir = g:cache_root_path . 'undo/'
+    " view 保存目录
+    " 能够恢复当前的窗口内容
+    let g:view_dir = g:cache_root_path . 'views/'
 
     let g:os = systemlist('uname -s')[0]
     let g:arch = systemlist('uname -m')[0]

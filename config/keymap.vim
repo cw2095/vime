@@ -136,20 +136,22 @@ inoremap <C-h> <left>
 inoremap <C-j> <down>
 inoremap <C-k> <up>
 inoremap <C-l> <right>
+cnoremap <C-k> <Up>
+cnoremap <C-j> <Down>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
 
 " Insert Mode Cursor Movement
 inoremap <C-e> <ESC>A
 inoremap <C-a> <ESC>I
 inoremap <C-o> <ESC>o
 inoremap <C-O> <ESC>O
+cnoremap <C-d> <del>
 
 " Command Mode Cursor Movement
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
-cnoremap <C-k> <Up>
-cnoremap <C-j> <Down>
-cnoremap <C-h> <Left>
-cnoremap <C-l> <Right>
+cnoremap <C-d> <del>
 
 "----------------------------------------------------------------------
 " buffer keymap
