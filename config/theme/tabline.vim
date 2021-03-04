@@ -37,6 +37,6 @@ if common#functions#HasPlug('vim-xtabline')
         \'lens': '🔍',
         \'flag': '🏳️.',
         \}
-    silent! nmap <BS> <Plug>(XT-Select-Buffer)
+    " silent! nmap <BS> <Plug>(XT-Select-Buffer)
     " noremap to :XTabCycleMode<CR>
 endif

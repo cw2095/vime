@@ -414,7 +414,7 @@ if common#functions#HasPlug('coc-fzf')
     nnoremap <M-y> :<c-u>CocFzfList yank<CR>
 endif
 " TODO 编写高亮
-nnoremap <M-J> :FzfJumps<CR>
+" nnoremap <M-J> :FzfJumps<CR>
 " TODO 编写高亮
 " quickfix与locationlist
 " nnoremap <F8> :FzfQuickfix<CR>

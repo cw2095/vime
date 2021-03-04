@@ -254,8 +254,8 @@ function! s:lc_coc_translator() abort
     nmap <Leader>e <Plug>(coc-translator-e)
     vmap <Leader>e <Plug>(coc-translator-ev)
     " replace
-    nmap <Leader>r <Plug>(coc-translator-r)
-    vmap <Leader>r <Plug>(coc-translator-rv)"
+    " nmap <Leader>r <Plug>(coc-translator-r)
+    " vmap <Leader>r <Plug>(coc-translator-rv)"
 endfunction
 
 function! s:lc_coc_bookmark() abort

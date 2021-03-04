@@ -102,6 +102,9 @@ set whichwrap+=<,>,h,l
 " 允许使用鼠标, normal生效，a则是全模式生效
 set mouse=n
 
+" 更改quickfix行为为：如果有已打开文件，先复用，没有的话使用标签
+set switchbuf=useopen,usetab,newtab
+
 " 与系统共用剪切板
 " 在某些系统上可能会出现vim打开时间长的问题
 set clipboard=unnamedplus
@@ -177,7 +180,7 @@ set relativenumber
 set noshowmode
 set showcmd
 set showmatch
-set matchtime=2
+set matchtime=3
 
 set title
 set display=lastline

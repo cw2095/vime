@@ -174,7 +174,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 't9md/vim-choosewin'
 
 " Pairs of handy bracket mappings
-Plug 'tpope/vim-unimpaired'
+" Plug 'tpope/vim-unimpaired'
 
 " 功能很强的折叠插件, zc zo
 " Plug 'pseewald/vim-anyfold'
