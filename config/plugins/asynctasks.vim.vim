@@ -69,9 +69,23 @@ function! s:fzf_task()
 endfunction
 
 command! -nargs=0 AsyncTaskFzf call s:fzf_task()
+
 nnoremap <M-a> :AsyncTaskFzf<CR>
 
 nnoremap <silent><F6>> :AsyncTask file-run<cr>
 nnoremap <silent><F5> :AsyncTask file-build<cr>
 nnoremap <silent><F8> :AsyncTask project-run<cr>
 nnoremap <silent><F7> :AsyncTask project-build<cr>
+
+"----------------------------------------------------------------------
+" tasks
+"----------------------------------------------------------------------
+noremap <space>te :AsyncTaskEdit<cr>
+noremap <space>tg :AsyncTaskEdit!<cr>
+noremap <space>tfb :AsyncTask file-build<cr>
+noremap <space>tfr :AsyncTask file-run<cr>
+noremap <space>tfd :AsyncTask file-debug<cr>
+noremap <space>tpi :AsyncTask project-init<cr>
+noremap <space>tpb :AsyncTask project-build<cr>
+noremap <space>tpr :AsyncTask project-run<cr>
+noremap <space>tpd :AsyncTask project-debug<cr>

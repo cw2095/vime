@@ -23,6 +23,8 @@ function! common#common#init() abort
     " view 保存目录
     " 能够恢复当前的窗口内容
     let g:view_dir = g:cache_root_path . 'views/'
+    " log
+    let g:log_dir = g:cache_root_path . 'logs/'
 
     let g:os = systemlist('uname -s')[0]
     let g:arch = systemlist('uname -m')[0]
@@ -37,7 +39,10 @@ function! common#common#init() abort
     let g:vimwiki_path = $HOME . '/Documents/wiki/'
 
     " 快速note文件
-    let g:quicknote_file = g:vimwiki_path . '/quicknote.md'
+    let g:quicknote_file = g:vimwiki_path . 'quicknote.md'
+
+    " 快速todo文件
+    let g:todo_file = g:vimwiki_path . 'todo.md'
 
     " GTAGSLABEL 告诉 gtags 默认 C/C++/Java 等六种原生支持的代码直接使用 gtags 本地分析器，而其他语言使用 pygments 模块。
     " 实际使用 pygments 时，gtags 会启动 python 运行名为 pygments_parser.py 的脚本，

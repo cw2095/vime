@@ -29,9 +29,8 @@ let g:startify_session_before_save = [
 
 " bookmarks 书签
 let g:startify_bookmarks = [
-            \ g:vimwiki_path . '/草稿/todo.md',
-            \ g:vimwiki_path . '/草稿/快速笔记.md',
-            \ g:quicknote_file
+            \ g:quicknote_file,
+            \ g:todo_file
             \ ]
 
 " command 命令

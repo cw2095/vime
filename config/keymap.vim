@@ -1,3 +1,11 @@
+"======================================================================
+"
+" keymap.vim -
+"
+" Created by cw on 2021/03/05
+" Last Modified: 2021/03/05 16:27:39
+"
+"======================================================================
 " 有六种映射存在
 " - 用于普通模式: 输入命令时。
 " - 用于可视模式: 可视区域高亮并输入命令时。
@@ -36,10 +44,10 @@ noremap - N
 noremap = n
 
 " Save & quit
-" nnoremap <C-s> <ESC>:write<cr>
-" xnoremap <C-s> <ESC>:write<cr>
-nnoremap <LEADER>q <ESC>:close<cr>
-vnoremap <LEADER>q <ESC>:close<cr>
+nnoremap <LEADER>] <ESC>:write<cr>
+onoremap <LEADER>] <ESC>:write<cr>
+nnoremap <LEADER>[ <ESC>:close<cr>
+vnoremap <LEADER>[ <ESC>:close<cr>
 
 
 " Copy to system clipboard
@@ -96,6 +104,9 @@ nnoremap Y y$
 nnoremap <LEADER>vv ^vg_
 nnoremap <LEADER>vb v$h
 nnoremap <LEADER>va ggVG
+" replace
+noremap <space>v viw"0p
+noremap <space>y yiw
 
 " 使用系统应用打开当前buffer文件
 noremap <silent> <M-x> :call common#functions#OpenFileUsingSystemApp(expand('%:p'))<cr>
@@ -164,6 +175,7 @@ noremap <silent>\bs :sp<cr>
 noremap <silent>\bd :bdelete<cr>
 noremap <silent>\bl :ls<cr>
 noremap <silent>\bb :ls<cr>:b
+noremap <silent>\bc :BufferClose<cr>
 
 "----------------------------------------------------------------------
 " window keymaps
@@ -434,3 +446,53 @@ nnoremap ]e  :<C-u>execute 'move +'. v:count1<cr>
 nnoremap [<space>  :<C-u>put! =repeat(nr2char(10), v:count1)<cr>'[
 nnoremap ]<space>  :<C-u>put =repeat(nr2char(10), v:count1)<cr>
 
+
+"----------------------------------------------------------------------
+" GUI/Terminal
+"----------------------------------------------------------------------
+noremap <silent><M-[> :call Tools_QuickfixCursor(2)<cr>
+noremap <silent><M-]> :call Tools_QuickfixCursor(3)<cr>
+noremap <silent><M-{> :call Tools_QuickfixCursor(4)<cr>
+noremap <silent><M-}> :call Tools_QuickfixCursor(5)<cr>
+noremap <silent><M-u> :call Tools_PreviousCursor(6)<cr>
+noremap <silent><M-d> :call Tools_PreviousCursor(7)<cr>
+
+inoremap <silent><M-[> <c-\><c-o>:call Tools_QuickfixCursor(2)<cr>
+inoremap <silent><M-]> <c-\><c-o>:call Tools_QuickfixCursor(3)<cr>
+inoremap <silent><M-{> <c-\><c-o>:call Tools_QuickfixCursor(4)<cr>
+inoremap <silent><M-}> <c-\><c-o>:call Tools_QuickfixCursor(5)<cr>
+inoremap <silent><M-u> <c-\><c-o>:call Tools_PreviousCursor(6)<cr>
+inoremap <silent><M-d> <c-\><c-o>:call Tools_PreviousCursor(7)<cr>
+
+
+"----------------------------------------------------------------------
+" space + h : fast open files
+"----------------------------------------------------------------------
+noremap <space>hf <c-w>gf
+
+let s:filename = expand(g:config_root_path)
+let s:plugin_list = fnamemodify(s:filename, ':h'). '/plugin_list.vim'
+exec 'nnoremap <space>hp :FileSwitch tabe '.fnameescape(s:plugin_list).'<cr>'
+let s:keymap = fnamemodify(s:filename, ':h'). '/keymap.vim'
+exec 'nnoremap <space>hk :FileSwitch tabe '.fnameescape(s:keymap).'<cr>'
+let s:coc_nvim = fnamemodify(s:filename, ':h'). '/plugins/coc.nvim.vim'
+exec 'nnoremap <space>hc :FileSwitch tabe '.fnameescape(s:coc_nvim).'<cr>'
+
+let s:nvimrc = expand("~/.config/nvim/init.vim")
+exec 'nnoremap <space>hn :FileSwitch tabe '.fnameescape(s:nvimrc).'<cr>'
+
+exec 'nnoremap <space>hq :FileSwitch tabe '.fnameescape(g:quicknote_file).'<cr>'
+exec 'nnoremap <space>ht :FileSwitch tabe '.fnameescape(g:todo_file).'<cr>'
+
+let s:logname = g:log_dir . "record.log"
+exec 'nnoremap <space>hl :FileSwitch tabe '.fnameescape(s:logname).'<cr>'
+
+"----------------------------------------------------------------------
+" space + e : fast insert something
+"----------------------------------------------------------------------
+noremap <space>e- :call Tools_snip_comment_block('-')<cr>
+noremap <space>e= :call Tools_snip_comment_block('=')<cr>
+noremap <space>e* :call Tools_snip_comment_block('*')<cr>
+noremap <space>ec :call Tools_snip_copyright('cw')<cr>
+noremap <space>el :call Tools_snip_modeline()<cr>
+noremap <space>et "=strftime("%Y/%m/%d %H:%M:%S")<CR>gp

@@ -243,7 +243,7 @@ function! s:lc_coc_yank() abort
     if !common#functions#HasPlug('vim-clap') && !common#functions#HasPlug('fzf')
         nnoremap <silent> <M-y>  :<C-u>CocList yank<cr>
     endif
-    nnoremap <silent> <space>y  :<C-u>CocList yank<cr>
+    " nnoremap <silent> <space>y  :<C-u>CocList yank<cr>
 endfunction
 
 function! s:lc_coc_translator() abort

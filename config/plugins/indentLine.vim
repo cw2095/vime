@@ -4,9 +4,18 @@
 " let g:indentLine_color_term = 120
 " let g:indentLine_leadingSpaceEanbled = 1
 " let g:indentLine_leadingSpaceChar = '·'
-let g:indentLine_enabled=1
-let g:indentLine_char = '┊'
+" let g:indentLine_enabled=1
+" let g:indentLine_char = '┊'
 " let g:indentLine_first_char = '*'
+
+let g:indentLine_color_term = 239
+" let g:indentLine_color_gui = '#A4E57E'
+let g:indentLine_color_tty_light = 7 " (default: 4)
+let g:indentLine_color_dark = 1 " (default: 2)
+let g:indentLine_bgcolor_term = 202
+" let g:indentLine_bgcolor_gui = '#FF5F00'
+let g:indentLine_char = '|'
+let g:indentLine_enabled = 1
 
 " 使用自己的conceal设置而不是由indentline进行设置
 " let g:indentLine_setConceal = 0
