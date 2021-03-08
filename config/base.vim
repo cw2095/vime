@@ -113,10 +113,13 @@ set switchbuf=useopen,usetab,newtab
 " 在某些系统上可能会出现vim打开时间长的问题
 set clipboard=unnamedplus
 
+" 为键码打开超时
 set notimeout
 set ttimeout
-set timeoutlen=500
-set ttimeoutlen=10
+" 映射延迟
+" set timeoutlen=500
+" 键码延迟
+set ttimeoutlen=100
 
 set noswapfile
 set nobackup

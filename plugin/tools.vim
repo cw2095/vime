@@ -7,6 +7,16 @@
 "
 "======================================================================
 
+" global settings
+let s:winopen = 0
+set splitright
+set smartcase
+set switchbuf=useopen,usetab,newtab
+set viewdir=~/.cache/vim/view
+set wildmenu
+set wcm=<C-Z>
+"set splitbelow
+
 " show content in a new vertical split window
 function! s:Show_Content(title, width, content)
     let l:width = a:width
@@ -103,6 +113,12 @@ command! -nargs=+ FileSwitch call Tools_FileSwitch(<f-args>)
 function! Open_Dictionary(word)
     let l:expl = system('sdcv --utf8-input --utf8-output -n "'. a:word .'"')
     call s:Show_Content('[StarDict]', 28, l:expl)
+endfunc
+
+function! Open_Manual(what)
+    let l:text = system('man -S 3:2:1 -P cat "'.a:what.'" | col -b')
+    call s:Show_Content("[man]", 0, l:text)
+    call cursor(1, 1)
 endfunc
 
 " switch header
@@ -315,6 +331,23 @@ function! LogWrite(text)
     finally
     endtry
 endfunc
+
+function! s:quick_note(text)
+    let text = substitute(a:text, '^\s*\(.\{-}\)\s*$', '\1', '')
+    if exists('*writefile') && text != ''
+        let s:logname = g:log_dir . "record.log"
+        " let filename = get(g:, 'quicknote_file', '~/.vim/quicknote.md')
+        let notehead = get(g:, 'quicknote_head', '- ')
+        let notetime = strftime("[%Y-%m-%d %H:%M:%S] ")
+        let realname = expand(s:logname)
+        call writefile([notehead . notetime . text], realname, 'a')
+        checktime
+        echo notetime . text
+    endif
+endfunc
+
+command! -nargs=+ Log call s:quick_note(<q-args>)
+
 
 " open quickfix
 function! Toggle_QuickFix(size)
@@ -587,6 +620,22 @@ command! -nargs=? -range MyCheatSheetAlign <line1>,<line2>call s:Tools_CheatShee
 
 
 "----------------------------------------------------------------------
+" Load url
+"----------------------------------------------------------------------
+function! s:ReadUrl(url)
+    if executable('curl')
+        exec 'r !curl -sL '.shellescape(a:url)
+    elseif executable('wget')
+        exec 'r !wget --no-check-certificate -qO- '.shellescape(a:url)
+    else
+        echo "require wget or curl"
+    endif
+endfunc
+
+command! -nargs=1 MyUrlRead call s:ReadUrl(<q-args>)
+
+
+"----------------------------------------------------------------------
 " Remove some path from $PATH
 "----------------------------------------------------------------------
 function! s:RemovePath(path) abort
@@ -830,3 +879,61 @@ function! Tools_snip_modeline()
     let text .= ':'
     call append(line('.') - 1, text)
 endfunc
+
+
+"----------------------------------------------------------------------
+" Shougo
+"----------------------------------------------------------------------
+function! s:add_numbers(num)
+  let prev_line = getline('.')[: col('.')-1]
+  let next_line = getline('.')[col('.') :]
+  let prev_num = matchstr(prev_line, '\d\+$')
+  if prev_num != ''
+    let next_num = matchstr(next_line, '^\d\+')
+    let new_line = prev_line[: -len(prev_num)-1] .
+          \ printf('%0'.len(prev_num).'d',
+          \    max([0, prev_num . next_num + a:num])) . next_line[len(next_num):]
+  else
+    let new_line = prev_line . substitute(next_line, '\d\+',
+          \ "\\=printf('%0'.len(submatch(0)).'d',
+          \         max([0, submatch(0) + a:num]))", '')
+  endif
+
+  if getline('.') !=# new_line
+    call setline('.', new_line)
+  endif
+endfunction
+
+command! -range -nargs=1 AddNumbers
+      \ call s:add_numbers((<line2>-<line1>+1) * eval(<args>))
+
+
+function! s:open_junk_file()
+    let junk_dir = get(g:, 'junk_dir', '~/.cache/vim/junk/')
+    let junk_dir = junk_dir . strftime('%Y/%m/')
+    let real_dir = expand(junk_dir)
+    if !isdirectory(real_dir)
+        call mkdir(real_dir, 'p')
+    endif
+
+    let filename = junk_dir.strftime('%Y-%m-%d-%H%M%S.')
+    let filename = tr(filename, '\', '/')
+    let filename = input('Junk Code: ', filename)
+    if filename != ''
+        execute 'edit ' . fnameescape(filename)
+    endif
+endfunction
+
+command! -nargs=0 JunkFile call s:open_junk_file()
+
+function! s:open_junk_list()
+    let junk_dir = get(g:, 'junk_dir', '~/.cache/vim/junk/')
+    " let junk_dir = expand(junk_dir) . strftime('/%Y/%m')
+    let junk_dir = tr(junk_dir, '\', '/')
+    echo junk_dir
+    exec "FWW " . fnameescape(expand(junk_dir))
+endfunction
+
+command! -nargs=0 JunkList call s:open_junk_list()
+
+

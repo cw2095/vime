@@ -44,6 +44,9 @@ function! common#common#init() abort
     " 快速todo文件
     let g:todo_file = g:vimwiki_path . 'todo.md'
 
+    " Open junk file
+    let g:junk_dir = g:cache_root_path. 'junk/'
+
     " GTAGSLABEL 告诉 gtags 默认 C/C++/Java 等六种原生支持的代码直接使用 gtags 本地分析器，而其他语言使用 pygments 模块。
     " 实际使用 pygments 时，gtags 会启动 python 运行名为 pygments_parser.py 的脚本，
     " 通过管道和它通信，完成源代码分析，故需保证 gtags 能在 $PATH 里调用 python，且这个 python 安装了 pygments 模块。
