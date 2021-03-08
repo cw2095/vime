@@ -1,26 +1,50 @@
+"======================================================================
+"
+" init.vim -
+"
+" Created by cw on 2021/03/08
+" Last Modified: 2021/03/08 13:58:26
+"
+"======================================================================
+
+" 防止重复加载
+if get(s:, 'loaded', 0) != 0
+    finish
+else
+    let s:loaded = 1
+endif
+
+" 取得本文件所在的目录
+let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+
+" 将 vim-init 目录加入 runtimepath
+exec 'set rtp+='.s:home
+
+" 将 ~/.vim 目录加入 runtimepath (有时候 vim 不会自动帮你加入）
+set rtp+=~/.vim
+
 " 初始化一些全局变量
 call common#common#init()
 
 " 定义载入配置命令
 command! -nargs=1 LoadScript exec 'source ' . fnameescape(g:config_root_path . '<args>')
 
-" let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 " command! -nargs=1 IncScript exec 'so '. fnameescape(s:home."/<args>")
 
 " 载入基础配置
-LoadScript base.vim
+LoadScript init-basic.vim
+
+" 加载扩展配置
+LoadScript init-config.vim
+
+" 设定 tabsize
+LoadScript init-tabsize.vim
+
 
 " vim-plug 载入插件
 call plug#begin(get(g:, 'plugins_install_path', '~/.vim/plugin/'))
 LoadScript plugin_list.vim
 call plug#end()
-
-" 载入快捷键配置
-LoadScript keymap.vim
-" 载入主题配置
-LoadScript theme/theme.vim
-LoadScript theme/statusline.vim
-LoadScript theme/tabline.vim
 
 " 依据插件名字载入对应的插件配置
 function s:source_config(plugName) abort
@@ -37,3 +61,14 @@ for [plugName, _] in items(g:plugs)
         call s:source_config(plugName)
     endif
 endfor
+
+" 载入主题配置
+LoadScript theme/theme.vim
+LoadScript theme/statusline.vim
+LoadScript theme/tabline.vim
+
+" 界面样式
+LoadScript init-style.vim
+
+" 载入快捷键配置
+LoadScript keymap.vim
