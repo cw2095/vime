@@ -715,6 +715,26 @@ endfunc
 command! -nargs=1 LineBreaker call s:LineBreaker(<q-args>)
 
 
+function! MenuHelp_SplitLine()
+    echohl Type
+    call inputsave()
+    let t = input('Enter maximum line width: ')
+    call inputrestore()
+    redraw | echo "" | redraw
+    if t == ''
+        return 0
+    endif
+    let width = str2nr(t)
+    if width <= 0
+        echohl ErrorMsg
+        echo "Invalid number: " . t
+        echohl None
+        redraw
+        return 0
+    endif
+    exec 'LineBreaker ' . width
+endfunc
+
 "----------------------------------------------------------------------
 " open url in browser
 "----------------------------------------------------------------------

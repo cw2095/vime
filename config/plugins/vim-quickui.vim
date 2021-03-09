@@ -56,8 +56,27 @@ let g:listbox_fzf_content = [
                 \ ["FZF Project T&ags\t<M-T>", 'Tags'],
                 \ ]
 let g:listbox_fzf_opts = {
-                \ 'title' : 'fzf'
+                \ 'title' : '| fzf |'
                 \ }
+
+let g:quickui_terminal_tools = get(g:, 'quickui_terminal_tools', {})
+
+let g:quickui_terminal_tools.lazygit = {
+            \ 'title': '| LazyGit |',
+            \ 'cmd': 'lazygit',
+            \ 'cwd': '<root>',
+            \ 'w': 0.8,
+            \ 'h': 0.8,
+            \ }
+
+let g:quickui_terminal_tools.cloc = {
+            \ 'title': '| CLOC |',
+            \ 'cmd': 'cloc .',
+            \ 'cwd': '<root>',
+            \ 'w': 90,
+            \ 'h': 30,
+            \ 'pause': 1,
+            \ }
 
 "----------------------------------------------------------------------
 " Available Widgets
@@ -108,16 +127,24 @@ call quickui#menu#reset()
 " install a 'File' menu, use [text, command] to represent an item.
 " items containing tips, use [text, command, tips], tips will display in the cmdline
 call quickui#menu#install("&File", [
-            \ [ "O&pen Coc-explorer\t<F2>", 'CocCommand explorer', 'open file explorer'],
-            \ [ "System&APP Open\t<M-x>", "call common#functions#OpenFileUsingSystemApp(expand('%:p'))", 'open file using system app'],
-            \ [ "FZF listbox", 'call quickui#listbox#open(g:listbox_fzf_content, g:listbox_fzf_opts)', 'open fzf listbox'],
-            \ [ "--", ''  ],
             \ [ "&Open\t:tabe ", 'call feedkeys(":tabe ")', 'open file in a new tap'],
             \ [ "&Save\t:write(\\w)", 'write', 'save current open buffer'],
+            \ [ "&Quit\t:q(\\q)", 'quit', 'quit without save'],
             \ [ "Sa&ve All\t:wall", 'wall', 'save all open files'],
             \ [ "Sav&e and Quit\t:xall", 'xall', 'save all open filesand quit'],
-            \ [ "&Quit\t:q(\\q)", 'quit', 'quit without save'],
             \ [ "Qui&t All\t:qall", 'qall', 'quit all without save'],
+            \ [ "--", ''  ],
+            \ [ "O&pen Coc-explorer\t<F2>", 'CocCommand explorer', 'open file explorer'],
+            \ [ "System&APP Open\t<M-x>", "call common#functions#OpenFileUsingSystemApp(expand('%:p'))", 'open file using system app'],
+            \ [ "F&ZF listbox", 'call quickui#listbox#open(g:listbox_fzf_content, g:listbox_fzf_opts)', 'open fzf listbox'],
+            \ [ "--", ''  ],
+            \ [ "J&unk File", 'JunkFile', ''],
+            \ [ "Junk &List", 'JunkList', ''],
+            \ [ "--", ''  ],
+            \ [ "Ter&minal Tab", 'OpenTerminal tab', 'Open internal terminal in a new tab'],
+            \ [ "Terminal Spl&it", 'OpenTerminal right', 'Open internal terminal in a split'],
+            \ [ "Open &URL", 'OpenURL', 'Open URL under cursor'],
+            \ [ "Search &Word", "call openbrowser#_keymap_smart_search('n')", 'Browse word in www'],
             \ ])
 
 " script inside %{...} will be evaluated and expanded in the string
@@ -133,6 +160,7 @@ call quickui#menu#install("&Edit", [
             \ ['--'],
             \ ['&Align Table', 'Tabularize /|', ''],
             \ ['Align &Cheatsheet', 'MyCheatSheetAlign', ''],
+            \ ['&Break long line', 'call MenuHelp_SplitLine()', ''],
             \ ])
 
 call quickui#menu#install('&Symbol', [
