@@ -17,6 +17,22 @@ set wildmenu
 set wcm=<C-Z>
 "set splitbelow
 
+" 左移 tab
+function! Tab_MoveLeft()
+    let l:tabnr = tabpagenr() - 2
+    if l:tabnr >= 0
+        exec 'tabmove '.l:tabnr
+    endif
+endfunc
+
+" 右移 tab
+function! Tab_MoveRight()
+    let l:tabnr = tabpagenr() + 1
+    if l:tabnr <= tabpagenr('$')
+        exec 'tabmove '.l:tabnr
+    endif
+endfunc
+
 " show content in a new vertical split window
 function! s:Show_Content(title, width, content)
     let l:width = a:width

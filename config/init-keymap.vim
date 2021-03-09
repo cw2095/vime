@@ -40,8 +40,8 @@ noremap <silent>Q :confirm qall<cr>
 noremap ; :
 nnoremap ! :!
 
-noremap - N
-noremap = n
+" noremap - N
+" noremap = n
 
 " Save & quit
 nnoremap <LEADER>] <ESC>:write<cr>
@@ -131,7 +131,7 @@ noremap <silent> K 5k
 noremap <silent> J 5j
 
 noremap <C-U> 5<C-y>
-noremap <C-E> 5<C-e>
+noremap <C-D> 5<C-e>
 
 inoremap jk <ESC>
 
@@ -229,8 +229,10 @@ noremap <silent>\tq :tabclose<cr>
 noremap <silent>\tn :tabnext<cr>
 noremap <silent>\tp :tabprev<cr>
 noremap <silent>\to :tabonly<cr>
-noremap <silent>\th :-tabmove<cr>
-noremap <silent>\tl :+tabmove<cr>
+" noremap <silent>\th :-tabmove<cr>
+" noremap <silent>\tl :+tabmove<cr>
+noremap <silent><leader>th :call Tab_MoveLeft()<cr>
+noremap <silent><leader>tl :call Tab_MoveRight()<cr>
 noremap <silent>\ta g<tab>
 noremap <silent>\1 :tabn 1<cr>
 noremap <silent>\2 :tabn 2<cr>

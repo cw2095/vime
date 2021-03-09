@@ -71,4 +71,4 @@ LoadScript theme/tabline.vim
 LoadScript init-style.vim
 
 " 载入快捷键配置
-LoadScript keymap.vim
+LoadScript init-keymap.vim

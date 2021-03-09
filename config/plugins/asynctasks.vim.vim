@@ -6,7 +6,7 @@ let g:asynctasks_rtp_config = "../GitHub/vime/config/tasks/tasks.ini"
 " 此时会使用 vim 的当前文件夹（即 :pwd 返回的值）作为项目目录。
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
 " 告诉 asyncrun 运行时自动打开高度为 6 的 quickfix 窗口，不然你看不到任何输出，除非你自己手动用 :copen 打开它。
-let g:asyncrun_open = 8
+let g:asyncrun_open = 10
 
 " 名称     类型      说明
 " quickfix 伪终端    默认值，使用 quickfix 窗口模拟终端，输出不匹配 errorformat。

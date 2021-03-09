@@ -42,6 +42,9 @@ set ttimeout
 " 功能键超时检测 50 毫秒
 set ttimeoutlen=50
 
+" 关闭映射超时
+set notimeout
+
 " 显示光标位置
 set ruler
 
