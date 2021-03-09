@@ -12,6 +12,11 @@
 "----------------------------------------------------------------------
 " other config
 "----------------------------------------------------------------------
+" diff option
+if has("patch-8.1.0360")
+    set diffopt+=internal,algorithm:patience
+endif
+
 " 与系统共用剪切板
 " 在某些系统上可能会出现vim打开时间长的问题
 set clipboard=unnamedplus

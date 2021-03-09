@@ -7,9 +7,11 @@
 "
 "======================================================================
 
-" 首先需要在config/plugin_list.vim中增加插件
 
+"----------------------------------------------------------------------
 " 从Github源码安装软件
+"----------------------------------------------------------------------
+
 Plug 'junegunn/fzf', { 'dir': '~/GitHub/fzf', 'do': './install --all'  }
 
 " $ cd ctags
@@ -27,6 +29,11 @@ Plug 'universal-ctags/ctags', {'dir':'~/GitHub/ctags'}
 " $ make
 " $ make install
 Plug 'rizsotto/Bear', {'dir':'~/GitHub/bear'}
+
+
+"----------------------------------------------------------------------
+" 首先需要在config/plugin_list.vim中增加插件
+"----------------------------------------------------------------------
 
 " 起始界面
 Plug 'mhinz/vim-startify'
@@ -117,6 +124,33 @@ Plug 'lambdalisue/suda.vim'
 " 在命令行使用linux命令新建文件文件夹重命名当前buffer等
 Plug 'tpope/vim-eunuch'
 
+" 用 v 选中一个区域后，ALT_+/- 按分隔符扩大/缩小选区
+" Plug 'terryma/vim-expand-region'
+
+"----------------------------------------------------------------------
+" 文本对象：textobj 全家桶
+"----------------------------------------------------------------------
+" 基础插件：提供让用户方便的自定义文本对象的接口
+Plug 'kana/vim-textobj-user'
+
+" indent 文本对象：ii/ai 表示当前缩进，vii 选中当缩进，cii 改写缩进
+Plug 'kana/vim-textobj-indent'
+
+" 语法文本对象：iy/ay 基于语法的文本对象
+Plug 'kana/vim-textobj-syntax'
+
+" 函数文本对象：if/af 支持 c/c++/vim/java
+Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java'] }
+
+" 参数文本对象：i,/a, 包括参数或者列表元素
+Plug 'sgur/vim-textobj-parameter'
+
+" 提供 python 相关文本对象，if/af 表示函数，ic/ac 表示类
+Plug 'bps/vim-textobj-python', {'for': 'python'}
+
+" 提供 uri/url 的文本对象，iu/au 表示
+Plug 'jceb/vim-textobj-uri'
+
 " 悬浮终端
 Plug 'voldikss/vim-floaterm', {'on': ['FloatermNew', 'FloatermToggle']}
 
@@ -174,6 +208,7 @@ Plug 'matze/vim-move', {'on': [
 " Plug 'tpope/vim-apathy'
 
 " 语法检查
+" Plug 'rhysd/vim-grammarous'
 Plug 'rhysd/vim-grammarous', {'for': ['markdown', 'vimwiki', 'md', 'tex']}
 
 " switching between a single-line statement and a multi-line one.
@@ -269,9 +304,6 @@ Plug 'liuchengxu/vista.vim', {'on': ['Vista!!', 'Vista']}
 " c debug
 " Plug 'puremourning/vimspector'
 
-" 代码补全插件
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-
 " code build and run
 " 使用 Vim 8 / NeoVim 的异步机制，让你在后台运行 shell 命令，并将结果实时显示到 Vim 的 Quickfix 窗口中
 " :AsyncRun - 运行 shell 命令
@@ -280,6 +312,9 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/asyncrun.extra'
 " asynctasks.vim 是一个使用 asyncrun 提供任务管理的插件，帮助你管理一系列 building, testing 和 deploying 的任务，并且方便的调度他们。
 Plug 'skywind3000/asynctasks.vim'
+
+" 代码补全插件
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " coc插件列表，可根据需要进行删减
 let g:coc_global_extensions = [
