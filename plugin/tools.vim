@@ -480,7 +480,6 @@ endfunc
 command! -nargs=1 -bang AscListMeta
             \ call Tools_ListMeta(<q-args>, <bang>0)
 
-
 function! Tools_ProfileStart(filename)
     silent! profile stop
     if filereadable(a:filename)
