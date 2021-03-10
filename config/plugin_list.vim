@@ -80,6 +80,9 @@ Plug 'mg979/vim-xtabline'
 " UI extensions for Vim
 Plug 'skywind3000/vim-quickui'
 
+" A calendar application for Vim
+Plug 'itchyny/calendar.vim', { 'on': 'Calendar' }
+
 " General Highlighter
 " 显示颜色 例如: #654456
 if has('nvim')

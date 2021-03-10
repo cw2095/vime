@@ -3,7 +3,7 @@
 " vim-quickui.vim - The missing UI extensions for Vim.
 "
 " Created by cw on 2021/03/09
-" Last Modified: 2021/03/09 15:29
+" Last Modified: 2021/03/10 09:18
 "
 "======================================================================
 " vim: set ts=4 sw=4 tw=78 et :
@@ -31,6 +31,10 @@ let g:quickui_preview_h = 15
 " enable to display tips in the cmdline
 let g:quickui_show_tip = 1
 
+
+"----------------------------------------------------------------------
+" menu_help.vim - menu functions
+"----------------------------------------------------------------------
 let g:listbox_fzf_content = [
                 \ ["FZF M&ru\t<M-r>", 'History'],
                 \ ["FZF &Buffer Lines\t?", 'FzfBLines'],
@@ -55,9 +59,11 @@ let g:listbox_fzf_content = [
                 \ ["FZF Buffer &Tags\t<M-t>", 'BTags'],
                 \ ["FZF Project T&ags\t<M-T>", 'Tags'],
                 \ ]
+
 let g:listbox_fzf_opts = {
                 \ 'title' : '| fzf |'
                 \ }
+
 
 let g:quickui_terminal_tools = get(g:, 'quickui_terminal_tools', {})
 
@@ -77,6 +83,112 @@ let g:quickui_terminal_tools.cloc = {
             \ 'h': 30,
             \ 'pause': 1,
             \ }
+
+
+function! MenuHelp_EasyMotion(what)
+    if !common#functions#HasPlug('vim-easymotion')
+        return
+    endif
+    if a:what != ''
+        stopinsert
+        call feedkeys("\<Plug>(easymotion-" . a:what . ")", '')
+    endif
+endfunc
+
+function! MenuHelp_SplitLine()
+    echohl Type
+    call inputsave()
+    let t = input('Enter maximum line width: ')
+    call inputrestore()
+    redraw | echo "" | redraw
+    if t == ''
+        return 0
+    endif
+    let width = str2nr(t)
+    if width <= 0
+        echohl ErrorMsg
+        echo "Invalid number: " . t
+        echohl None
+        redraw
+        return 0
+    endif
+    exec 'LineBreaker ' . width
+endfunc
+
+function! MenuHelp_TaskList()
+    let keymaps = '123456789abcdefimopqrstuvwxyz'
+    let items = asynctasks#list('')
+    let rows = []
+    let size = strlen(keymaps)
+    let index = 0
+    for item in items
+        if item.name =~ '^\.'
+            continue
+        endif
+        let cmd = strpart(item.command, 0, (&columns * 60) / 100)
+        let key = (index >= size)? ' ' : strpart(keymaps, index, 1)
+        let text = "[" . ((key != ' ')? ('&' . key) : ' ') . "]\t"
+        let text .= item.name . "\t[" . item.scope . "]\t" . cmd
+        let rows += [[text, 'AsyncTask ' . fnameescape(item.name)]]
+        let index += 1
+    endfor
+    let opts = {}
+    let opts.title = 'Task List'
+    " let opts.bordercolor = 'QuickTitle'
+    call quickui#tools#clever_listbox('tasks', rows, opts)
+endfunc
+
+function! MenuHelp_ReadUrl()
+    let t = expand('<cword>')
+    echohl Type
+    call inputsave()
+    let t = input('Read URL from: ')
+    call inputrestore()
+    echohl None
+    redraw | echo "" | redraw
+    if t == ''
+        return 0
+    endif
+    if executable('curl')
+        exec '.-1r !curl -sL '.shellescape(t)
+    elseif executable('wget')
+        exec '.-1r !wget --no-check-certificate -qO- '.shellescape(t)
+    else
+        echo "require wget or curl"
+    endif
+endfunc
+
+function! MenuHelp_Gscope(what)
+    if !common#functions#HasPlug('vim-gutentags') || !common#functions#HasPlug('gutentags_plus')
+        return
+    endif
+    let p = asyncrun#get_root('%')
+    let t = ''
+    let m = {}
+    let m["s"] = "string symbol"
+    let m['g'] = 'definition'
+    let m['d'] = 'functions called by this'
+    let m['c'] = 'functions calling this'
+    let m['t'] = 'string'
+    let m['e'] = 'egrep pattern'
+    let m['f'] = 'file'
+    let m['i'] = 'files #including this file'
+    let m['a'] = 'places where this symbol is assigned'
+    let m['z'] = 'ctags database'
+    if a:what == 'f' || a:what == 'i'
+        " let t = expand('<cfile>')
+    endif
+    echohl Type
+    call inputsave()
+    let t = input('Find '.m[a:what].' in (' . p . '): ', t)
+    call inputrestore()
+    echohl None
+    redraw | echo "" | redraw
+    if t == ''
+        return 0
+    endif
+    exec 'GscopeFind '. a:what. ' ' . fnameescape(t)
+endfunc
 
 "----------------------------------------------------------------------
 " Available Widgets
@@ -136,7 +248,7 @@ call quickui#menu#install("&File", [
             \ [ "--", ''  ],
             \ [ "O&pen Coc-explorer\t<F2>", 'CocCommand explorer', 'open file explorer'],
             \ [ "System&APP Open\t<M-x>", "call common#functions#OpenFileUsingSystemApp(expand('%:p'))", 'open file using system app'],
-            \ [ "F&ZF listbox", 'call quickui#listbox#open(g:listbox_fzf_content, g:listbox_fzf_opts)', 'open fzf listbox'],
+            \ [ "F&ZF listbox", 'call quickui#tools#clever_listbox("FZF", g:listbox_fzf_content, g:listbox_fzf_opts)', 'open fzf listbox'],
             \ [ "--", ''  ],
             \ [ "J&unk File", 'JunkFile', ''],
             \ [ "Junk &List", 'JunkList', ''],
@@ -147,16 +259,16 @@ call quickui#menu#install("&File", [
             \ [ "Search &Word", "call openbrowser#_keymap_smart_search('n')", 'Browse word in www'],
             \ ])
 
+            "\ [ "F&ZF listbox", 'call quickui#listbox#open(g:listbox_fzf_content, g:listbox_fzf_opts)', 'open fzf listbox'],
+
 " script inside %{...} will be evaluated and expanded in the string
 call quickui#menu#install("&Edit", [
-            \ ['Set &Paste %{&paste? "Off":"On"}', 'set paste!'],
-            \ ['--'],
             \ [ "Open &Undo Tree\t<F3>", 'MundoToggle', 'open undo tree'],
             \ ['--'],
-            \ ['Copyright &Header', 'call feedkeys("\<esc> ec")', 'Insert copyright information at the beginning'],
+            \ ["Copyright &Header\t<space>ec", 'call feedkeys("\<esc> ec")', 'Insert copyright information at the beginning'],
             \ ['Update &ModTime', 'call UpdateLastModified()', ''],
             \ ['&Trailing Space', 'call StripTrailingWhitespace()', ''],
-            \ ['&Paste Mode Line', 'PasteVimModeLine', ''],
+            \ ["&Paste Mode Line\t<space>el", 'PasteVimModeLine', ''],
             \ ['--'],
             \ ['&Align Table', 'Tabularize /|', ''],
             \ ['Align &Cheatsheet', 'MyCheatSheetAlign', ''],
@@ -164,22 +276,32 @@ call quickui#menu#install("&Edit", [
             \ ])
 
 call quickui#menu#install('&Symbol', [
-            \ [ "&Grep Word\t(In Project)", 'call MenuHelp_GrepCode()', 'Grep keyword in current project' ],
-            \ [ "&Grep Word\t(In Project)", 'AsyncTask grep-cword', 'Grep keyword in current project' ],
+            \ [ "&Grep Word\t(In Project)", 'AsyncTask grep-word', 'Grep keyword in current project' ],
+            \ [ "Taglist\t<F4>", 'Vista!!', 'open vista(Viewer & Finder for LSP symbols and tags)'  ],
             \ [ "--", ],
-            \ [ "Find &Definition\t(GNU Global)", 'call MenuHelp_Gscope("g")', 'GNU Global search g'],
-            \ [ "Find &Symbol\t(GNU Global)", 'call MenuHelp_Gscope("s")', 'GNU Gloal search s'],
-            \ [ "Find &Called by\t(GNU Global)", 'call MenuHelp_Gscope("d")', 'GNU Global search d'],
-            \ [ "Find C&alling\t(GNU Global)", 'call MenuHelp_Gscope("c")', 'GNU Global search c'],
-            \ [ "Find &From Ctags\t(GNU Global)", 'call MenuHelp_Gscope("z")', 'GNU Global search c'],
+            \ [ "GNU Global", ],
+            \ [ "Find &Definition\t(GNU Global)", 'call MenuHelp_Gscope("g")', 'GNU Global search g' ],
+            \ [ "Find &Symbol\t(GNU Global)", 'call MenuHelp_Gscope("s")', 'GNU Gloal search s' ],
+            \ [ "Find &Called by\t(GNU Global)", 'call MenuHelp_Gscope("d")', 'GNU Global search d' ],
+            \ [ "Find C&alling\t(GNU Global)", 'call MenuHelp_Gscope("c")', 'GNU Global search c' ],
+            \ [ "Find &From Ctags\t(GNU Global)", 'call MenuHelp_Gscope("z")', 'GNU Global search z' ],
             \ [ "--", ],
-            \ [ "Goto D&efinition\t(YCM)", 'YcmCompleter GoToDefinitionElseDeclaration'],
-            \ [ "Goto &References\t(YCM)", 'YcmCompleter GoToReferences'],
-            \ [ "Get D&oc\t(YCM)", 'YcmCompleter GetDoc'],
-            \ [ "Get &Type\t(YCM)", 'YcmCompleter GetTypeImprecise'],
+            \ [ "COC", ],
+            \ [ "Goto D&efinition\tgd", 'call feedkeys("\<Plug>(coc-definition)")'],
+            \ [ "Goto &References\tgr", 'call feedkeys("\<Plug>(coc-references)")'],
+            \ [ "Get &Type\tgy", 'call feedkeys("\<Plug>(coc-type-definition")'],
+            \ [ "Get &Implementation\tgy", 'call feedkeys("\<Plug>(coc-implementation")'],
+            \ [ "Get &Dot\tK", 'K' ],
+            \ [ "Auto &Fix\t<space>f", 'call feedkeys("\<Plug>(coc-fix-current)")' ],
+            \ [ "For&mat Code", 'Format', 'use LSP format code' ],
             \ ])
 
+
 call quickui#menu#install('&Move', [
+            \ ["EasyMotion &Search\tf", 'call MenuHelp_EasyMotion("s")', 'easymotion-s'],
+            \ ["EasyMotion &Word\tF", 'call MenuHelp_EasyMotion("overwin-w")', 'easymotion-overwin-w'],
+            \ ["EasyMotion &Line\tgl", 'call MenuHelp_EasyMotion("overwin-line")', 'easymotion-overwin-line'],
+            \ ['--', ''],
             \ ["Quickfix &First\t:cfirst", 'cfirst', 'quickfix cursor rewind'],
             \ ["Quickfix L&ast\t:clast", 'clast', 'quickfix cursor to the end'],
             \ ["Quickfix &Next\t:cnext", 'cnext', 'cursor next'],
@@ -187,60 +309,44 @@ call quickui#menu#install('&Move', [
             \ ])
 
 call quickui#menu#install("&Build", [
-            \ ["File &Execute\tF5", 'AsyncTask file-run'],
-            \ ["File &Compile\tF9", 'AsyncTask file-build'],
-            \ ["File E&make\tF7", 'AsyncTask emake'],
-            \ ["File &Start\tF8", 'AsyncTask emake-exe'],
+            \ ["File &Compile\tF5", 'AsyncTask file-build'],
+            \ ["File &Execute\tF6", 'AsyncTask file-run'],
+            \ ["Project &Make\tF7", 'AsyncTask project-build'],
+            \ ["Project &Run\tF8", 'AsyncTask project-run'],
             \ ['--', ''],
-            \ ["&Project Build\tShift+F9", 'AsyncTask project-build'],
-            \ ["Project &Run\tShift+F5", 'AsyncTask project-run'],
-            \ ["Project &Test\tShift+F6", 'AsyncTask project-test'],
-            \ ["Project &Init\tShift+F7", 'AsyncTask project-init'],
-            \ ['--', ''],
-            \ ["T&ask List\tCtrl+F10", 'call MenuHelp_TaskList()'],
-            \ ['E&dit Task', 'AsyncTask -e'],
-            \ ['Edit &Global Task', 'AsyncTask -E'],
-            \ ['&Stop Building', 'AsyncStop'],
+            \ ["T&ask List\t<M-a>", 'AsyncTaskFzf'],
+            \ ["E&dit Task\t<space>te", 'AsyncTask -e'],
+            \ ["Edit &Global Task\t<space>tg", 'AsyncTask -E'],
+            \ ["&Stop Building", 'AsyncStop'],
             \ ])
 
-call quickui#menu#install("&Git", [
-            \ ['&View Diff', 'call svnhelp#svn_diff("%")'],
-            \ ['&Show Log', 'call svnhelp#svn_log("%")'],
-            \ ['File &Add', 'call svnhelp#svn_add("%")'],
-            \ ])
+call quickui#menu#install("&C/C++", [
+           \ ["&Switch Header/Source\t<spc>fw", "call Open_HeaderFile(-1)"],
+           \ ["Split &Header/Source\t<spc>fw", "call Open_HeaderFile(1)"],
+           \ ])
 
 call quickui#menu#install('&Tools', [
-            \ ['Compare &History', 'call svnhelp#compare_ask_file()', ''],
-            \ ['&Compare Buffer', 'call svnhelp#compare_ask_buffer()', ''],
+            \ ['Set &Paste %{&paste? "Off":"On"}', 'set paste!'],
+            \ ['&Spell %{&spell? "Disable":"Enable"}', 'set spell!', 'Toggle spell check %{&spell? "off" : "on"}'],
+            \ ["Relati&ve number %{&relativenumber? 'OFF':'ON'}", 'set relativenumber!'],
+            \ ['--',''],
+            \ [ "Lazy&git", "call quickui#tools#terminal('lazygit')" ],
             \ ['--',''],
             \ ['List &Buffer', 'call quickui#tools#list_buffer("FileSwitch tabe")', ],
             \ ['List &Function', 'call quickui#tools#list_function()', ],
             \ ['Display &Messages', 'call quickui#tools#display_messages()', ],
             \ ['--',''],
-            \ ["&DelimitMate %{get(b:, 'delimitMate_enabled', 0)? 'Disable':'Enable'}", 'DelimitMateSwitch'],
-            \ ['Read &URL', 'call menu#ReadUrl()', 'load content from url into current buffer'],
-            \ ['&Spell %{&spell? "Disable":"Enable"}', 'set spell!', 'Toggle spell check %{&spell? "off" : "on"}'],
+            \ ["T&ask List", 'call MenuHelp_TaskList()'],
+            \ ['Read &URL', 'call MenuHelp_ReadUrl()', 'load content from url into current buffer'],
             \ ['&Profile Start', 'call MonitorInit()', ''],
             \ ['Profile S&top', 'call MonitorExit()', ''],
-            \ ["Relati&ve number %{&relativenumber? 'OFF':'ON'}", 'set relativenumber!'],
-            \ ["Proxy &Enable", 'call MenuHelp_Proxy(1)', 'setup http_proxy/https_proxy/all_proxy'],
-            \ ["Proxy D&isable", 'call MenuHelp_Proxy(0)', 'clear http_proxy/https_proxy/all_proxy'],
             \ ])
 
 call quickui#menu#install('&Plugin', [
-            \ ["&NERDTree\t<space>tn", 'NERDTreeToggle', 'toggle nerdtree'],
-            \ ['&Tagbar', '', 'toggle tagbar'],
-            \ ["&Choose Window/Tab\tAlt+e", "ChooseWin", "fast switch win/tab with vim-choosewin"],
+            \ ["&Choose Window/Tab\t-", "ChooseWin", "fast switch win/tab with vim-choosewin"],
             \ ["-"],
-            \ ["&Browse in github\trhubarb", "Gbrowse", "using tpope's rhubarb to open browse and view the file"],
             \ ["&Startify", "Startify", "using tpope's rhubarb to open browse and view the file"],
-            \ ["&Gist", "Gist", "open gist with mattn/gist-vim"],
-            \ ["&Edit Note", "Note", "edit note with vim-notes"],
             \ ["&Display Calendar", "Calendar", "display a calender"],
-            \ ['Toggle &Vista', 'Vista!!', ''],
-            \ ["-"],
-            \ ["Plugin &List", "PlugList", "Update list"],
-            \ ["Plugin &Update", "PlugUpdate", "Update plugin"],
             \ ])
 
 " register HELP menu with weight 10000
@@ -254,7 +360,6 @@ call quickui#menu#install('Help (&?)', [
             \ ['--',''],
             \ ['&Vim Script', 'tab help eval', ''],
             \ ['&Function List', 'tab help function-list', ''],
-            \ ['&Dash Help', 'call asclib#utils#dash_ft(&ft, expand("<cword>"))'],
             \ ], 10000)
 
 
@@ -497,7 +602,7 @@ augroup END
 
 nnoremap <silent><space><space> :call quickui#menu#open()<cr>
 
-nnoremap <silent>K :call quickui#tools#clever_context('k', g:context_menu_k, {})<cr>
+" nnoremap <silent>K :call quickui#tools#clever_context('k', g:context_menu_k, {})<cr>
 
 if has('gui_running') || has('nvim')
     noremap <c-f10> :call MenuHelp_TaskList()<cr>

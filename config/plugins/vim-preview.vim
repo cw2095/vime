@@ -19,5 +19,5 @@ nnoremap <c-w>v :PreviewGoto vsplit<cr>
 nnoremap <c-w>t :PreviewGoto tabe<cr>
 
 " This command can preview files listed in quickfix window without opening it directly
-autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
-autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
+" autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
+" autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>

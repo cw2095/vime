@@ -127,8 +127,8 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
-noremap <silent> K 5k
-noremap <silent> J 5j
+" noremap <silent> K 5k
+" noremap <silent> J 5j
 
 noremap <C-U> 5<C-y>
 noremap <C-D> 5<C-e>
