@@ -348,7 +348,7 @@ function! LogWrite(text)
     endtry
 endfunc
 
-function! s:quick_note(text)
+function! s:quick_log(text)
     let text = substitute(a:text, '^\s*\(.\{-}\)\s*$', '\1', '')
     if exists('*writefile') && text != ''
         let s:logname = g:log_dir . "record.log"
@@ -362,7 +362,7 @@ function! s:quick_note(text)
     endif
 endfunc
 
-command! -nargs=+ Log call s:quick_note(<q-args>)
+command! -nargs=+ Log call s:quick_log(<q-args>)
 
 
 " open quickfix

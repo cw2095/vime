@@ -1,6 +1,15 @@
 let g:coc_fzf_preview = 'up:50%:wrap'
 let g:coc_fzf_opts = []
 
+
+if common#functions#HasPlug('vim-bookmarks')
+    " add_list_source(name, description, command)
+    call coc_fzf#common#add_list_source('bookmarks', 'display bookmarks', 'BookmarkShowAll')
+endif
+
+" delete_list_source(name)
+" call coc_fzf#common#delete_list_source('fzf-buffers')
+
 " 因为要配合coc，因此快捷键放到了coc.nvim.vim文件中了
 "
 " nnoremap <silent> <space>a  :<C-u>CocFzfList diagnostics<CR>
