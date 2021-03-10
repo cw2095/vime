@@ -172,7 +172,7 @@ Plug 'airblade/vim-rooter'
 Plug 'simnalamburt/vim-mundo'
 
 " 笔记插件，支持markdown
-" Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 
 " 专注阅读
 " Plug 'junegunn/goyo.vim', { 'on': 'Goyo', 'for': 'markdown' }

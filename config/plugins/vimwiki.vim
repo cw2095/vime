@@ -20,9 +20,9 @@ let g:vimwiki_listsyms = '✗○◐●✓'
 let g:vimwiki_toc_header_level = 2
 
 " 快捷键
-nmap <leader>ww <esc>:<c-u>VimwikiIndex<cr>
-nmap <leader>wt <esc>:<c-u>VimwikiTabIndex<cr>
-nmap <leader>wi <esc>:<c-u>VimwikiDiaryIndex<cr>
+nmap <space>ww <esc>:<c-u>VimwikiIndex<cr>
+nmap <space>wt <esc>:<c-u>VimwikiTabIndex<cr>
+nmap <space>wi <esc>:<c-u>VimwikiDiaryIndex<cr>
 
 augroup vime_vimwiki_group
     autocmd!
