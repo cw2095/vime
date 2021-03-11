@@ -182,7 +182,7 @@ let g:vimwiki_markdown_header_style = 1
 let g:vimwiki_auto_header = 1
 " A dictionary that is used to enable/disable various key mapping groups. To disable a specific group set the value for the associated key to 0.
 " To disable ALL Vimwiki key mappings use
-" let g:vimwiki_key_mappings = { 'all_maps': 0, }
+let g:vimwiki_key_mappings = { 'all_maps': 0, }
 "
 " The valid key groups and their associated mappings are shown below.
 "
@@ -223,19 +223,19 @@ let g:vimwiki_auto_header = 1
 "     Mouse mappings, see |vimwiki_mouse|. This option is disabled by default.
 "
 " The default is to enable all key mappings except the mouse:
-let g:vimwiki_key_mappings =
-   \ {
-   \   'all_maps': 1,
-   \   'global': 1,
-   \   'headers': 1,
-   \   'text_objs': 1,
-   \   'table_format': 1,
-   \   'table_mappings': 1,
-   \   'lists': 1,
-   \   'links': 1,
-   \   'html': 1,
-   \   'mouse': 0,
-   \ }
+" let g:vimwiki_key_mappings =
+"   \ {
+"   \   'all_maps': 1,
+"   \   'global': 1,
+"   \   'headers': 1,
+"   \   'text_objs': 1,
+"   \   'table_format': 1,
+"   \   'table_mappings': 1,
+"   \   'lists': 1,
+"   \   'links': 1,
+"   \   'html': 1,
+"   \   'mouse': 0,
+"   \ }
 " A list of additional fileypes that should be registered to vimwiki files
 let g:vimwiki_filetypes = []
 
@@ -269,21 +269,101 @@ nmap <space>w<space>m <Plug>VimwikiMakeTomorrowDiaryNote
 "----------------------------------------------------------------------
 " Local mappings - they are available when |FileType| is set to "vimwiki".
 "----------------------------------------------------------------------
+" html
+" Convert current wiki page to HTML.
+nmap <space>wh  <Plug>Vimwiki2HTML
+" Convert current wiki page to HTML and open it in the webbrowser.
+nmap <space>whh <Plug>Vimwiki2HTMLBrowse
+
+" Link
+" Update diary section (delete old, insert new) Only works from the diary index.
+nmap <space>w<space>i <Plug>VimwikiDiaryGenerateLinks
+" Follow/create wiki link (create target wiki page if needed).
+nmap <CR> <Plug>VimwikiFollowLink
+" Split and follow (create target wiki page if needed).
+nmap <S-CR> <Plug>VimwikiSplitLink
+" Vertical split and follow (create target wiki page if needed).
+nmap <C-CR> <Plug>VimwikiVSplitLink
+" Follow wiki link (create target wiki page if needed), opening in a new tab.
+nmap <C-S-CR> <Plug>VimwikiTabnewLink
+" Go back to previously visited wiki page.
+nmap <Backspace> <Plug>VimwikiGoBackLink
+" Find next link in the current page.
+nmap <Tab> <Plug>VimwikiNextLink
+" Find previous link in the current page.
+nmap <S-tab> <Plug>VimwikiPrevLink
+" Goto or create new wiki page
+nmap <space>wn <Plug>VimwikiGoto
+" Delete wiki page you are in
+nmap <space>wd <Plug>VimwikiDeleteFile
+" Rename wiki page you are in.
+nmap <space>wr <Plug>VimwikiRenameFile
 
 
-" 快捷键
-" nmap <space>ww <esc>:<c-u>VimwikiIndex<cr>
-" nmap <space>wt <esc>:<c-u>VimwikiTabIndex<cr>
-" nmap <space>wi <esc>:<c-u>VimwikiDiaryIndex<cr>
+" headers
+" Add header level. Create if needed.
+nmap = <Plug>VimwikiAddHeaderLevel
+" Remove header level.
+nmap - <Plug>VimwikiRemoveHeaderLevel
+" Go to the previous header in the buffer.
+nmap [[ <Plug>VimwikiGoToPrevHeader
+" Go to the next header in the buffer.
+nmap ]] <Plug>VimwikiGoToNextHeader
 
-augroup vime_vimwiki_group
-    autocmd!
+
+
+
+
+let g:vimwiki_k_context = [
+            \ ['links'],
+            \ [ '---' ],
+            \ [ "Diary Generate Links\t<space>w<space>i", "normal \<Plug>VimwikiDiaryGenerateLinks"],
+            \ [ "Follow Link\t<CR>", "normal \<Plug>VimwikiFollowLink" ],
+            \ [ "Spilt Link\t<S-CR>", "normal \<Plug>VimwikiSplitLink" ],
+            \ [ "Vspilt Link\t<C-CR>", "normal \<Plug>VimwikiSplitLink" ],
+            \ [ "Tap Link\t<C-S-CR>", "normal \<Plug>VimwikiTabnewLink" ],
+            \ [ "Go Back Link\t<BS>", "normal \<Plug>VimwikiGoBackLink" ],
+            \ [ "Next Link\t<Tab>", "nomal \<Plug>VimwikiNextLink" ],
+            \ [ "Previous Link\t<S-Tab>", "normal \<Plug>VimwikiPrevLink" ],
+            \ [ "Goto Wiki\t<space>wn", "normal \<Plug>VimwikiGoto" ],
+            \ [ "Delete Wiki\t<space>wd", "normal \<Plug>VimwikiDeleteFile" ],
+            \ [ "Rename Wiki\t<space>wr", "normal \<Plug>VimwikiRenameFile" ],
+            \ [ '---' ],
+            \ [ 'headers' ],
+            \ [ '---' ],
+            \ [ "Add Header Level\t=", "normal \<Plug>VimwikiAddHeaderLevel" ],
+            \ [ "Remove Header Level\t-", "normal \<Plug>VimwikiRemoveHeaderLevel" ],
+            \ [ "Goto PrevHeader\t[[", "normal \<Plug>VimwikiGoToPrevHeader" ],
+            \ [ "Goto NextHeader\t]]", "normal \<Plug>VimwikiGoToNextHeader" ],
+            \ [ '---' ],
+            \ ['html'],
+            \ [ '---' ],
+            \ [ "Wiki to HTML.\t<space>wh", "normal \<Plug>Vimwiki2HTML" ],
+            \ [ "Wiki to HTML and Browser.\t<space>whh", "normal \<Plug>Vimwiki2HTMLBrowse" ],
+            \ ]
+
+
+function! s:local_setup()
+    silent! unmap =p
+    silent! unmap =P
+    silent! unmap =o
+    silent! unmap =op
+    silent! unmap K
+
     autocmd FileType wiki,md,markdown setl colorcolumn=0
     autocmd FileType wiki,md,markdown setl textwidth=0
+    autocmd FileType wiki,md,markdown setl conceallevel=0
 
     " 避免g:vimwiki_hl_cb_checked设置为2的时候有问题
     au BufEnter *.wiki :syntax sync fromstart
+    au FileType vimwiki call s:local_setup()
+
+    " nnoremap <buffer> <silent><space>wk :call quickui#tools#clever_context('wiki', g:vimwiki_k_context, {})<cr>
+    nnoremap <buffer> <silent>K :call quickui#tools#clever_context('wiki', g:vimwiki_k_context, {})<cr>
+endfunc
+
+augroup VimwikiCustomizeEvent
+    au!
+    au FileType vimwiki call s:local_setup()
 augroup END
 
-
-    " autocmd FileType wiki,md,markdown setl conceallevel=0

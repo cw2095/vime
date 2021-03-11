@@ -240,11 +240,11 @@ call quickui#menu#reset()
 " items containing tips, use [text, command, tips], tips will display in the cmdline
 call quickui#menu#install("&File", [
             \ [ "&Open\t:tabe ", 'call feedkeys(":tabe ")', 'open file in a new tap'],
-            \ [ "&Save\t:write(\\w)", 'write', 'save current open buffer'],
-            \ [ "&Quit\t:q(\\q)", 'quit', 'quit without save'],
-            \ [ "Sa&ve All\t:wall", 'wall', 'save all open files'],
-            \ [ "Sav&e and Quit\t:xall", 'xall', 'save all open filesand quit'],
-            \ [ "Qui&t All\t:qall", 'qall', 'quit all without save'],
+            \ [ "Sa&ve\t:write(\\w)", 'write', 'save current open buffer'],
+            \ [ "Qui&t\t:q(\\q)", 'quit', 'quit without save'],
+            \ [ "Save A&ll\t:wall", 'wall', 'save all open files'],
+            \ [ "&Save and Quit\t:xall", 'xall', 'save all open filesand quit'],
+            \ [ "&Quit All\t:qall", 'qall', 'quit all without save'],
             \ [ "--", ''  ],
             \ [ "O&pen Coc-explorer\t<F2>", 'CocCommand explorer', 'open file explorer'],
             \ [ "System&APP Open\t<M-x>", "call common#functions#OpenFileUsingSystemApp(expand('%:p'))", 'open file using system app'],
@@ -260,6 +260,20 @@ call quickui#menu#install("&File", [
             \ ])
 
             "\ [ "F&ZF listbox", 'call quickui#listbox#open(g:listbox_fzf_content, g:listbox_fzf_opts)', 'open fzf listbox'],
+
+
+call quickui#menu#install("&Wiki", [
+            \ [ "&Open Wiki Index\t<space>ww", 'VimwikiIndex' ],
+            \ [ "O&pen Wiki Index in Tap\t<space>wt", 'VimwikiTabIndex' ],
+            \ [ "&Select Wiki Index\t<space>ws", 'VimwikiUISelect' ],
+            \ [ "Open &Diary Index\t<space>wi", 'VimwikiDiaryIndex' ],
+            \ ['--'],
+            \ [ "Open Wiki &Today Diary\t<space>w<space>w", 'VimwikiMakeDiaryNote' ],
+            \ [ "Open Wiki To&day Diary in Tap\t<space>w<space>t", 'VimwikiTabMakeDiaryNote' ],
+            \ [ "Open Wiki &Yesterday Diary\t<space>w<space>w", 'VimwikiMakeYesterdayDiaryNote' ],
+            \ [ "Open Wiki &Tomorrow Diary\t<space>w<space>w", 'VimwikiMakeTomorrowDiaryNote' ],
+            \ ])
+
 
 " script inside %{...} will be evaluated and expanded in the string
 call quickui#menu#install("&Edit", [
