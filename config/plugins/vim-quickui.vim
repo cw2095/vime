@@ -272,6 +272,12 @@ call quickui#menu#install("&Wiki", [
             \ [ "Open Wiki To&day Diary in Tap\t<space>w<space>t", 'VimwikiTabMakeDiaryNote' ],
             \ [ "Open Wiki &Yesterday Diary\t<space>w<space>w", 'VimwikiMakeYesterdayDiaryNote' ],
             \ [ "Open Wiki &Tomorrow Diary\t<space>w<space>w", 'VimwikiMakeTomorrowDiaryNote' ],
+            \ ['--'],
+            \ ['Vimwiki Local Map'],
+            \ ['--'],
+            \ ['Lin&k mapping listbox', 'call quickui#tools#clever_listbox("Wiki_Link_Map", g:listbox_wiki_link_mapping, g:listbox_wiki_link_mapping_opts)'],
+            \ [ '&Header mapping listbox', 'call quickui#tools#clever_listbox("Wiki_Header_Map", g:listbox_wiki_header_mapping, g:listbox_wiki_header_mapping_opts)'],
+            \ [ '&List mapping listbox', 'call quickui#tools#clever_listbox("Wiki_List_Map", g:listbox_wiki_list_mapping, g:listbox_wiki_list_mapping_opts)'],
             \ ])
 
 

@@ -182,7 +182,7 @@ let g:vimwiki_markdown_header_style = 1
 let g:vimwiki_auto_header = 1
 " A dictionary that is used to enable/disable various key mapping groups. To disable a specific group set the value for the associated key to 0.
 " To disable ALL Vimwiki key mappings use
-let g:vimwiki_key_mappings = { 'all_maps': 0, }
+" let g:vimwiki_key_mappings = { 'all_maps': 0, }
 "
 " The valid key groups and their associated mappings are shown below.
 "
@@ -223,19 +223,19 @@ let g:vimwiki_key_mappings = { 'all_maps': 0, }
 "     Mouse mappings, see |vimwiki_mouse|. This option is disabled by default.
 "
 " The default is to enable all key mappings except the mouse:
-" let g:vimwiki_key_mappings =
-"   \ {
-"   \   'all_maps': 1,
-"   \   'global': 1,
-"   \   'headers': 1,
-"   \   'text_objs': 1,
-"   \   'table_format': 1,
-"   \   'table_mappings': 1,
-"   \   'lists': 1,
-"   \   'links': 1,
-"   \   'html': 1,
-"   \   'mouse': 0,
-"   \ }
+let g:vimwiki_key_mappings =
+  \ {
+  \   'all_maps': 1,
+  \   'global': 1,
+  \   'headers': 1,
+  \   'text_objs': 1,
+  \   'table_format': 1,
+  \   'table_mappings': 1,
+  \   'lists': 1,
+  \   'links': 1,
+  \   'html': 1,
+  \   'mouse': 0,
+  \ }
 " A list of additional fileypes that should be registered to vimwiki files
 let g:vimwiki_filetypes = []
 
@@ -298,7 +298,18 @@ nmap <space>wn <Plug>VimwikiGoto
 nmap <space>wd <Plug>VimwikiDeleteFile
 " Rename wiki page you are in.
 nmap <space>wr <Plug>VimwikiRenameFile
-
+" Create and/or decorate links. Depending on the context, this command will:
+" convert words into wikilinks;
+" convert raw URLs into wikilinks;
+" add placeholder description text to wiki - or weblinks that are missing descriptions.
+" Can be activated in normal mode with the cursor over a word or link,
+" or in visual mode with the selected text.
+nmap + <Plug>VimwikiNormalizeLink
+vmap + <Plug>VimwikiNormalizeLinkVisual
+" Open the previous day's diary link if available.
+nmap <C-Up> <Plug>VimwikiDiaryPrevDay
+" Open the next day's diary link if available.
+nmap <C-Down> <Plug>VimwikiDiaryNextDay
 
 " headers
 " Add header level. Create if needed.
@@ -309,14 +320,124 @@ nmap - <Plug>VimwikiRemoveHeaderLevel
 nmap [[ <Plug>VimwikiGoToPrevHeader
 " Go to the next header in the buffer.
 nmap ]] <Plug>VimwikiGoToNextHeader
+" Go to the previous header which has the same level as the header the cursor is currently under.
+nmap [= <Plug>VimwikiGoToPrevSiblingHeader
+" Go to the next header which has the same level as the header the cursor is currently under.
+nmap ]= <Plug>VimwikiGoToNextSiblingHeader
+" Go one level up -- that is, to the parent header of the header the cursor is currently under.
+nmap [u <Plug>VimwikiGoToParentHeader
+nmap ]u <Plug>VimwikiGoToParentHeader
+
+" lists
+" Toggle checkbox of a list item on/off.
+nmap <C-Space> <Plug>VimwikiToggleListItem
+" Toggle checkbox of a list item disabled/off.
+nmap glx <Plug>VimwikiToggleRejectedListItem
+" Find next unfinished task in the current page.
+nmap gnt <Plug>VimwikiNextTask
+" Remove checkbox from list item.
+nmap gl<Space> <Plug>VimwikiRemoveSingleCB
+" Remove checkboxes from all sibling list items.
+nmap gL<Space> <Plug>VimwikiRemoveCBInList
+" Increase the "done" status of a list checkbox, i.e. from [ ] to [.] to [o] etc.
+nmap gln <Plug>VimwikiIncrementListItem
+" Decrease the "done" status.
+nmap glp <Plug>VimwikiDecrementListItem
+" Increase the level of a list item.
+nmap gll <Plug>VimwikiIncreaseLvlSingleItem
+" Increase the level of a list item and all child items.
+nmap gLl <Plug>VimwikiIncreaseLvlWholeItem
+" Decrease the level of a list item.
+nmap glh <Plug>VimwikiDecreaseLvlSingleItem
+" Decrease the level of a list item and all child items.
+nmap gLh <Plug>VimwikiDecreaseLvlWholeItem
+" Renumber list items if the cursor is on a numbered list item.
+nmap glr <Plug>VimwikiRenumberList
+" Renumber list items in all numbered lists in the whole file. Also readjust checkboxes.
+nmap gLr <Plug>VimwikiRenumberAllLists
+" Make a list item out of a normal line or change the symbol of the current item to *.
+nnoremap gl* :VimwikiChangeSymbolTo *<CR>
+" Change the symbol of the current list to *
+nnoremap gL* :VimwikiChangeSymbolInListTo *<CR>
+" Make a list item out of a normal line or change the symbol of the current item to -.
+nnoremap gl- :VimwikiChangeSymbolTo -<CR>
+" Change the symbol of the current list to -
+nnoremap gL- :VimwikiChangeSymbolInListTo -<CR>
+" Make a list item out of a normal line or change the symbol of the current item to 1..
+nnoremap gl1 :VimwikiChangeSymbolTo 1.<CR>
+" Change the symbol of the current list to 1.
+nnoremap gL1 :VimwikiChangeSymbolInListTo 1.<CR>
+" Make a list item out of a normal line or change the symbol of the current item to a).
+nnoremap gla :VimwikiChangeSymbolTo a)<CR>
+" Change the symbol of the current list to a)
+nnoremap gLa :VimwikiChangeSymbolInListTo a)<CR>
+" Make a list item out of a normal line or change the symbol of the current item to A).
+nnoremap glA :VimwikiChangeSymbolTo A)<CR>
+" Change the symbol of the current list to A)
+nnoremap gLA :VimwikiChangeSymbolInListTo A)<CR>
+" Make a list item out of a normal line or change the symbol of the current item to i).
+nnoremap gli :VimwikiChangeSymbolTo i)<CR>
+" Change the symbol of the current list to i)
+nnoremap gLi :VimwikiChangeSymbolInListTo i)<CR>
+" Make a list item out of a normal line or change the symbol of the current item to I).
+nnoremap glI :VimwikiChangeSymbolTo I)<CR>
+" Change the symbol of the current list to I)
+nnoremap gLI :VimwikiChangeSymbolInListTo I)<CR>
+
+" table
+" Reformats table after making changes.
+nmap gqq <Plug>VimwikiTableAlignQ
+nmap gww <Plug>VimwikiTableAlignW
+" Fast format table. The same as the previous,
+" except or that only a few lines above the current line are tested.
+" If the alignment of the current line differs,then the whole table gets reformatted.
+nmap gq1 <Plug>VimwikiTableAlignQ1
+nmap gw1 <Plug>VimwikiTableAlignW1
+" Move current table column to the left.
+nmap <A-Left> <Plug>VimwikiTableMoveColumnLeft
+" Move current table column to the right.
+nmap <A-Right> <Plug>VimwikiTableMoveColumnRight
+
+" table insert mode mappings
+" <CR> - Go to the table cell beneath the current one, create a new row if on the last one.
+" <Tab> - Go to the next table cell, create a new row if on the last cell.
+
+" list insert mode mappings
+" <CR> - In a list item, insert a new bullet or number in the next line, numbers are incremented.
+"       In an empty list item, delete the item symbol.
+"       This is useful to end a list, simply press <CR> twice.
+" <S-CR> - Does not insert a new list item, useful to create multilined list items.
+" Increase the level of a list item.
+imap <C-T> <Plug>VimwikiIncreaseLvlSingleItem
+" Decrease the level of a list item.
+imap <C-D> <Plug>VimwikiDecreaseLvlSingleItem
+" Change the symbol of the current list item to the next available. From - to 1. to * to I) to a).
+imap <C-L><C-J> <Plug>VimwikiListNextSymbol
+"  Change the symbol of the current list item to the prev available. From - to a) to I) to * to 1.
+imap <C-L><C-K> <Plug>VimwikiListPrevSymbol
+" Create/remove a symbol from a list item.
+imap <C-L><C-M> <Plug>VimwikiListToggle
 
 
+"----------------------------------------------------------------------
+" Vimwiki Text objects
+"----------------------------------------------------------------------
+" ah - A header including its content up to the next header.
+" ih - The content under a header (like 'ah', but excluding the header itself and trailing empty lines).
+" aH - A header including all of its subheaders. When [count] is 2, include the parent header, when [count] is 3, the grandparent and so on.
+" iH - Like 'aH', but excluding the header itself and trailing empty lines.
+"
+" a\ - A cell in a table.
+" i\ - An inner cell in a table.
+" ac - A column in a table.
+" ic - An inner column in a table.
+" al - A list item plus its children.
+" il - A single list item.
 
-
-
-let g:vimwiki_k_context = [
-            \ ['links'],
-            \ [ '---' ],
+"----------------------------------------------------------------------
+" vim-quickui configure
+"----------------------------------------------------------------------
+let g:listbox_wiki_link_mapping = [
             \ [ "Diary Generate Links\t<space>w<space>i", "normal \<Plug>VimwikiDiaryGenerateLinks"],
             \ [ "Follow Link\t<CR>", "normal \<Plug>VimwikiFollowLink" ],
             \ [ "Spilt Link\t<S-CR>", "normal \<Plug>VimwikiSplitLink" ],
@@ -328,15 +449,78 @@ let g:vimwiki_k_context = [
             \ [ "Goto Wiki\t<space>wn", "normal \<Plug>VimwikiGoto" ],
             \ [ "Delete Wiki\t<space>wd", "normal \<Plug>VimwikiDeleteFile" ],
             \ [ "Rename Wiki\t<space>wr", "normal \<Plug>VimwikiRenameFile" ],
-            \ [ '---' ],
-            \ [ 'headers' ],
-            \ [ '---' ],
+            \ [ "Normalize Link\t+(n/v)", "normal \<Plug>VimwikiNormalizeLink" ],
+            \ [ "Diary PrevDay\t<C-Up>", "nomal \<Plug>VimwikiDiaryPrevDay" ],
+            \ [ "Diary NextDay\t<C-Down>", "nomal \<Plug>VimwikiDiaryNextDay" ],
+            \ ]
+
+let g:listbox_wiki_link_mapping_opts = {
+                \ 'title' : '| Wiki Link Map |'
+                \ }
+
+
+let g:listbox_wiki_header_mapping = [
             \ [ "Add Header Level\t=", "normal \<Plug>VimwikiAddHeaderLevel" ],
             \ [ "Remove Header Level\t-", "normal \<Plug>VimwikiRemoveHeaderLevel" ],
             \ [ "Goto PrevHeader\t[[", "normal \<Plug>VimwikiGoToPrevHeader" ],
             \ [ "Goto NextHeader\t]]", "normal \<Plug>VimwikiGoToNextHeader" ],
+            \ [ "Goto PrevSiblingHeader\t[=", "normal \<Plug>VimwikiGoToPrevSiblingHeader" ],
+            \ [ "Goto NextSiblingHeader\t]=", "normal \<Plug>VimwikiGoToNextSiblingHeader" ],
+            \ [ "Goto ParentHeader\t[u/]u", "normal \<Plug>VimwikiGoToParentHeader" ],
+            \ ]
+
+let g:listbox_wiki_header_mapping_opts = {
+                \ 'title' : '| Wiki Header Map |'
+                \ }
+
+
+let g:listbox_wiki_list_mapping = [
+            \ [ "Toggle List Item\t<C-Space>", "normal \<Plug>VimwikiToggleListItem" ],
+            \ [ "Toggle Reject List Item\tglx", "normal \<Plug>VimwikiToggleRejectedListItem" ],
+            \ [ "Next Task\tgnt", "normal \<Plug>VimwikiNextTask" ],
+            \ [ "Remove SingleCB\tgl<Space>", "normal \<Plug>VimwikiRemoveSingleCB" ],
+            \ [ "Remove CBinList\tgL<Space>", "normal \<Plug>VimwikiRemoveCBInList" ],
+            \ [ "Increase List Item\tgln", "normal \<Plug>VimwikiIncrementListItem" ],
+            \ [ "Decrease List Item\tglp", "normal \<Plug>VimwikiDecrementListItem" ],
+            \ [ "Increase LvlSingleItem\tgll", "normal \<Plug>VimwikiIncreaseLvlSingleItem" ],
+            \ [ "Increase LvlWholeItem\tgLl", "normal \<Plug>VimwikiIncreaseLvlWholeItem" ],
+            \ [ "Decrease LvlSingleItem\tglh", "normal \<Plug>VimwikiDecreaseLvlSingleItem" ],
+            \ [ "Decrease LvlWholeItem\tgLh", "normal \<Plug>VimwikiDecreaseLvlWholeItem" ],
+            \ [ "Renumber List\tglr", "normal \<Plug>VimwikiRenumberList" ],
+            \ [ "Renumber All Lists\tgLr", "normal \<Plug>VimwikiRenumberAllLists" ],
+            \ [ "Change SymbolTo -\tgl-", "call feedkeys('gl-')" ],
+            \ [ "Change SymbolInList To -\tgL-", "call feedkeys('gL-')" ],
+            \ [ "Change SymbolTo 1.\tgl1", "call feedkeys('gl1')" ],
+            \ [ "Change SymbolInList To 1.\tgL1", "call feedkeys('gL1')" ],
+            \ [ "Change SymbolTo a)\tgla", "call feedkeys('gla')" ],
+            \ [ "Change SymbolInList To a)\tgLa", "call feedkeys('gLa')" ],
+            \ [ "Change SymbolTo A)\tglA", "call feedkeys('glA')" ],
+            \ [ "Change SymbolInList To A)\tgLA", "call feedkeys('gLA')" ],
+            \ [ "Change SymbolTo i)\tgli", "call feedkeys('gli')" ],
+            \ [ "Change SymbolInList To i)\tgLi", "call feedkeys('gLi')" ],
+            \ [ "Change SymbolTo I)\tglI", "call feedkeys('glI')" ],
+            \ [ "Change SymbolInList To I)\tgLI", "call feedkeys('gLI')" ],
+            \ ]
+
+let g:listbox_wiki_list_mapping_opts = {
+                \ 'title' : '| Wiki List Map |'
+                \ }
+
+
+let g:vimwiki_k_context = [
+            \ ['Lin&k mapping listbox', 'call quickui#tools#clever_listbox("Wiki_Link_Map", g:listbox_wiki_link_mapping, g:listbox_wiki_link_mapping_opts)'],
+            \ [ '&Header mapping listbox', 'call quickui#tools#clever_listbox("Wiki_Header_Map", g:listbox_wiki_header_mapping, g:listbox_wiki_header_mapping_opts)'],
+            \ [ '&List mapping listbox', 'call quickui#tools#clever_listbox("Wiki_List_Map", g:listbox_wiki_list_mapping, g:listbox_wiki_list_mapping_opts)'],
             \ [ '---' ],
-            \ ['html'],
+            \ [ 'table' ],
+            \ [ "Table AlignQ\tgqq", "normal \<Plug>VimwikiTableAlignQ" ],
+            \ [ "Table AlignW\tgww", "normal \<Plug>VimwikiTableAlignW" ],
+            \ [ "Table AlignQ1\tgq1", "normal \<Plug>VimwikiTableAlignQ1" ],
+            \ [ "Table AlignW1\tgw1", "normal \<Plug>VimwikiTableAlignW1" ],
+            \ [ "Table Move Column Left\t<A-Left>", "normal \<Plug>VimwikiTableMoveColumnLeft" ],
+            \ [ "Table Move Column Right\t<A-Right>", "normal \<Plug>VimwikiTableMoveColumnRight" ],
+            \ [ '---' ],
+            \ [ 'html' ],
             \ [ '---' ],
             \ [ "Wiki to HTML.\t<space>wh", "normal \<Plug>Vimwiki2HTML" ],
             \ [ "Wiki to HTML and Browser.\t<space>whh", "normal \<Plug>Vimwiki2HTMLBrowse" ],
@@ -353,12 +537,9 @@ function! s:local_setup()
     autocmd FileType wiki,md,markdown setl colorcolumn=0
     autocmd FileType wiki,md,markdown setl textwidth=0
     autocmd FileType wiki,md,markdown setl conceallevel=0
-
     " 避免g:vimwiki_hl_cb_checked设置为2的时候有问题
     au BufEnter *.wiki :syntax sync fromstart
-    au FileType vimwiki call s:local_setup()
 
-    " nnoremap <buffer> <silent><space>wk :call quickui#tools#clever_context('wiki', g:vimwiki_k_context, {})<cr>
     nnoremap <buffer> <silent>K :call quickui#tools#clever_context('wiki', g:vimwiki_k_context, {})<cr>
 endfunc
 
