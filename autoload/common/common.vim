@@ -39,10 +39,10 @@ function! common#common#init() abort
     let g:vimwiki_path = $HOME . '/Documents/wiki/'
 
     " 快速note文件
-    let g:quicknote_file = g:vimwiki_path . 'quicknote.md'
+    let g:quicknote_file = $HOME . '/Documents/quicknote.md'
 
     " 快速todo文件
-    let g:todo_file = g:vimwiki_path . 'todo.md'
+    let g:todo_file = $HOME . '/Documents/todo.md'
 
     " Open junk file
     let g:junk_dir = g:cache_root_path. 'junk/'

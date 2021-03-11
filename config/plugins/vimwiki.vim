@@ -3,9 +3,9 @@
 "----------------------------------------------------------------------
 let wiki_1 = {}
 " Wiki files location
-let wiki_1.path = g:vimwiki_path
+let wiki_1.path = g:vimwiki_path . 'wiki_1'
 " Location of HTML files converted from wiki files
-let wiki_1.path_html = g:vimwiki_path . 'wiki_html'
+let wiki_1.path_html = g:vimwiki_path . 'wiki_1/wiki_html'
 " A name that can be used to create interwiki links
 let wiki_1.name = 'wiki_1'
 " Set this option to 1 to automatically generate the HTML file when the corresponding wiki page is saved
@@ -59,7 +59,7 @@ let wiki_1.auto_generate_links = 1
 " Set this option to 1 to automatically update generated tags when the current wiki page is saved
 let wiki_1.auto_generate_tags = 1
 " Set this option to a list of file patterns to exclude when checking or generating links
-let wiki_1.exclude_files = [ 'quicknote.md', 'todo.md' ]
+let wiki_1.exclude_files = [ '**/README.md' ]
 " This setting is for integration with the vimwiki_markdown gem.
 let wiki_1.html_filename_parameterization = 0
 
@@ -240,14 +240,41 @@ let g:vimwiki_key_mappings =
 let g:vimwiki_filetypes = []
 
 
+"----------------------------------------------------------------------
+" Global mappings
+"----------------------------------------------------------------------
+" Open index file of the [count]'s wiki |g:vimwiki_list| if no wiki is open.
+" Otherwise the index of the currently active wiki is opened.
+" 1<space>ww opens the first wiki from |g:vimwiki_list|.
+" 2<space>ww opens the second wiki from |g:vimwiki_list|.
+" 3<space>ww opens the third wiki from |g:vimwiki_list|.
+" etc.
+nmap <space>ww <Plug>VimwikiIndex
+" Open index file of the [count]'s wiki in a new tab.
+nmap <space>wt <Plug>VimwikiTabIndex
+" List and select available wikis.
+nmap <space>ws <Plug>VimwikiUISelect
+" Open diary index file of the [count]'s wiki.
+nmap <space>wi <Plug>VimwikiDiaryIndex
+" Open diary wiki-file for today of the [count]'s wiki.
+nmap <space>w<space>w <Plug>VimwikiMakeDiaryNote
+" Open diary wiki-file for today of the [count]'s wiki in a new tab.
+nmap <space>w<space>t <Plug>VimwikiTabMakeDiaryNote
+" Open diary wiki-file for yesterday of the [count]'s wiki.
+nmap <space>w<space>y <Plug>VimwikiMakeYesterdayDiaryNote
+" Open diary wiki-file for tomorrow of the [count]'s wiki.
+nmap <space>w<space>m <Plug>VimwikiMakeTomorrowDiaryNote
 
 
+"----------------------------------------------------------------------
+" Local mappings - they are available when |FileType| is set to "vimwiki".
+"----------------------------------------------------------------------
 
 
 " 快捷键
-nmap <space>ww <esc>:<c-u>VimwikiIndex<cr>
-nmap <space>wt <esc>:<c-u>VimwikiTabIndex<cr>
-nmap <space>wi <esc>:<c-u>VimwikiDiaryIndex<cr>
+" nmap <space>ww <esc>:<c-u>VimwikiIndex<cr>
+" nmap <space>wt <esc>:<c-u>VimwikiTabIndex<cr>
+" nmap <space>wi <esc>:<c-u>VimwikiDiaryIndex<cr>
 
 augroup vime_vimwiki_group
     autocmd!
