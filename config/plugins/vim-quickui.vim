@@ -327,6 +327,7 @@ call quickui#menu#install("&C/C++", [
 
 call quickui#menu#install('&Tools', [
             \ ['Set &Paste %{&paste? "Off":"On"}', 'set paste!'],
+            \ ['Set &Wrap %{&wrap? "Off":"On"}', 'set wrap!'],
             \ ['&Spell %{&spell? "Disable":"Enable"}', 'set spell!', 'Toggle spell check %{&spell? "off" : "on"}'],
             \ ["Relati&ve number %{&relativenumber? 'OFF':'ON'}", 'set relativenumber!'],
             \ ['--',''],
