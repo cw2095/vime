@@ -131,11 +131,19 @@ function! Open_Dictionary(word)
     call s:Show_Content('[StarDict]', 28, l:expl)
 endfunc
 
+function! Open_Dictionary_Cword()
+    let l:word = expand('<cword>')
+    let l:expl = system('sdcv --utf8-input --utf8-output -n "'. l:word .'"')
+    call s:Show_Content('[StarDict]', 36, l:expl)
+endfunc
+
 function! Open_Manual(what)
     let l:text = system('man -S 3:2:1 -P cat "'.a:what.'" | col -b')
     call s:Show_Content("[man]", 0, l:text)
     call cursor(1, 1)
 endfunc
+
+command! -nargs=1 OpenManual call Open_Manual(<q-args>)
 
 " switch header
 function! Open_HeaderFile(where)

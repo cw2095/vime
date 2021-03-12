@@ -247,16 +247,11 @@ call quickui#menu#install("&File", [
             \ [ "&Quit All\t:qall", 'qall', 'quit all without save'],
             \ [ "--", ''  ],
             \ [ "O&pen Coc-explorer\t<F2>", 'CocCommand explorer', 'open file explorer'],
-            \ [ "System&APP Open\t<M-x>", "call common#functions#OpenFileUsingSystemApp(expand('%:p'))", 'open file using system app'],
             \ [ "F&ZF listbox", 'call quickui#tools#clever_listbox("FZF", g:listbox_fzf_content, g:listbox_fzf_opts)', 'open fzf listbox'],
             \ [ "--", ''  ],
             \ [ "J&unk File", 'JunkFile', ''],
             \ [ "Junk &List", 'JunkList', ''],
             \ [ "--", ''  ],
-            \ [ "Ter&minal Tab", 'OpenTerminal tab', 'Open internal terminal in a new tab'],
-            \ [ "Terminal Spl&it", 'OpenTerminal right', 'Open internal terminal in a split'],
-            \ [ "Open &URL", 'OpenURL', 'Open URL under cursor'],
-            \ [ "Search &Word", "call openbrowser#_keymap_smart_search('n')", 'Browse word in www'],
             \ ])
 
             "\ [ "F&ZF listbox", 'call quickui#listbox#open(g:listbox_fzf_content, g:listbox_fzf_opts)', 'open fzf listbox'],
@@ -269,15 +264,60 @@ call quickui#menu#install("&Wiki", [
             \ [ "Open &Diary Index\t<space>wi", 'VimwikiDiaryIndex' ],
             \ ['--'],
             \ [ "Open Wiki &Today Diary\t<space>w<space>w", 'VimwikiMakeDiaryNote' ],
-            \ [ "Open Wiki To&day Diary in Tap\t<space>w<space>t", 'VimwikiTabMakeDiaryNote' ],
+            \ [ "Open Wiki Tod&ay Diary in Tap\t<space>w<space>t", 'VimwikiTabMakeDiaryNote' ],
             \ [ "Open Wiki &Yesterday Diary\t<space>w<space>w", 'VimwikiMakeYesterdayDiaryNote' ],
-            \ [ "Open Wiki &Tomorrow Diary\t<space>w<space>w", 'VimwikiMakeTomorrowDiaryNote' ],
+            \ [ "Open Wiki To&morrow Diary\t<space>w<space>w", 'VimwikiMakeTomorrowDiaryNote' ],
             \ ['--'],
             \ ['Vimwiki Local Map'],
             \ ['--'],
-            \ ['Lin&k mapping listbox', 'call quickui#tools#clever_listbox("Wiki_Link_Map", g:listbox_wiki_link_mapping, g:listbox_wiki_link_mapping_opts)'],
-            \ [ '&Header mapping listbox', 'call quickui#tools#clever_listbox("Wiki_Header_Map", g:listbox_wiki_header_mapping, g:listbox_wiki_header_mapping_opts)'],
-            \ [ '&List mapping listbox', 'call quickui#tools#clever_listbox("Wiki_List_Map", g:listbox_wiki_list_mapping, g:listbox_wiki_list_mapping_opts)'],
+            \ ['Li&nk mapping listbox', 'call quickui#tools#clever_listbox("Wiki_Link_Map", g:listbox_wiki_link_mapping, g:listbox_wiki_link_mapping_opts)'],
+            \ [ 'He&ader mapping listbox', 'call quickui#tools#clever_listbox("Wiki_Header_Map", g:listbox_wiki_header_mapping, g:listbox_wiki_header_mapping_opts)'],
+            \ [ 'Lis&t mapping listbox', 'call quickui#tools#clever_listbox("Wiki_List_Map", g:listbox_wiki_list_mapping, g:listbox_wiki_list_mapping_opts)'],
+            \ ])
+
+
+call quickui#menu#install('&Tools', [
+            \ ['Set &Paste %{&paste? "Off":"On"}', 'set paste!'],
+            \ ['Set &Wrap %{&wrap? "Off":"On"}', 'set wrap!'],
+            \ ['&Spell %{&spell? "Disable":"Enable"}', 'set spell!', 'Toggle spell check %{&spell? "off" : "on"}'],
+            \ ["Relati&ve number %{&relativenumber? 'OFF':'ON'}", 'set relativenumber!'],
+            \ ['--',''],
+            \ ["Copyright &Header\t<space>ec", 'call feedkeys("\<esc> ec")', 'Insert copyright information at the beginning'],
+            \ ["Update &ModTime\t<space>et", 'call UpdateLastModified()', ''],
+            \ ["&Paste Mode Line\t<space>el", 'PasteVimModeLine', ''],
+            \ ["Insert Comment &Block\t<space>e-", 'call feedkeys("\<esc> e-")', 'Insert comment block'],
+            \ ['&Break long line', 'call MenuHelp_SplitLine()', ''],
+            \ [ "Add &Numbers", "call feedkeys(':AddNumbers  ')" ],
+            \ ['Read &URL', 'call MenuHelp_ReadUrl()', 'load content from url into current buffer'],
+            \ ['&Trailing Space', 'call StripTrailingWhitespace()', ''],
+            \ ['--',''],
+            \ [ "&Dictionary", "call Open_Dictionary_Cword()", "query current word(use sdcv)" ],
+            \ [ "Open &Manual", "call feedkeys(':OpenManual  ')" ],
+            \ [ "&Log text", "call feedkeys(':Log  ')", "log some text into ~/.cache/vim/logs/record.log " ],
+            \ [ "Open &Quickfix", "call Toggle_QuickFix(10)" ],
+            \ ['Align &Cheatsheet', 'MyCheatSheetAlign', ''],
+            \ [ "Ter&minal Tab", 'OpenTerminal tab', 'Open internal terminal in a new tab'],
+            \ [ "Terminal Spl&it", 'OpenTerminal right', 'Open internal terminal in a split'],
+            \ [ "Open &URL", 'OpenURL', 'Open URL under cursor'],
+            \ [ "Open &Plug Browse", "PlugBrowse" ],
+            \ [ "Search &Word", "call openbrowser#_keymap_smart_search('n')", 'Browse word in www'],
+            \ [ "Lazy&git", "call quickui#tools#terminal('lazygit')" ],
+            \ ['--',''],
+            \ ['List &Buffer', 'call quickui#tools#list_buffer("FileSwitch tabe")', ],
+            \ ['List &Function', 'call quickui#tools#list_function()', ],
+            \ ['Display M&essages', 'call quickui#tools#display_messages()', ],
+            \ ['--',''],
+            \ ["T&ask List", 'call MenuHelp_TaskList()'],
+            \ ['&Profile Start', 'call MonitorInit()', ''],
+            \ ['Profile S&top', 'call MonitorExit()', ''],
+            \ ])
+
+
+call quickui#menu#install('&Plugin', [
+            \ ["&Choose Window/Tab\t-", "ChooseWin", "fast switch win/tab with vim-choosewin"],
+            \ ["-"],
+            \ ["&Startify", "Startify", "using tpope's rhubarb to open browse and view the file"],
+            \ ["&Display Calendar", "Calendar", "display a calender"],
             \ ])
 
 
@@ -285,15 +325,10 @@ call quickui#menu#install("&Wiki", [
 call quickui#menu#install("&Edit", [
             \ [ "Open &Undo Tree\t<F3>", 'MundoToggle', 'open undo tree'],
             \ ['--'],
-            \ ["Copyright &Header\t<space>ec", 'call feedkeys("\<esc> ec")', 'Insert copyright information at the beginning'],
-            \ ['Update &ModTime', 'call UpdateLastModified()', ''],
-            \ ['&Trailing Space', 'call StripTrailingWhitespace()', ''],
-            \ ["&Paste Mode Line\t<space>el", 'PasteVimModeLine', ''],
             \ ['--'],
             \ ['&Align Table', 'Tabularize /|', ''],
-            \ ['Align &Cheatsheet', 'MyCheatSheetAlign', ''],
-            \ ['&Break long line', 'call MenuHelp_SplitLine()', ''],
             \ ])
+
 
 call quickui#menu#install('&Symbol', [
             \ [ "&Grep Word\t(In Project)", 'AsyncTask grep-word', 'Grep keyword in current project' ],
@@ -328,6 +363,7 @@ call quickui#menu#install('&Move', [
             \ ["Quickfix &Previous\t:cprev", 'cprev', 'quickfix cursor previous'],
             \ ])
 
+
 call quickui#menu#install("&Build", [
             \ ["File &Compile\tF5", 'AsyncTask file-build'],
             \ ["File &Execute\tF6", 'AsyncTask file-run'],
@@ -340,35 +376,12 @@ call quickui#menu#install("&Build", [
             \ ["&Stop Building", 'AsyncStop'],
             \ ])
 
+
 call quickui#menu#install("&C/C++", [
            \ ["&Switch Header/Source\t<spc>fw", "call Open_HeaderFile(-1)"],
            \ ["Split &Header/Source\t<spc>fw", "call Open_HeaderFile(1)"],
            \ ])
 
-call quickui#menu#install('&Tools', [
-            \ ['Set &Paste %{&paste? "Off":"On"}', 'set paste!'],
-            \ ['Set &Wrap %{&wrap? "Off":"On"}', 'set wrap!'],
-            \ ['&Spell %{&spell? "Disable":"Enable"}', 'set spell!', 'Toggle spell check %{&spell? "off" : "on"}'],
-            \ ["Relati&ve number %{&relativenumber? 'OFF':'ON'}", 'set relativenumber!'],
-            \ ['--',''],
-            \ [ "Lazy&git", "call quickui#tools#terminal('lazygit')" ],
-            \ ['--',''],
-            \ ['List &Buffer', 'call quickui#tools#list_buffer("FileSwitch tabe")', ],
-            \ ['List &Function', 'call quickui#tools#list_function()', ],
-            \ ['Display &Messages', 'call quickui#tools#display_messages()', ],
-            \ ['--',''],
-            \ ["T&ask List", 'call MenuHelp_TaskList()'],
-            \ ['Read &URL', 'call MenuHelp_ReadUrl()', 'load content from url into current buffer'],
-            \ ['&Profile Start', 'call MonitorInit()', ''],
-            \ ['Profile S&top', 'call MonitorExit()', ''],
-            \ ])
-
-call quickui#menu#install('&Plugin', [
-            \ ["&Choose Window/Tab\t-", "ChooseWin", "fast switch win/tab with vim-choosewin"],
-            \ ["-"],
-            \ ["&Startify", "Startify", "using tpope's rhubarb to open browse and view the file"],
-            \ ["&Display Calendar", "Calendar", "display a calender"],
-            \ ])
 
 " register HELP menu with weight 10000
 call quickui#menu#install('Help (&?)', [
