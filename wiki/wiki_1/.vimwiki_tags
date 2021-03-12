@@ -5,4 +5,10 @@
 !_TAG_PROGRAM_NAME	Vimwiki Tags
 !_TAG_PROGRAM_URL	https://github.com/vimwiki/vimwiki
 !_TAG_PROGRAM_VERSION	2.5
+vimwiki	Anchors.md	1;"	vimwiki:Anchors\tAnchors
+vimwiki	Diary.md	1;"	vimwiki:Diary\tDiary
+vimwiki	Folding.md	1;"	vimwiki:Folding\tFolding
+vimwiki	Lists.md	1;"	vimwiki:Lists\tLists
+vimwiki	Placeholders.md	1;"	vimwiki:Placeholders\tPlaceholders
+vimwiki	Tables.md	1;"	vimwiki:Tables\tTables
 vimwiki	vimwiki_syntax.md	1;"	vimwiki:vimwiki_syntax\tvimwiki_syntax

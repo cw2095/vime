@@ -577,7 +577,9 @@ function! s:local_setup()
     autocmd FileType wiki,md,markdown setl conceallevel=0
     " 避免g:vimwiki_hl_cb_checked设置为2的时候有问题
     au BufEnter *.wiki :syntax sync fromstart
-
+    " <CR> o O insert new bullets or numbers
+    inoremap <silent><buffer> <CR> <C-]><Esc>:VimwikiReturn 3 5<CR>
+    inoremap <silent><buffer> <S-CR> <Esc>:VimwikiReturn 2 2<CR>
     nnoremap <buffer> <silent>K :call quickui#tools#clever_context('wiki', g:vimwiki_k_context, {})<cr>
 endfunc
 
