@@ -20,5 +20,5 @@ nmap F <Plug>(easymoton-overwin-w)
 nmap F <Plug>(easymotion-overwin-f2)
 
 " 移动到行
-map  gl <Plug>(easymotion-bd-jk)
-nmap gl <Plug>(easymotion-overwin-line)
+" map  gl <Plug>(easymotion-bd-jk)
+" nmap gl <Plug>(easymotion-overwin-line)

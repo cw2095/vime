@@ -274,6 +274,9 @@ nmap <space>w<space>m <Plug>VimwikiMakeTomorrowDiaryNote
 nmap <space>wh  <Plug>Vimwiki2HTML
 " Convert current wiki page to HTML and open it in the webbrowser.
 nmap <space>whh <Plug>Vimwiki2HTMLBrowse
+" :VimwikiAll2HTML[!] - Convert all wiki pages to HTML. Default CSS file (style.css) is created if there is no one.
+" By default, only converts wiki pages which have not already been converted or have been modified since their last conversion.
+" With !, convert all pages, regardless of whether or not they are out-of-date.
 
 " Link
 " Update diary section (delete old, insert new) Only works from the diary index.
