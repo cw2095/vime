@@ -34,4 +34,3 @@ Consider the following example: >
    -  Make numbered list items toggleable too.
    -  Add highlighting to list item boxes.
    -  Add to the next list item created using o, O or <CR>.
-

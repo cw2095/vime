@@ -354,6 +354,9 @@ nmap gLl <Plug>VimwikiIncreaseLvlWholeItem
 nmap glh <Plug>VimwikiDecreaseLvlSingleItem
 " Decrease the level of a list item and all child items.
 nmap gLh <Plug>VimwikiDecreaseLvlWholeItem
+" Change the nesting level, or symbol, for a single-line list item.
+" nmap gl> :VimwikiListChangeLevel >><CR>
+" nmap gl< :VimwikiListChangeLevel <<<CR>
 " Renumber list items if the cursor is on a numbered list item.
 nmap glr <Plug>VimwikiRenumberList
 " Renumber list items in all numbered lists in the whole file. Also readjust checkboxes.
@@ -400,6 +403,36 @@ nmap gw1 <Plug>VimwikiTableAlignW1
 nmap <A-Left> <Plug>VimwikiTableMoveColumnLeft
 " Move current table column to the right.
 nmap <A-Right> <Plug>VimwikiTableMoveColumnRight
+
+" other vimwiki commands(local)
+"
+" :VimwikiSearch /pattern/ -  Search for /pattern/ in all files of current wiki.
+"   To display all matches use |:lopen| command.
+"   To display next match use |:lnext| command.
+"   To display previous match use |:lprevious| command.
+"
+" :VimwikiBacklinks - Search for wikilinks to the current wiki page in all files of current wiki.
+"
+" :VimwikiTable - Create a table with 5 cols and 2 rows.
+" :VimwikiTable cols rows - Create a table with the given cols and rows
+" :VimwikiTable cols - Create a table with the given cols and 2 rows
+nmap gwt :VimwikiTable<space>
+"
+" :VimwikiGenerateLinks [pattern] - Insert a list of links to all available wiki files into the current buffer.
+"
+" :VimwikiCheckLinks -  Search through all wiki files and check if the targets of all wiki links and links to external files actually exist.
+"                       Check also if all wiki files  are reachable from the index file.  The results are shown in the quickfix window.
+"
+" :VimwikiRebuildTags - Rebuilds the tags metadata file for all wiki files newer than the metadata file. Necessary for all tags related commands.
+" :VimwikiRebuildTags! - does the same for all files.
+"
+" :VimwikiSearchTags - Searches over the pages in current wiki and finds all locations of a given tag.
+"
+" :VimwikiGenerateTagLinks tagname1 tagname2 ... -  Creates or updates an overview on all tags of the wiki with links to all their instances.
+"                                                   If no arguments (tags) are specified, outputs all tags.
+"
+" Create or update the Table of Contents for the current wiki file.
+nmap toc :VimwikiTOC<CR>
 
 " table insert mode mappings
 " <CR> - Go to the table cell beneath the current one, create a new row if on the last one.
@@ -463,6 +496,7 @@ let g:listbox_wiki_link_mapping_opts = {
 
 
 let g:listbox_wiki_header_mapping = [
+            \ [ "Add TOC\ttoc", "VimwikiTOC" ],
             \ [ "Add Header Level\t=", "normal \<Plug>VimwikiAddHeaderLevel" ],
             \ [ "Remove Header Level\t-", "normal \<Plug>VimwikiRemoveHeaderLevel" ],
             \ [ "Goto PrevHeader\t[[", "normal \<Plug>VimwikiGoToPrevHeader" ],
@@ -522,6 +556,7 @@ let g:vimwiki_k_context = [
             \ [ "Table AlignW1\tgw1", "normal \<Plug>VimwikiTableAlignW1" ],
             \ [ "Table Move Column Left\t<A-Left>", "normal \<Plug>VimwikiTableMoveColumnLeft" ],
             \ [ "Table Move Column Right\t<A-Right>", "normal \<Plug>VimwikiTableMoveColumnRight" ],
+            \ [ "Insert Table\tgwt", "call feedkeys(':VimwikiTable  ')" ],
             \ [ '---' ],
             \ [ 'html' ],
             \ [ '---' ],
