@@ -30,6 +30,12 @@ Plug 'universal-ctags/ctags', {'dir':'~/GitHub/ctags'}
 " $ make install
 Plug 'rizsotto/Bear', {'dir':'~/GitHub/bear'}
 
+" Ranger plugin that adds file glyphs / icon support to Ranger
+" Plug 'alexanderjeurissen/ranger_devicons', {'dir':'~/.config/ranger/plugins/ranger_devicons'}
+" Ranger Plugin for Creating and Extracting Archives
+" Plug 'maximtrp/ranger-archives', { 'dir' : '~/GitHub/ranger-archives', 'do' : 'make install'}
+" Plug 'ask1234560/ranger-zjumper', { 'dir': '~/GitHub/ranger-zjumper' }
+
 
 "----------------------------------------------------------------------
 " 首先需要在config/plugin_list.vim中增加插件

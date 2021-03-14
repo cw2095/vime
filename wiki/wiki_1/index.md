@@ -2,6 +2,10 @@
 
 ## [Generated Tags](Generated_Tags.md)
 
+## Tools
+
+- [ranger](ranger.md)
+
 ## vimwiki
 
 - [vimwiki syntax](vimwiki_syntax.md)

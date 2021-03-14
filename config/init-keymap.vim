@@ -489,6 +489,8 @@ exec 'nnoremap <space>ht :FileSwitch tabe '.fnameescape(g:todo_file).'<cr>'
 let s:logname = g:log_dir . "record.log"
 exec 'nnoremap <space>hl :FileSwitch tabe '.fnameescape(s:logname).'<cr>'
 
+exec 'nnoremap <space>hh :FileSwitch tabe '.'/etc/hosts'.'<cr>'
+
 "----------------------------------------------------------------------
 " space + e : fast insert something
 "----------------------------------------------------------------------

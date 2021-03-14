@@ -10,3 +10,5 @@ nerdtree.json
 *.old
 *~
 test.vim
+
+assets/quicknote.md
