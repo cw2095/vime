@@ -14,11 +14,11 @@ To copy/move multiple files, just mark them with `Space` then use `dd`/`yy`. If 
 | ed                       | mkcd<space>                                                    |
 | ex                       | extract                                                        |
 | em                       | compress                                                       |
-| <alt-t>                  | toggle flat                                                    |
-| <alt-f>                  | fzf select                                                     |
-| <alt-/>                  | fd search                                                      |
-| <alt-p>                  | prev                                                           |
-| <alt-n>                  | next                                                           |
+| `<alt-t>`                | toggle flat                                                    |
+| `<alt-f>`                | fzf select                                                     |
+| `<alt-/>`                | fd search                                                      |
+| `<alt-p>`                | prev                                                           |
+| `<alt-n>`                | next                                                           |
 | Q                        | quit all                                                       |
 | q                        | quit                                                           |
 | r                        | select xdg-open                                                |
@@ -29,13 +29,13 @@ To copy/move multiple files, just mark them with `Space` then use `dd`/`yy`. If 
 | !、 s                    | console shell<space>                                           |
 | f                        | console find<space>                                            |
 | cd                       | console cd <space>                                             |
-| <F2>                     | rename append                                                  |
-| <F3>                     | display file                                                   |
-| <F4>                     | edit                                                           |
-| <F5>                     | copy                                                           |
-| <F6>                     | cut                                                            |
-| <F7>                     | console mkdir<space>                                           |
-| <F8>                     | console delete                                                 |
+| `<F2>`                   | rename append                                                  |
+| `<F3>`                   | display file                                                   |
+| `<F4>`                   | edit                                                           |
+| `<F5>`                   | copy                                                           |
+| `<F6>`                   | cut                                                            |
+| `<F7>`                   | console mkdir<space>                                           |
+| `<F8>`                   | console delete                                                 |
 | Jump around              |                                                                |
 | [                        | move parent -1                                                 |
 | ]                        | move parent +1                                                 |
@@ -69,7 +69,7 @@ To copy/move multiple files, just mark them with `Space` then use `dd`/`yy`. If 
 | Temporary workarounds    |                                                                |
 | d/ygg d/yG d/yj d/yk     |                                                                |
 | Tabs                     |                                                                |
-| <A-1...9>                | open tab 1...9                                                 |
+| `<A-1...9>`              | open tab 1...9                                                 |
 | Sorting                  |                                                                |
 | os                       | sort size                                                      |
 | :extract [DIRECTORY]     | extracting files to current or specified directory (optional). |
