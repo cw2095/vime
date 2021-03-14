@@ -258,7 +258,7 @@ Plug 'kkoomen/vim-doge', {'do': {-> doge#install()}}
 Plug 'tyru/caw.vim'
 
 " File navigation
-" Plug 'kevinhwang91/rnvimr'
+Plug 'kevinhwang91/rnvimr'
 
 Plug 'junegunn/fzf.vim'
 Plug 'antoinemadec/coc-fzf'
