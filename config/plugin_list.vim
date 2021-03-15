@@ -166,7 +166,7 @@ Plug 'voldikss/vim-floaterm', {'on': ['FloatermNew', 'FloatermToggle']}
 " Open URI with your favorite browser from your most favorite editor
 Plug 'tyru/open-browser.vim'
 " Open GitHub URL of current file, etc. from Vim editor (supported GitHub Enterprise)
-" Plug 'tyru/open-browser-github.vim'
+Plug 'tyru/open-browser-github.vim'
 
 " 最大化窗口，ctrl w o
 Plug 'troydm/zoomwintab.vim', {'on': 'ZoomWinTabToggle'}
@@ -278,6 +278,10 @@ Plug 'airblade/vim-gitgutter'
 " endif
 
 " Plug 'pechorin/any-jump.vim'
+
+" Gist
+Plug 'mattn/webapi-vim'
+Plug 'mattn/vim-gist'
 
 " 全局替换插件
 " Plug 'brooth/far.vim'

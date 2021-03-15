@@ -148,6 +148,7 @@ hi! SignColumn guibg=NONE ctermbg=NONE
 " hi! Pmenu guibg=gray guifg=black ctermbg=gray ctermfg=black
 " hi! PmenuSel guibg=gray guifg=brown ctermbg=brown ctermfg=gray
 
+autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType * call Tools_HighlightGlobal()
 
 "----------------------------------------------------------------------
 " 终端设置，隐藏行号和侧边栏
