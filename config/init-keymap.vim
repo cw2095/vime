@@ -76,6 +76,28 @@ vnoremap <LEADER>fr :s///g<Left><Left><Left>
 " Call figlet
 nnoremap <LEADER>fx :r !figlet<space><space><space><space>
 
+" upper/lower word
+nmap <leader>u mQviwU`Q
+nmap <leader>l mQviwu`Q
+
+" upper/lower first char of word
+nmap <leader>U mQgewvU`Q
+nmap <leader>L mQgewvu`Q
+
+nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
+nmap <leader>es :sp <C-R>=expand('%:h').'/'<cr>
+nmap <leader>ev :vsp <C-R>=expand('%:h').'/'<cr>
+nmap <leader>et :tabe <C-R>=expand('%:h').'/'<cr>
+
+" Swap two words
+" nmap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`''`
+
+" find merge conflict markers
+nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
+" Underline the current line with '='
+nmap <silent> <leader>ul :t.<CR>Vr=
+
 " Folding
 " noremap <silent> <LEADER>o za
 
@@ -127,6 +149,8 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+map <Down> gj
+map <Up> gk
 " noremap <silent> K 5k
 " noremap <silent> J 5j
 
@@ -163,6 +187,8 @@ cnoremap <C-d> <del>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-d> <del>
+" After whitespace, insert the current directory into a command-line path
+cnoremap <expr> <C-P> getcmdline()[getcmdpos()-2] ==# ' ' ? expand('%:p:h') : "\<C-P>"
 
 "----------------------------------------------------------------------
 " buffer keymap
