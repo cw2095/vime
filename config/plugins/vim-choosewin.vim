@@ -23,4 +23,4 @@ endfunction
 " |        | `<NOP>`    | Disable predefined keymap     |
 
 " nnoremap <silent> - :call <SID>chooseWin()<cr>
-nnoremap <silent> - :call <SID>chooseWin()<cr>
+nnoremap <silent> <M--> :call <SID>chooseWin()<cr>

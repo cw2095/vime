@@ -16,6 +16,42 @@ set viewdir=~/.cache/vim/view
 set wildmenu
 set wcm=<C-Z>
 "set splitbelow
+set isfname+=: " include colon in filenames
+
+" ----- Emulate 'gf' but recognize :line format -----
+function! Tools_GotoFile(w)
+    let curword = expand("<cfile>")
+    if (strlen(curword) == 0)
+        return
+    endif
+    let matchstart = match(curword, ':\d\+$')
+    if matchstart > 0
+        let pos = '+' . strpart(curword, matchstart+1)
+        let fname = strpart(curword, 0, matchstart)
+    else
+        let pos = ""
+        let fname = curword
+    endif
+
+    " check exists file.
+    if filereadable(fname)
+        let fullname = fname
+    else
+        " try find file with prefix by working directory
+        let fullname = getcwd() . '/' . fname
+        if ! filereadable(fullname)
+            " the last try, using current directory based on file opened.
+            let fullname = expand('%:h') . '/' . fname
+        endif
+    endif
+
+   " Open new window if requested
+    if a:w == "new"
+        new
+    endif
+    " Use 'find' so path is searched like 'gf' would
+    execute 'find ' . pos . ' ' . fname
+endfunction
 
 " 左移 tab
 function! Tab_MoveLeft()

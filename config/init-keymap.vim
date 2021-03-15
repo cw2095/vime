@@ -526,3 +526,8 @@ noremap <space>e* :call Tools_snip_comment_block('*')<cr>
 noremap <space>ec :call Tools_snip_copyright('cw')<cr>
 noremap <space>el :call Tools_snip_modeline()<cr>
 noremap <space>et "=strftime("%Y/%m/%d %H:%M:%S")<CR>gp
+
+" Override vim commands 'gf', '^Wf', '^W^F'
+nnoremap gf :call GotoFile("new")<CR>
+nnoremap <C-W>f :call GotoFile("new")<CR>
+nnoremap <C-W><C-F> :call GotoFile("new")<CR>
