@@ -79,3 +79,5 @@ let g:gist_get_multiplefile = 1
 " let g:gist_update_on_write = 1
 " Only :w! updates a gist.
 let g:gist_update_on_write = 2
+
+" let g:gist_use_password_in_gitconfig = 1
