@@ -102,7 +102,7 @@ vnoremap il $o^oh
 " make Y to copy till the end of the line
 nnoremap Y y$
 nnoremap <LEADER>vv ^vg_
-nnoremap <LEADER>vb v$h
+nnoremap <LEADER>ve v$h
 nnoremap <LEADER>va ggVG
 " replace
 noremap <space>v viw"0p

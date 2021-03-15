@@ -314,12 +314,15 @@ call quickui#menu#install('&Plugin', [
             \ [ "&Coc-explorer\t<F2>", 'CocCommand explorer', 'open file explorer'],
             \ [ "&MundoToggle\t<F3>", 'MundoToggle', 'open undo tree'],
             \ [ "&Vista\t<F4>", 'Vista!!', 'open vista(Viewer & Finder for LSP symbols and tags)'  ],
-            \ [ "Search &Word\tgx", "call openbrowser#_keymap_smart_search('n')", 'Browse word in www'],
+            \ [ "&Rnvimr\t<M-o>", 'RnvimrToggle', 'Open ranger' ],
+            \ [ "&Folaterm\t<M-=>", 'FloatermToggle' ],
             \ ["&Choose Window/Tab\t-", "ChooseWin", "fast switch win/tab with vim-choosewin"],
+            \ [ "Search &Word\tgx", "call openbrowser#_keymap_smart_search('n')", 'Browse word in www'],
             \ ["&Align Table\t\\a|", 'Tabularize /|', ''],
+            \ [ "Vim-&Doge\t\\d", 'DogeGenerate' ],
             \ ["-"],
             \ ["&Startify", "Startify", "using tpope's rhubarb to open browse and view the file"],
-            \ ["&Display Calendar", "Calendar", "display a calender"],
+            \ ["D&isplay Calendar", "Calendar", "display a calender"],
             \ ])
 
 

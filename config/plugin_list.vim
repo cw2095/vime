@@ -221,7 +221,7 @@ Plug 'matze/vim-move', {'on': [
 Plug 'rhysd/vim-grammarous', {'for': ['markdown', 'vimwiki', 'md', 'tex']}
 
 " switching between a single-line statement and a multi-line one.
-Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'AndrewRadev/splitjoin.vim'
 
 " Land on window you chose like tmux's 'display-pane'
 Plug 't9md/vim-choosewin'
