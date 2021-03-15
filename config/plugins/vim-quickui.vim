@@ -284,6 +284,7 @@ call quickui#menu#install('&Tools', [
             \ ["&Update ModTime\t<space>et", 'call UpdateLastModified()', ''],
             \ ["Pa&ste Mode Line\t<space>el", 'PasteVimModeLine', ''],
             \ ["&Insert Comment Block\t<space>e-", 'call feedkeys("\<esc> e-")', 'Insert comment block'],
+            \ [ "Insert DateTime\t<space>et", 'call feedkeys("\<esc> et")' ],
             \ ['B&reak long line', 'call MenuHelp_SplitLine()', ''],
             \ [ "&Add Numbers", "call feedkeys(':AddNumbers  ')" ],
             \ ['R&ead URL', 'call MenuHelp_ReadUrl()', 'load content from url into current buffer'],
@@ -320,6 +321,7 @@ call quickui#menu#install('&Plugin', [
             \ [ "Search &Word\tgx", "call openbrowser#_keymap_smart_search('n')", 'Browse word in www'],
             \ ["&Align Table\t\\a|", 'Tabularize /|', ''],
             \ [ "Vim-&Doge\t\\d", 'DogeGenerate' ],
+            \ [ "&NrrwRgn\t\\nr(v)", "visual \<Plug>NrrwrgnDo" ],
             \ ["-"],
             \ ["&Startify", "Startify", "using tpope's rhubarb to open browse and view the file"],
             \ ["D&isplay Calendar", "Calendar", "display a calender"],
@@ -637,6 +639,7 @@ augroup MyQuickfixPreview
 augroup END
 
 nnoremap <silent><space><space> :call quickui#menu#open()<cr>
+" xnoremap <silent><space><space> :call quickui#menu#open()<cr>
 
 " nnoremap <silent>K :call quickui#tools#clever_context('k', g:context_menu_k, {})<cr>
 

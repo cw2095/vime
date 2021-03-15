@@ -264,6 +264,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'antoinemadec/coc-fzf'
 " Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
 
+" A Narrow Region Plugin for vim
+Plug 'chrisbra/NrrwRgn'
+
 " Git
 Plug 'airblade/vim-gitgutter'
 " Plug 'tpope/vim-fugitive', {'on': ['Gwrite', 'Gcommit', 'Gread', 'Gdiff', 'Gblame']}

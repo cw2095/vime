@@ -475,7 +475,7 @@ noremap <space>hf <c-w>gf
 let s:filename = expand(g:config_root_path)
 let s:plugin_list = fnamemodify(s:filename, ':h'). '/plugin_list.vim'
 exec 'nnoremap <space>hp :FileSwitch tabe '.fnameescape(s:plugin_list).'<cr>'
-let s:keymap = fnamemodify(s:filename, ':h'). '/keymap.vim'
+let s:keymap = fnamemodify(s:filename, ':h'). '/init-keymap.vim'
 exec 'nnoremap <space>hk :FileSwitch tabe '.fnameescape(s:keymap).'<cr>'
 let s:coc_nvim = fnamemodify(s:filename, ':h'). '/plugins/coc.nvim.vim'
 exec 'nnoremap <space>hc :FileSwitch tabe '.fnameescape(s:coc_nvim).'<cr>'
