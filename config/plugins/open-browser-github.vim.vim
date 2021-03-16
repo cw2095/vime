@@ -24,3 +24,5 @@
 " Opens current opening file's repository.
 " ex) https://{hostname}/tyru/open-browser.vim
 " :OpenGithubProject tyru/open-browser.vim
+
+nnoremap gh :OpenGithubFile<cr>
