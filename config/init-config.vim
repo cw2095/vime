@@ -150,7 +150,7 @@ set backup
 set writebackup
 
 " 备份文件地址，统一管理
-set backupdir=~/.cache/vim/tmp
+set backupdir=~/.cache/vim/backup
 
 " 备份文件扩展名
 set backupext=.bak

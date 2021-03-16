@@ -3,7 +3,7 @@
 " keymap.vim -
 "
 " Created by cw on 2021/03/05
-" Last Modified: 2021/03/05 16:27:39
+" Last Modified: 2021/03/16 10:18
 "
 "======================================================================
 " 有六种映射存在
@@ -405,33 +405,6 @@ elseif has('nvim')
     tnoremap <m-9> <c-\><c-n>9gt
     tnoremap <m-0> <c-\><c-n>10gt
 endif
-
-" Window management
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
-" tnoremap <C-h> <C-\><C-n><C-w>h
-" tnoremap <C-j> <C-\><C-n><C-w>j
-" tnoremap <C-k> <C-\><C-n><C-w>k
-" tnoremap <C-l> <C-\><C-n><C-w>l
-
-" Disable the default s key
-" noremap s <nop>
-" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-" nnoremap <C-w>k :set nosplitbelow<cr>:split<cr>:set splitbelow<cr>
-" nnoremap <C-w>j :set splitbelow<cr>:split<cr>
-" nnoremap <C-w>h :set nosplitright<cr>:vsplit<cr>:set splitright<cr>
-" nnoremap <C-w>l :set splitright<cr>:vsplit<cr>
-
-
-" Tab management
-" nnoremap <silent> <LEADER>tn :tabnew<cr>
-" nnoremap <silent> <LEADER>tc :tabclose<cr>
-" nnoremap <silent> <LEADER>th :-tabnext<cr>
-" nnoremap <silent> <LEADER>tl :+tabnext<cr>¬
-" nnoremap <silent> tmh :-tabmove<cr>
-" nnoremap <silent> tml :+tabmove<cr>¬
 
 
 "----------------------------------------------------------------------

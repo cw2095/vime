@@ -18,6 +18,29 @@ set wcm=<C-Z>
 "set splitbelow
 set isfname+=: " include colon in filenames
 
+" Search pydoc
+function! Tools_Pydoc(word, where)
+    let l:text = system('python -m pydoc ' . shellescape(a:word))
+    if a:where == '0' || a:where == 'quickfix'
+        cexpr l:text
+    else
+        call s:Show_Content('PyDoc: '.a:word, 0, l:text)
+    endif
+endfunc
+
+function! s:run_python(redraw, script)
+    let script = expand(a:script)
+    " echo 'running:'. script
+    pyx import vim
+    pyx execfile(vim.eval('script'))
+    if a:redraw
+        call input("press enter to continue")
+        redraw!
+    endif
+endfunc
+
+command! -bang -nargs=1 PythonRun call s:run_python(<bang>0, <f-args>)
+
 
 function! Tools_HighlightGlobal()
   if &filetype == "" || &filetype == "text"
@@ -39,8 +62,8 @@ function! Tools_HighlightGlobal()
     syn match nonalphabet   "[^\u0000-\u007F]"
     syn match lineURL       /\(https\?\|ftps\?\|git\|ssh\):\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/
     hi def link alphanumeric  Function
-    hi def link txtNumber	    Define
-    hi def link lineURL	      Number
+    hi def link txtNumber        Define
+    hi def link lineURL          Number
     hi def link nonalphabet   Conditional
   endif
 endfunction

@@ -56,6 +56,9 @@ set list
 " 右下角显示命令
 set showcmd
 
+" 命令行使用的屏幕行数
+set cmdheight=1
+
 " 插入模式在状态栏下面显示 -- INSERT --，
 " 先注释掉，默认已经为真了，如果这里再设置一遍会影响 echodoc 插件
 " use lightline.vim
