@@ -121,8 +121,10 @@ set wildmenu
 " 用 ’widechar’ 指定的字符所用的补全模式。
 set wildmode=longest,list,full
 
+set complete=.,k,w,b
+
 " 用于插入模式的补全
-set completeopt=longest,noinsert,menuone,noselect,preview
+set completeopt=longest,noinsert,menuone,noselect,preview,menu
 
 " 延迟绘制（提升性能）
 set lazyredraw

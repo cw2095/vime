@@ -255,10 +255,12 @@ noremap <silent>\tq :tabclose<cr>
 noremap <silent>\tn :tabnext<cr>
 noremap <silent>\tp :tabprev<cr>
 noremap <silent>\to :tabonly<cr>
+noremap <silent><tab>n :tabnext<cr>
+noremap <silent><tab>p :tabprev<cr>
 " noremap <silent>\th :-tabmove<cr>
 " noremap <silent>\tl :+tabmove<cr>
-noremap <silent><leader>th :call Tab_MoveLeft()<cr>
-noremap <silent><leader>tl :call Tab_MoveRight()<cr>
+noremap <silent>\th :call Tab_MoveLeft()<cr>
+noremap <silent>\tl :call Tab_MoveRight()<cr>
 noremap <silent>\ta g<tab>
 noremap <silent>\1 :tabn 1<cr>
 noremap <silent>\2 :tabn 2<cr>
