@@ -241,6 +241,7 @@ Plug 'luochen1990/rainbow'
 
 " 自动补全括号
 Plug 'jiangmiao/auto-pairs'
+" Plug 'Raimondi/delimitMate'
 
 " 显示清除尾部空格
 Plug 'ntpeters/vim-better-whitespace'
@@ -307,6 +308,12 @@ Plug 'mattn/vim-gist'
 " 代码段
 Plug 'honza/vim-snippets'
 " Plug 'SirVer/ultisnips'
+
+" Vim plugin that displays tags in a window, ordered by scope
+" Plug 'preservim/tagbar'
+
+" Source code browser plugin for Vim
+" Plug 'yegappan/taglist'
 
 " Taglist
 Plug 'liuchengxu/vista.vim', {'on': ['Vista!!', 'Vista']}

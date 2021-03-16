@@ -1,5 +1,10 @@
 if common#functions#HasPlug('tagbar')
     let g:tagbar_width = 35
+    let g:tagbar_left = 1
+    let g:tagbar_vertical = 0
+    let g:tagbar_sort = 0
+    let g:tagbar_compact = 1
+
     function! Tagbar_Toggle()
         let a:bufnr = bufnr('__vista__')
         let a:bufwinnr = bufwinnr(a:bufnr)

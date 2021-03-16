@@ -134,6 +134,10 @@ vnoremap <space>gp :!python<cr>
 vmap <space>gs y/<C-R>=escape(@", '\\/.*$^~[]')<CR>
 vmap <space>gr y:%s/<C-R>=escape(@", '\\/.*$^~[]')<CR>//gc<Left><Left><Left>
 
+" Visual mode pressing * or # searches for the current selection
+vnoremap <silent> * :<C-u>call Tools_EscapedSearch2()<CR>/<C-R>=@/<CR><CR>N
+vnoremap <silent> # :<C-u>call Tools_EscapedSearch2()<CR>?<C-R>=@/<CR><CR>N
+
 " 使用系统应用打开当前buffer文件
 noremap <silent> <M-x> :call common#functions#OpenFileUsingSystemApp(expand('%:p'))<cr>
 

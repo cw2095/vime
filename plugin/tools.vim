@@ -18,6 +18,27 @@ set wcm=<C-Z>
 "set splitbelow
 set isfname+=: " include colon in filenames
 
+function! Tools_EscapedSearch2() range
+
+    " Backup what's in default register
+    let l:saved_reg = @"
+
+    " Copy selection
+    execute 'normal! vgvy'
+
+    " Escape special chars
+    let l:pattern = escape(@", "\\/.*'$^~[]")
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    " Set search
+    let @/ = l:pattern
+
+    " Restore default register
+    let @" = l:saved_reg
+
+endfunction
+
+
 " Search pydoc
 function! Tools_Pydoc(word, where)
     let l:text = system('python -m pydoc ' . shellescape(a:word))
