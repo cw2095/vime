@@ -130,6 +130,10 @@ nnoremap <LEADER>va ggVG
 noremap <space>v viw"0p
 noremap <space>y yiw
 
+vnoremap <space>gp :!python<cr>
+vmap <space>gs y/<C-R>=escape(@", '\\/.*$^~[]')<CR>
+vmap <space>gr y:%s/<C-R>=escape(@", '\\/.*$^~[]')<CR>//gc<Left><Left><Left>
+
 " 使用系统应用打开当前buffer文件
 noremap <silent> <M-x> :call common#functions#OpenFileUsingSystemApp(expand('%:p'))<cr>
 
@@ -506,3 +510,18 @@ noremap <space>et "=strftime("%Y/%m/%d %H:%M:%S")<CR>gp
 nnoremap gf :call GotoFile("new")<CR>
 nnoremap <C-W>f :call GotoFile("new")<CR>
 nnoremap <C-W><C-F> :call GotoFile("new")<CR>
+
+nnoremap <silent><c-w><c-e> :ExpSwitch edit<cr>
+nnoremap <silent><c-w>e :ExpSwitch edit<cr>
+nnoremap <silent><c-w>m :ExpSwitch vs<cr>
+nnoremap <silent><c-w>M :ExpSwitch tabedit<cr>
+
+"----------------------------------------------------------------------
+" neovim system clipboard
+" ----------------------------------------------------------------------
+" if has('nvim') && (has('win32') || has('win64'))
+"     nnoremap <s-insert> "*P
+"     vnoremap <s-insert> "-d"*P
+"     inoremap <s-insert> <c-r><c-o>*
+"     vnoremap <c-insert> "*y
+" endif"

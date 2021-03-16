@@ -18,6 +18,13 @@ nnoremap <c-w>s :PreviewGoto split<cr>
 nnoremap <c-w>v :PreviewGoto vsplit<cr>
 nnoremap <c-w>t :PreviewGoto tabe<cr>
 
+noremap <silent><M-;> :call quickui#tools#preview_tag('')<cr>
+noremap <silent><M-:> :PreviewClose<cr>
+noremap <silent><tab>; :PreviewGoto edit<cr>
+noremap <silent><tab>: :PreviewGoto tabe<cr>
+nnoremap <silent><m-a> :PreviewSignature<cr>
+inoremap <silent><m-a> <c-\><c-o>:PreviewSignature<cr>
+
 " This command can preview files listed in quickfix window without opening it directly
 " autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
 " autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>

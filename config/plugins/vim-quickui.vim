@@ -635,10 +635,21 @@ let g:context_menu_k = [
 "----------------------------------------------------------------------
 " hotkey
 "----------------------------------------------------------------------
-augroup MyQuickfixPreview
-    au!
-    au FileType qf noremap <silent><buffer> p :call quickui#tools#preview_quickfix()<cr>
-augroup END
+if has('autocmd')
+    function! s:quickfix_keymap()
+        if &buftype != 'quickfix'
+            return
+        endif
+        nnoremap <silent><buffer> p :call quickui#tools#preview_quickfix()<cr>
+        " nnoremap <silent><buffer> P :PreviewClose<cr>
+        nnoremap <silent><buffer> q :close<cr>
+        setlocal nonumber
+    endfunc
+    augroup MyQuickfixPreview
+        autocmd!
+        autocmd FileType qf call s:quickfix_keymap()
+    augroup END
+endif
 
 nnoremap <silent><space><space> :call quickui#menu#open()<cr>
 " xnoremap <silent><space><space> :call quickui#menu#open()<cr>
