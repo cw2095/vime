@@ -22,7 +22,7 @@ function! LightlineLineinfo() abort
     \      &filetype ==? 'vista'            ? ' ' :
     \      &filetype =~? '\v^mundo(diff)?$' ? ' ' :
     \      s:lightline_is_lean() || s:lightline_is_plain() ? ' '  :
-    \      printf(' %3ld%% ☰ %3ld:%4ld', 100*line('.')/line('$'),  line('.'), col('.'))
+    \      printf(' %ld:%ld ☰  %ld%%', line('.'), col('.'), 100*line('.')/line('$'))
 endfunction
 
 function! LightLineGitInfo()abort
@@ -44,7 +44,7 @@ function! LightLineGitInfo()abort
 endfunction
 
 let g:lightline = {
-    \ 'colorscheme': 'edge',
+    \ 'colorscheme': 'wombat',
     \ 'enable': {
     \ 'tabline': 0
     \},
@@ -54,14 +54,13 @@ let g:lightline = {
     \             [ 'gitinfo', 'method', 'cocstatus']
     \           ],
     \   'right': [
-    \       ['cocerror'], ['cocwarn'], ['cocfix'],
-    \       [ 'filetype', 'fileencoding', 'fileformat', 'hex', 'asc', 'lineinfo'],
+    \       [ 'filetype', 'fileencoding', 'fileformat', 'hex', 'lineinfo'],
     \       [ 'percent' ]
     \   ]
     \ },
     \ 'component': {
     \   'asc': '%03.3b',
-    \   'hex': '0x%hhhB',
+    \   'hex': '0x%B',
     \ },
     \ 'component_function': {
     \   'cocstatus': 'coc#status',
